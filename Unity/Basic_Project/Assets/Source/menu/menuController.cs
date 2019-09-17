@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class menuController : MonoBehaviour
 {
-    public Button m_StartButton;
+    public Button m_Start3rdButton;
+    public Button m_Start1stButton;
+    public Button m_StartFPSButton;
     public Button m_OptionsButton;
     public Button m_AboutButton;
     public Button m_QuitButton;
@@ -14,8 +16,12 @@ public class menuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (m_StartButton)
-            m_StartButton.onClick.AddListener(StartOnClick);
+        if (m_Start3rdButton)
+            m_Start3rdButton.onClick.AddListener(Start3rdPersonOnClick);
+        if (m_Start1stButton)
+            m_Start1stButton.onClick.AddListener(Start1stPersonOnClick);
+        if (m_StartFPSButton)
+            m_StartFPSButton.onClick.AddListener(StartFPSOnClick);
         if (m_AboutButton)
             m_AboutButton.onClick.AddListener(AboutOnClick);
         if (m_QuitButton)
@@ -28,19 +34,29 @@ public class menuController : MonoBehaviour
     void OptionsOnClick()
     {
         Debug.Log("You have clicked the Options button!");
-        SceneManager.LoadScene("Options");
+        //SceneManager.LoadScene("Options");
     }
 
-    void StartOnClick()
+    void Start3rdPersonOnClick()
     {
         Debug.Log("You have clicked the start button!");
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("3rdPerson");
+    }
+    void Start1stPersonOnClick()
+    {
+        Debug.Log("You have clicked the start button!");
+        SceneManager.LoadScene("1stPersonTeleport");
+    }
+    void StartFPSOnClick()
+    {
+        Debug.Log("You have clicked the start button!");
+        SceneManager.LoadScene("1stPersonShooter");
     }
 
     void AboutOnClick()
     {
         Debug.Log("You have clicked the start button!");
-        SceneManager.LoadScene("About");
+        //SceneManager.LoadScene("About");
     }
 
     void QuitOnClick()
