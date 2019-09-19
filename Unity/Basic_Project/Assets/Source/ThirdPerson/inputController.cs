@@ -16,6 +16,7 @@ public class inputController : MonoBehaviour
 
 
     private Rigidbody rb;
+    private GenerationalGenerator generationalGenerator;
 
 
     private float horizontalInput;
@@ -28,6 +29,7 @@ public class inputController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        generationalGenerator = GetComponent<GenerationalGenerator>();
         pendingJumps = 0;
 
     }
@@ -63,7 +65,18 @@ public class inputController : MonoBehaviour
         {
             pendingJumps++;
         }
-            
+
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            generationalGenerator.storeLife(transform.position, 0);
+            SceneManager.LoadScene("2_5dPerson");
+        }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            generationalGenerator.storeLife(transform.position, 1);
+            SceneManager.LoadScene("2_5dPerson");
+        }
 
 
     }
