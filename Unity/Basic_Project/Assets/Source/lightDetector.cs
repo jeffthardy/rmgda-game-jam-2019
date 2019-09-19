@@ -130,7 +130,7 @@ public class lightDetector : MonoBehaviour
                         //Else do nothing since we already counted it
 
                     }
-                    Debug.Log("Stayed in " + collider.gameObject + " , light count is " + lightCount);
+                    //Debug.Log("Stayed in " + collider.gameObject + " , light count is " + lightCount);
 
                 }
                 // Ray hit some other object instead of us
@@ -150,7 +150,7 @@ public class lightDetector : MonoBehaviour
                         //Else do nothing since we already counted it
 
                     }
-                    Debug.Log("Exited due to obstruction of " + collider.gameObject + " by " + hit.collider.gameObject.name + ", light count is " + lightCount);
+                    //Debug.Log("Exited due to obstruction of " + collider.gameObject + " by " + hit.collider.gameObject.name + ", light count is " + lightCount);
 
                 }
             }
@@ -171,7 +171,7 @@ public class lightDetector : MonoBehaviour
                     //Else do nothing since we already counted it
 
                 }
-                Debug.Log("Exited " + collider.gameObject + " due to distance?  , light count is " + lightCount);
+                //Debug.Log("Exited " + collider.gameObject + " due to distance?  , light count is " + lightCount);
 
             }
 
@@ -198,7 +198,7 @@ public class lightDetector : MonoBehaviour
                 //Else do nothing since we already counted it
 
             }
-            Debug.Log("Exited " + collider.gameObject + " , light count is " + lightCount);
+            //Debug.Log("Exited " + collider.gameObject + " , light count is " + lightCount);
         }
     }
     

@@ -40,6 +40,10 @@ public class menuController : MonoBehaviour
     void StartOption1OnClick()
     {
         Debug.Log("You have clicked the start button!");
+
+        // Clear any existing player data which is used for life storage
+        PlayerPrefs.DeleteAll();
+
         SceneManager.LoadScene("2_5dPerson");
     }
     void Start1stPersonOnClick()
