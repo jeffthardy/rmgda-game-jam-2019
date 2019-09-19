@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class menuController : MonoBehaviour
 {
-    public Button m_Start3rdButton;
+    public Button m_StartOption1;
     public Button m_Start1stButton;
     public Button m_StartFPSButton;
     public Button m_OptionsButton;
@@ -16,8 +16,8 @@ public class menuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (m_Start3rdButton)
-            m_Start3rdButton.onClick.AddListener(Start3rdPersonOnClick);
+        if (m_StartOption1)
+            m_StartOption1.onClick.AddListener(StartOption1OnClick);
         if (m_Start1stButton)
             m_Start1stButton.onClick.AddListener(Start1stPersonOnClick);
         if (m_StartFPSButton)
@@ -37,10 +37,10 @@ public class menuController : MonoBehaviour
         //SceneManager.LoadScene("Options");
     }
 
-    void Start3rdPersonOnClick()
+    void StartOption1OnClick()
     {
         Debug.Log("You have clicked the start button!");
-        SceneManager.LoadScene("3rdPerson");
+        SceneManager.LoadScene("2_5dPerson");
     }
     void Start1stPersonOnClick()
     {

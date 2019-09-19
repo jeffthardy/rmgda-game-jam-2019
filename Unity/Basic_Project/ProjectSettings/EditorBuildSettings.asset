@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JeffsExamples/1stPersonShooter.unity
     guid: 0b2a959532df60b429f22ff63e9d1096
+  - enabled: 1
+    path: Assets/Scenes/JeffsExamples/2_5dPerson.unity
+    guid: 3cd80b680657fb246908ddb81acd82a7
   m_configObjects: {}
