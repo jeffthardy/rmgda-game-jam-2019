@@ -7,18 +7,28 @@ public class inputController : MonoBehaviour
 {
     public bool enableDebug = false;
     public bool allow3DMovement = true;
-    public float zMax = 10f;
-    public float xMax = 10f;
-    public float playerSpeed;
-    
+
+    public float horizontalMoveRate = 10;
+    public float forwardMoveRate = 10;
+    public float jumpMoveRate = 100;
+
+    public float maxSpeed = 30;
+
+
+    private Rigidbody rb;
 
 
     private float horizontalInput;
     private float verticalInput;
+    private bool jumpInput;
+    private float pendingJumps;
+    private bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        pendingJumps = 0;
 
     }
 
@@ -41,58 +51,93 @@ public class inputController : MonoBehaviour
 
 
         // Handle Input
-        handleHorizontalInput(Input.GetAxis("Horizontal"));
-        
+        horizontalInput = Input.GetAxis("Horizontal");
+
         // Only allow forward/backward movement in full 3d mode
         if (allow3DMovement)
         {
-            handleVerticalInput(Input.GetAxis("Vertical"));
+            verticalInput = Input.GetAxis("Horizontal");
         }
 
-
+        if (Input.GetButtonDown("Jump"))
+        {
+            pendingJumps++;
+        }
+            
 
 
     }
 
 
-    void handleHorizontalInput(float horizontalInput)
+    private void FixedUpdate()
     {
+        if(horizontalInput != 0)
+            handleHorizontalInput(horizontalInput);
 
-        // Handle Input
-        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * playerSpeed);
+        if (allow3DMovement)
+        {
+            if (verticalInput != 0)
+                handleVerticalInput(verticalInput);
+        }
+
+        if (pendingJumps>0 && isGrounded)
+        {
+            handleJump();
+            pendingJumps = 0;
+            isGrounded = false;
+        }
+
+
+
+        // Fix max horzSpeed, which also comes into play when jumping
+        if (Mathf.Abs(rb.velocity.x) > maxSpeed)
+            rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
+
+    }
+
+    void handleJump()
+    {
+        rb.AddForce(transform.up * jumpMoveRate, ForceMode.Impulse);
+
+    }
+
+        void handleHorizontalInput(float horizontalInput)
+    {
+        
+
+        // Handle normal sideways movement
+        float moveHorizontal = horizontalInput * horizontalMoveRate;
+        rb.AddForce(transform.right * moveHorizontal);
 
         if ((horizontalInput != 0) && enableDebug)
         {
             Debug.Log("You pressed a horizontal button!");
         }
 
-        //Set min X range
-        if (transform.position.x < -xMax)
-            transform.position = new Vector3(-xMax, transform.position.y, transform.position.z);
 
-        // Set max X range
-        if (transform.position.x > xMax)
-            transform.position = new Vector3(xMax, transform.position.y, transform.position.z);
-
+        
 
     }
 
     void handleVerticalInput(float verticalInput)
     {
-        // Handle Input
-        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * playerSpeed);
+
+        // Handle normal forward movement
+        float moveForward = verticalInput * forwardMoveRate;
+        rb.AddForce(transform.forward * moveForward);
+
 
         if ((verticalInput != 0) && enableDebug)
         {
             Debug.Log("You pressed a Vertical button!");
         }
         
-        //Set min Z range
-        if (transform.position.z < -zMax)
-            transform.position = new Vector3(transform.position.x, transform.position.y, -zMax);
+    }
 
-        // Set max Z range
-        if (transform.position.z > zMax)
-            transform.position = new Vector3(transform.position.x, transform.position.y, zMax);
+
+    void OnCollisionStay(Collision collisionInfo)
+    {
+        if (!isGrounded && (rb.velocity.y <= 0) && (collisionInfo.collider.gameObject.tag == "ground"))
+            isGrounded = true;
     }
 }
