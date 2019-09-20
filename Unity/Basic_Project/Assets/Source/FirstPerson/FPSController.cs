@@ -42,6 +42,7 @@ public class FPSController : MonoBehaviour
         {
             Debug.Log("You have clicked the quit button!");
             Cursor.lockState = wantedMode = CursorLockMode.None;
+            Cursor.visible = (CursorLockMode.Locked != wantedMode);
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #elif UNITY_WEBGL	
@@ -54,6 +55,7 @@ public class FPSController : MonoBehaviour
         if (Input.GetAxis("MouseEjector") == 1)
         {
             Cursor.lockState = wantedMode = CursorLockMode.None;
+            Cursor.visible = (CursorLockMode.Locked != wantedMode);
         }
 
         //Adjust position
