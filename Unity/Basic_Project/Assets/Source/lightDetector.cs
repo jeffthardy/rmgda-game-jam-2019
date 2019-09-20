@@ -53,14 +53,14 @@ public class lightDetector : MonoBehaviour
             {
                 isInLight = false;
                 meshRender.material = outOfLight;
-                Debug.Log("Applying outoflight Texture");
+                //Debug.Log("Applying outoflight Texture");
 
             }
             else
             {
                 isInLight = true;
                 meshRender.material = inLight;
-                Debug.Log("Applying inlight Texture");
+                //Debug.Log("Applying inlight Texture");
             }
         }
     }
@@ -103,7 +103,7 @@ public class lightDetector : MonoBehaviour
 
                     }
 
-                    Debug.Log("Entered " + collider.gameObject + " , light count is " + lightCount);
+                    //Debug.Log("Entered " + collider.gameObject + " , light count is " + lightCount);
 
                 }
                 else
@@ -154,7 +154,7 @@ public class lightDetector : MonoBehaviour
                         //Else do nothing since we already counted it
 
                     }
-                    Debug.Log("Stayed in " + collider.gameObject + " , light count is " + lightCount);
+                    //Debug.Log("Stayed in " + collider.gameObject + " , light count is " + lightCount);
 
                 }
                 // Ray hit some other object instead of us
@@ -174,7 +174,7 @@ public class lightDetector : MonoBehaviour
                         //Else do nothing since we already counted it
 
                     }
-                    Debug.Log("Exited due to obstruction of " + collider.gameObject + " by " + hit.collider.gameObject.name + ", light count is " + lightCount);
+                    //Debug.Log("Exited due to obstruction of " + collider.gameObject + " by " + hit.collider.gameObject.name + ", light count is " + lightCount);
 
                 }
             }
@@ -196,7 +196,7 @@ public class lightDetector : MonoBehaviour
                     //Else do nothing since we already counted it
 
                 }
-                Debug.Log("Exited " + collider.gameObject + " due to distance?  , light count is " + lightCount);
+                //Debug.Log("Exited " + collider.gameObject + " due to distance?  , light count is " + lightCount);
 
             }
 
@@ -223,7 +223,7 @@ public class lightDetector : MonoBehaviour
                 //Else do nothing since we already counted it
 
             }
-            Debug.Log("Exited " + collider.gameObject + " , light count is " + lightCount);
+            //Debug.Log("Exited " + collider.gameObject + " , light count is " + lightCount);
         }
     }
     
