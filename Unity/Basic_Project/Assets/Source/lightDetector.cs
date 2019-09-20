@@ -9,6 +9,10 @@ public class lightDetector : MonoBehaviour
     public bool isInLight = true;
     public int lightCount = 1;
     public int layerMask = 8;
+    public int mode = 0;
+
+    public Material inLight;
+    public Material outOfLight;
 
     private Dictionary<string, bool> lightDictionary = new Dictionary<string, bool>();
 
@@ -17,7 +21,7 @@ public class lightDetector : MonoBehaviour
     {
         meshRender = GetComponent<MeshRenderer>();
         // Default player as Green
-        meshRender.material.color = new Color(0, 1, 0);
+        //meshRender.material.color = new Color(0, 1, 0);
 
         // Invert to make it exclude rather than only include it
         layerMask = 1 << layerMask;
@@ -27,21 +31,41 @@ public class lightDetector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(mode == 0)
+        {
+            if (lightCount <= 0)
+            {
+                isInLight = false;
+                meshRender.material.color = new Color(1, 0, 0);
+                meshRender.material.SetColor("_EmissionColor", new Color(1, 0, 0));
+            }
+            else
+            {
+                isInLight = true;
+                meshRender.material.color = new Color(0, 1, 0);
+                meshRender.material.SetColor("_EmissionColor", new Color(0, 1, 0));
+            }
 
-        if (lightCount <= 0)
+        } else
         {
-            isInLight = false;
-            meshRender.material.color = new Color(1, 0, 0);
-            meshRender.material.SetColor("_EmissionColor", new Color(1, 0, 0));
-        }
-        else
-        {
-            isInLight = true;
-            meshRender.material.color = new Color(0, 1, 0);
-            meshRender.material.SetColor("_EmissionColor", new Color(0, 1, 0));
+
+            if (lightCount <= 0)
+            {
+                isInLight = false;
+                meshRender.material = outOfLight;
+                Debug.Log("Applying outoflight Texture");
+
+            }
+            else
+            {
+                isInLight = true;
+                meshRender.material = inLight;
+                Debug.Log("Applying inlight Texture");
+            }
         }
     }
     
+
     private void OnTriggerEnter(Collider collider)
     {
         // We entered a light area
@@ -105,7 +129,7 @@ public class lightDetector : MonoBehaviour
 
             // In this case we only want an orthographic collition with the light assuming infinity location
             if (collider.gameObject.name == "WorldLight")
-                fromPosition = new Vector3(toPosition.x, toPosition.y, fromPosition.z);
+                fromPosition = new Vector3(toPosition.x, toPosition.y, toPosition.z-1000);
 
             Vector3 direction = toPosition - fromPosition;
 
@@ -130,7 +154,7 @@ public class lightDetector : MonoBehaviour
                         //Else do nothing since we already counted it
 
                     }
-                    //Debug.Log("Stayed in " + collider.gameObject + " , light count is " + lightCount);
+                    Debug.Log("Stayed in " + collider.gameObject + " , light count is " + lightCount);
 
                 }
                 // Ray hit some other object instead of us
@@ -150,13 +174,14 @@ public class lightDetector : MonoBehaviour
                         //Else do nothing since we already counted it
 
                     }
-                    //Debug.Log("Exited due to obstruction of " + collider.gameObject + " by " + hit.collider.gameObject.name + ", light count is " + lightCount);
+                    Debug.Log("Exited due to obstruction of " + collider.gameObject + " by " + hit.collider.gameObject.name + ", light count is " + lightCount);
 
                 }
             }
             //Ray hit nothing, so light is very far away?
             else
             {
+
                 if (!lightDictionary.ContainsKey(collider.gameObject.name))
                 {
                     //not sure this can happen
@@ -171,7 +196,7 @@ public class lightDetector : MonoBehaviour
                     //Else do nothing since we already counted it
 
                 }
-                //Debug.Log("Exited " + collider.gameObject + " due to distance?  , light count is " + lightCount);
+                Debug.Log("Exited " + collider.gameObject + " due to distance?  , light count is " + lightCount);
 
             }
 
@@ -198,7 +223,7 @@ public class lightDetector : MonoBehaviour
                 //Else do nothing since we already counted it
 
             }
-            //Debug.Log("Exited " + collider.gameObject + " , light count is " + lightCount);
+            Debug.Log("Exited " + collider.gameObject + " , light count is " + lightCount);
         }
     }
     

@@ -19,12 +19,14 @@ public class FPSController : MonoBehaviour
 
     private Collider coll;
     private Rigidbody rb;
+    private bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
     {
         originalRotation = transform.localRotation;
         rb = GetComponent<Rigidbody>();
+        isGrounded = true;
     }
 
     // Update is called once per frame
@@ -97,6 +99,8 @@ public class FPSController : MonoBehaviour
 
     public float horizontalMoveRate = 10;
     public float forwardMoveRate = 10;
+    public float maxSpeed = 15;
+    public float jumpMoveRate = 100;
 
     private float horizontalInput;
     private float verticalInput;
@@ -108,7 +112,14 @@ public class FPSController : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            pendingJumps++;
+        }
+
+
+
     }
 
 
@@ -122,6 +133,44 @@ public class FPSController : MonoBehaviour
         float moveForward = verticalInput * forwardMoveRate;
         rb.AddForce(transform.forward * moveForward);
 
+        if (pendingJumps > 0 && isGrounded)
+        {
+            handleJump();
+            pendingJumps = 0;
+            isGrounded = false;
+        }
 
+
+        //Bad code...diagonal is fast
+        float newXSpeed = rb.velocity.x;
+        float newYSpeed = rb.velocity.y;
+
+        // Fix max horzSpeed, which also comes into play when jumping
+        if (Mathf.Abs(newXSpeed) > maxSpeed)
+        {
+            newXSpeed = Mathf.Sign(rb.velocity.x) * maxSpeed;
+            rb.velocity = new Vector2(newXSpeed, newYSpeed);
+        }
+
+        if (Mathf.Abs(newYSpeed) > maxSpeed)
+        {
+            newYSpeed = Mathf.Sign(rb.velocity.y) * maxSpeed;
+            rb.velocity = new Vector2(newXSpeed, newYSpeed);
+        }
+
+    }
+
+
+    void handleJump()
+    {
+        rb.AddForce(transform.up * jumpMoveRate, ForceMode.Impulse);
+
+    }
+
+
+    void OnCollisionStay(Collision collisionInfo)
+    {
+        if (!isGrounded && (rb.velocity.y <= 0) && (collisionInfo.collider.gameObject.tag == "ground"))
+            isGrounded = true;
     }
 }
