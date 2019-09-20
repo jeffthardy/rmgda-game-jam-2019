@@ -16,6 +16,7 @@ public class FPSController : MonoBehaviour
     public float maximumY;
 
     Quaternion originalRotation;
+    public CursorLockMode wantedMode;
 
     private Collider coll;
     private Rigidbody rb;
@@ -26,17 +27,22 @@ public class FPSController : MonoBehaviour
     {
         originalRotation = transform.localRotation;
         rb = GetComponent<Rigidbody>();
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         isGrounded = true;
+
+        Cursor.lockState = wantedMode;
+        // Hide cursor when locking
+        Cursor.visible = (CursorLockMode.Locked != wantedMode);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
         if (Input.GetButtonDown("Quit") || Input.GetButtonDown("Cancel"))
         {
             Debug.Log("You have clicked the quit button!");
+            Cursor.lockState = wantedMode = CursorLockMode.None;
+            Cursor.visible = (CursorLockMode.Locked != wantedMode);
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #elif UNITY_WEBGL	
@@ -46,34 +52,20 @@ public class FPSController : MonoBehaviour
 #endif
         }
 
+        if (Input.GetAxis("MouseEjector") == 1)
+        {
+            Cursor.lockState = wantedMode = CursorLockMode.None;
+            Cursor.visible = (CursorLockMode.Locked != wantedMode);
+        }
+
         //Adjust position
         movementUpdate();
 
         //Adjust view
         mouseViewUpdate();
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 100.0f))
-            {
-                if (hit.collider.gameObject.transform.tag != null)
-                    if (hit.transform.tag == "location")
-                    {
-                        teleportTo(hit.transform.position, hit.transform.rotation);
-                    }
-            }
-        }
+        
     }
-
-
-    private void teleportTo(Vector3 position, Quaternion rotation)
-    {
-        transform.position = position;
-        transform.rotation = rotation;
-    }
+    
 
     private void mouseViewUpdate()
     {
@@ -144,18 +136,25 @@ public class FPSController : MonoBehaviour
         //Bad code...diagonal is fast
         float newXSpeed = rb.velocity.x;
         float newYSpeed = rb.velocity.y;
+        float newZSpeed = rb.velocity.z;
 
         // Fix max horzSpeed, which also comes into play when jumping
         if (Mathf.Abs(newXSpeed) > maxSpeed)
         {
             newXSpeed = Mathf.Sign(rb.velocity.x) * maxSpeed;
-            rb.velocity = new Vector2(newXSpeed, newYSpeed);
+            rb.velocity = new Vector3(newXSpeed, newYSpeed, newZSpeed);
         }
 
         if (Mathf.Abs(newYSpeed) > maxSpeed)
         {
             newYSpeed = Mathf.Sign(rb.velocity.y) * maxSpeed;
-            rb.velocity = new Vector2(newXSpeed, newYSpeed);
+            rb.velocity = new Vector3(newXSpeed, newYSpeed, newZSpeed);
+        }
+
+        if (Mathf.Abs(newZSpeed) > maxSpeed)
+        {
+            newZSpeed = Mathf.Sign(rb.velocity.z) * maxSpeed;
+            rb.velocity = new Vector3(newXSpeed, newYSpeed, newZSpeed);
         }
 
     }
