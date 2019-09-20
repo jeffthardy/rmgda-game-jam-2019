@@ -1512,9 +1512,9 @@ MonoBehaviour:
   sensitivityX: 8
   sensitivityY: 8
   minimumX: -360
-  minimumY: -360
+  minimumY: -90
   maximumX: 360
-  maximumY: 360
+  maximumY: 90
   wantedMode: 1
   horizontalMoveRate: 500
   forwardMoveRate: 500
