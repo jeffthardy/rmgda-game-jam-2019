@@ -16,17 +16,21 @@ public class FPSController : MonoBehaviour
     public float maximumY;
 
     Quaternion originalRotation;
+    Quaternion originalCameraRotation;
     public CursorLockMode wantedMode;
 
     private Collider coll;
     private Rigidbody rb;
     private bool isGrounded;
+    private Camera myCamera;
 
     // Start is called before the first frame update
     void Start()
     {
         originalRotation = transform.localRotation;
         rb = GetComponent<Rigidbody>();
+        myCamera = GetComponentInChildren<Camera>();
+        originalCameraRotation = myCamera.transform.localRotation;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         isGrounded = true;
 
@@ -77,7 +81,8 @@ public class FPSController : MonoBehaviour
         Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
         Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, -Vector3.right);
 
-        transform.localRotation = originalRotation * xQuaternion * yQuaternion;
+        transform.localRotation = originalRotation * xQuaternion;
+        myCamera.transform.localRotation = originalCameraRotation * yQuaternion;
     }
 
     public static float ClampAngle(float angle, float min, float max)
