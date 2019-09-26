@@ -3,37 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
-public class constantDOFChanger : MonoBehaviour
+namespace TopZombies
 {
-
-    PostProcessVolume m_Volume;
-    DepthOfField m_dof;
-    public int layerToAffect = 9; // ground
-
-    // Start is called before the first frame update
-    void Start()
+    public class constantDOFChanger : MonoBehaviour
     {
 
-        m_dof = ScriptableObject.CreateInstance<DepthOfField>();
-        //m_dof.enabled.Override(true);
-        m_dof.focusDistance.Override(1f);
+        PostProcessVolume m_Volume;
+        DepthOfField m_dof;
+        public int layerToAffect = 9; // ground
 
-        m_Volume = PostProcessManager.instance.QuickVolume(layerToAffect, 100f, m_dof);
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
+        // Start is called before the first frame update
+        void Start()
         {
-            m_dof.enabled.value = true;
-            m_dof.focusDistance.value = 0;
+
+            m_dof = ScriptableObject.CreateInstance<DepthOfField>();
+            //m_dof.enabled.Override(true);
+            m_dof.focusDistance.Override(1f);
+
+            m_Volume = PostProcessManager.instance.QuickVolume(layerToAffect, 100f, m_dof);
+
         }
-        if (Input.GetKeyDown(KeyCode.N))
+
+        // Update is called once per frame
+        void Update()
         {
-            m_dof.enabled.value = false;
-            //m_dof.focusDistance.value = 0;
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                m_dof.enabled.value = true;
+                m_dof.focusDistance.value = 0;
+            }
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                m_dof.enabled.value = false;
+                //m_dof.focusDistance.value = 0;
+            }
         }
     }
 }
