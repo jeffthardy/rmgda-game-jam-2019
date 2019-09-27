@@ -27,7 +27,7 @@ namespace TopZombies
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Collision detected with " + other.gameObject);
+            //Debug.Log("Collision detected with " + other.gameObject);
             for (int i = 0; i < goals.Length; i++)
             {
                 if (other.gameObject == goals[i].gameObject)

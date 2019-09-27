@@ -17,6 +17,7 @@ namespace TopZombies
         // Controls for general speed of motion
         public float horizontalMoveRate = 100;
         public float forwardMoveRate = 100;
+        public float duckSpeed = 2;
         public float walkSpeed = 3;
         public float sprintSpeed = 6;
         public float jumpMoveRate = 100;
@@ -50,8 +51,9 @@ namespace TopZombies
         private float verticalInput;
         private float pendingJumps = 0;
         private bool jumpHeldDown;
-        private bool isDucking = false;
-        private bool isSprinting = false;
+        [HideInInspector]
+        public bool isDucking = false;
+        public bool isSprinting = false;
 
         // Start is called before the first frame update
         void Start()
@@ -192,6 +194,8 @@ namespace TopZombies
             float maxSpeed = walkSpeed;
             if (isSprinting)
                 maxSpeed = sprintSpeed;
+            if (isDucking)
+                maxSpeed = duckSpeed;
 
             // Fix max horzSpeed, which also comes into play when jumping
             if (Mathf.Abs(newXSpeed) > maxSpeed)
@@ -224,7 +228,7 @@ namespace TopZombies
 
         void handleSprint()
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && !isDucking)
             {
                 isSprinting = true;
             }
