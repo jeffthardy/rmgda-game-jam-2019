@@ -145,6 +145,16 @@ namespace TopZombies
 
             }
 
+            if (other.gameObject.GetComponent<ClueController>() != null)
+            {
+                if (Input.GetKey(KeyCode.E))
+                {
+                    Debug.Log("Using  " + other.gameObject);
+                    other.gameObject.GetComponent<ClueController>().Use();
+                }
+
+            }
+
 
         }
 
