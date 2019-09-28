@@ -44,6 +44,7 @@ namespace TopZombies
         Quaternion originalCameraRotation;
         private CapsuleCollider coll;
         private Rigidbody rb;
+        private PlayerDeathEffects deathEffects;
         private bool isGrounded;
         private Camera myCamera;
         private GameObject myCameraObject;
@@ -51,6 +52,8 @@ namespace TopZombies
         private float verticalInput;
         private float pendingJumps = 0;
         private bool jumpHeldDown;
+        private Vector3 spawnPoint;
+        private Quaternion spawnRotation;
         [HideInInspector]
         public bool isDucking = false;
         public bool isSprinting = false;
@@ -58,18 +61,24 @@ namespace TopZombies
         // Start is called before the first frame update
         void Start()
         {
-
+            // Remember where we started to apply changes and respawn
             originalRotation = transform.localRotation;
+            spawnPoint = transform.position;
+            spawnRotation = transform.rotation;
+
+            // Grab references of gameObject components as needed.
             rb = GetComponent<Rigidbody>();
             myCamera = GetComponentInChildren<Camera>();
             myCameraObject = myCamera.gameObject;
             coll = GetComponentInChildren<CapsuleCollider>();
+            deathEffects = GetComponent<PlayerDeathEffects>();
+
+            // Setup initial conditions
             coll.height = standingHeight;
             originalCameraRotation = myCamera.transform.localRotation;
             myCameraObject.transform.localPosition = new Vector3(0, (coll.height / 2) - cameraOffsetFromHead, 0);
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             isGrounded = true;
-
             Cursor.lockState = cursorLockedMode;
             // Hide cursor when locking
             Cursor.visible = (CursorLockMode.Locked != cursorLockedMode);
@@ -137,6 +146,22 @@ namespace TopZombies
             }
 
 
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            // Handle enemy death
+            if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                Debug.Log("Player has died from  " + collision.gameObject);
+                deathEffects.Death();
+            }
+        }
+
+        public void Respawn()
+        {
+            gameObject.transform.position = spawnPoint;
+            gameObject.transform.rotation = spawnRotation;
         }
 
 
