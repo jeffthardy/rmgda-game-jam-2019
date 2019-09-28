@@ -30,7 +30,7 @@ namespace TopZombies
         // Start is called before the first frame update
         void Start()
         {
-            rb = GetComponent<Rigidbody>();
+            rb = GetComponentInParent<Rigidbody>(); 
             audioSource = GetComponent<AudioSource>();
             audioSource.clip = walkSounds[currentSound];
             currentSound = 0;
@@ -53,13 +53,13 @@ namespace TopZombies
                 audioSource.Stop();
             }
 
-            if (transform.gameObject.GetComponent<FPSController>().isSprinting)
+            if (transform.gameObject.GetComponentInParent<FPSController>().isSprinting)
             {
                 soundMode = SoundMode.sprinting;
             }
             else
             {
-                if (transform.gameObject.GetComponent<FPSController>().isDucking)
+                if (transform.gameObject.GetComponentInParent<FPSController>().isDucking)
                 {
                     soundMode = SoundMode.crawling;
                 }
