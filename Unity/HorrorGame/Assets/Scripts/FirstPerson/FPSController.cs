@@ -11,6 +11,7 @@ namespace TopZombies
         public CursorLockMode cursorLockedMode = CursorLockMode.Locked;
 
         public GameObject pauseMenu;
+        public GameObject flashlight;
 
         // How sensitive do we want turning?  Menu controlled?
         public float mouseSensitivityX = 8;
@@ -114,6 +115,8 @@ namespace TopZombies
             //Handle Sprinting
             handleSprint();
 
+            // Handle toggling flashlight
+            HandleFlashlight();
 
 
         }
@@ -344,6 +347,15 @@ namespace TopZombies
         public void InputControl(bool enabled)
         {
            enableInput = enabled;
+        }
+
+        void HandleFlashlight()
+        {
+            if (Input.GetKeyDown(KeyCode.F) && enableInput)
+            {
+                flashlight.GetComponent<FlashlightController>().toggleFlashlight();
+            }
+
         }
     }
 }

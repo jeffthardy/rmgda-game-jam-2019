@@ -32,7 +32,7 @@ namespace TopZombies
                 gameObject.GetComponentInParent<enemyMover>().SetNewGoal(other.gameObject.transform.position);
 
                 // Play audio on detection
-                Debug.Log("Attempting to play detect audio");
+                //Debug.Log("Attempting to play detect audio");
                 if (transform.parent.gameObject.GetComponentInChildren<EnemyAudioGenerator>() != null)
                     transform.parent.gameObject.GetComponentInChildren<EnemyAudioGenerator>().playDetectAudio();
                 else
