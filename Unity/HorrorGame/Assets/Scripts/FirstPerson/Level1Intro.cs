@@ -11,6 +11,8 @@ namespace TopZombies
         public float percentAudioBeforemovement = 0.9f;
         public GameObject postProcessingObject;
 
+        public bool skipIntro = false;
+
 
         private AudioSource audioSource;
         private FPSController fPSController;
@@ -22,7 +24,8 @@ namespace TopZombies
             audioSource = GetComponent<AudioSource>();
             audioTime = startingAudio.length;
             fPSController = GetComponent<FPSController>();
-            StartCoroutine(IntroScript());
+            if(!skipIntro)
+                StartCoroutine(IntroScript());
 
         }
 
