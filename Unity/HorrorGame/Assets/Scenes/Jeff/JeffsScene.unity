@@ -652,6 +652,7 @@ GameObject:
   - component: {fileID: 341797042}
   - component: {fileID: 341797046}
   - component: {fileID: 341797048}
+  - component: {fileID: 341797047}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -710,6 +711,7 @@ MonoBehaviour:
   walkSpeed: 3
   sprintSpeed: 6
   jumpMoveRate: 100
+  enableInput: 1
   standingHeight: 2
   duckingHeight: 1
   cameraOffsetFromHead: 0.2
@@ -827,6 +829,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &341797047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341797041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18ac3a0f2b6b634da1130af1d712ece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingAudio: {fileID: 8300000, guid: 3f216e8583487604aa5daf75a4745396, type: 3}
 --- !u!114 &341797048
 MonoBehaviour:
   m_ObjectHideFlags: 0
