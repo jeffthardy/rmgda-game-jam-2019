@@ -1177,7 +1177,11 @@ MonoBehaviour:
   maxIntensity: 3
   isOn: 1
   toggleTime: 0.2
-  toggleSound: {fileID: 8300000, guid: 4f8ed171732a6554aa0e6cff4f5c96f8, type: 3}
+  toggleSounds:
+  - {fileID: 8300000, guid: ac8f1754773f4f94b84d49c92888d79d, type: 3}
+  - {fileID: 8300000, guid: f0786dac08eafbf4d9aca3f9c416cf53, type: 3}
+  - {fileID: 8300000, guid: 6a5eb092f8d4cab42a549dee45f30438, type: 3}
+  - {fileID: 8300000, guid: e9c9b404f0b0539439faa0c3391c85ff, type: 3}
 --- !u!82 &426616775
 AudioSource:
   m_ObjectHideFlags: 0

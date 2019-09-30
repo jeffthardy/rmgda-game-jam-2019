@@ -9,12 +9,13 @@ namespace TopZombies
         public float maxIntensity = 3;
         public bool isOn = true;
         public float toggleTime = 0.2f;
-        public AudioClip toggleSound;
+        public AudioClip[] toggleSounds;
 
         private AudioSource audioSource;
 
         private Light flashlight;
         private float availableTime = 0;
+        private int index=0;
 
         // Start is called before the first frame update
         void Start()
@@ -40,7 +41,22 @@ namespace TopZombies
             if (Time.time > availableTime)
             {
                 availableTime = Time.time + toggleTime;
-                audioSource.PlayOneShot(toggleSound);
+
+                // Play new spawn audio
+                if (toggleSounds.Length > 1)
+                {
+                    int previousIndex = index;
+                    //Debug.Log(previousIndex + " " + detectIndex);
+                    index = previousIndex + 1;
+                    if (index > toggleSounds.Length - 1)
+                        index = 0;
+                }
+                else
+                {
+                    index = 0;
+                }
+                //Debug.Log(Time.time + ":" + detectIndex);
+                audioSource.PlayOneShot(toggleSounds[index]);
 
                 if (isOn)
                 {
