@@ -4,75 +4,66 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class menuController : MonoBehaviour
+namespace TopZombies
 {
-    public Button m_StartOption1;
-    public Button m_Start1stButton;
-    public Button m_StartFPSButton;
-    public Button m_OptionsButton;
-    public Button m_AboutButton;
-    public Button m_QuitButton;
-
-    // Start is called before the first frame update
-    void Start()
+    public class menuController : MonoBehaviour
     {
-        if (m_StartOption1)
-            m_StartOption1.onClick.AddListener(StartOption1OnClick);
-        if (m_Start1stButton)
-            m_Start1stButton.onClick.AddListener(Start1stPersonOnClick);
-        if (m_StartFPSButton)
-            m_StartFPSButton.onClick.AddListener(StartFPSOnClick);
-        if (m_AboutButton)
-            m_AboutButton.onClick.AddListener(AboutOnClick);
-        if (m_QuitButton)
-            m_QuitButton.onClick.AddListener(QuitOnClick);
-        if (m_OptionsButton)
-            m_OptionsButton.onClick.AddListener(OptionsOnClick);
+        public Button startButton;
+        public Button optionsButton;
+        public Button creditsButton;
+        public Button quitButton;
+        public string startSceneName;
+        public string creditsSceneName;
 
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
+            if (startButton)
+                startButton.onClick.AddListener(StartButtonOnClick);
+            if (creditsButton)
+                creditsButton.onClick.AddListener(CreditsOnClick);
+            if (quitButton)
+                quitButton.onClick.AddListener(QuitOnClick);
+            if (optionsButton)
+                optionsButton.onClick.AddListener(OptionsOnClick);
 
-    void OptionsOnClick()
-    {
-        Debug.Log("You have clicked the Options button!");
-        //SceneManager.LoadScene("Options");
-    }
+        }
 
-    void StartOption1OnClick()
-    {
-        Debug.Log("You have clicked the start button!");
+        void StartButtonOnClick()
+        {
+            Debug.Log("You have clicked the start button!");
 
-        // Clear any existing player data which is used for life storage
-        PlayerPrefs.DeleteAll();
+            // Clear any existing player data which is used for life storage
+            //PlayerPrefs.DeleteAll();
 
-        SceneManager.LoadScene("2_5dPerson");
-    }
-    void Start1stPersonOnClick()
-    {
-        Debug.Log("You have clicked the start button!");
-        SceneManager.LoadScene("1stPersonTeleport");
-    }
-    void StartFPSOnClick()
-    {
-        Debug.Log("You have clicked the start button!");
-        SceneManager.LoadScene("1stPersonShooter");
-    }
+            SceneManager.LoadScene(startSceneName);
+        }
 
-    void AboutOnClick()
-    {
-        Debug.Log("You have clicked the start button!");
-        //SceneManager.LoadScene("About");
-    }
+        void CreditsOnClick()
+        {
+            Debug.Log("You have clicked the start button!");
+            //SceneManager.LoadScene("About");
+            SceneManager.LoadScene(creditsSceneName);
+        }
 
-    void QuitOnClick()
-    {
-        Debug.Log("You have clicked the quit button!");
+        void OptionsOnClick()
+        {
+            Debug.Log("You have clicked the Options button!");
+            //SceneManager.LoadScene("Options");
+        }
+
+
+        void QuitOnClick()
+        {
+            Debug.Log("You have clicked the quit button!");
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#elif UNITY_WEBGL	
+            UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_WEBGL
         //Application.OpenURL(webplayerQuitURL);
 #else
         Application.Quit();
 #endif
 
+        }
     }
 }
