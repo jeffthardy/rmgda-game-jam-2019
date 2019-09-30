@@ -21,6 +21,7 @@ namespace TopZombies
         public float walkSpeed = 3;
         public float sprintSpeed = 6;
         public float jumpMoveRate = 100;
+        public bool  enableInput = true;
 
 
         // Control the size of the player
@@ -123,11 +124,13 @@ namespace TopZombies
 
 
         }
+
+        // Currently detecting items we can use based on trigger zones
         private void OnTriggerStay(Collider other)
         {
             if(other.gameObject.GetComponent<AudioPlayerOnUse>() != null)
             {
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetKey(KeyCode.E) && enableInput)
                 {
                     Debug.Log("Using  " + other.gameObject);
                     other.gameObject.GetComponent<AudioPlayerOnUse>().Use();
@@ -137,7 +140,7 @@ namespace TopZombies
 
             if (other.gameObject.GetComponent<DoorController>() != null)
             {
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetKey(KeyCode.E) && enableInput)
                 {
                     Debug.Log("Using  " + other.gameObject);
                     other.gameObject.GetComponent<DoorController>().Use();
@@ -147,7 +150,7 @@ namespace TopZombies
 
             if (other.gameObject.GetComponent<ClueController>() != null)
             {
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetKey(KeyCode.E) && enableInput)
                 {
                     Debug.Log("Using  " + other.gameObject);
                     other.gameObject.GetComponent<ClueController>().Use();
@@ -177,16 +180,19 @@ namespace TopZombies
 
         private void mouseViewUpdate()
         {
-            // Read the mouse input axis
-            rotationX += Input.GetAxis("Mouse X") * mouseSensitivityX;
-            rotationY += Input.GetAxis("Mouse Y") * mouseSensitivityY;
-            rotationX = ClampAngle(rotationX, minimumX, maximumX);
-            rotationY = ClampAngle(rotationY, minimumY, maximumY);
-            Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
-            Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, -Vector3.right);
+            if (enableInput)
+            {
+                // Read the mouse input axis
+                rotationX += Input.GetAxis("Mouse X") * mouseSensitivityX;
+                rotationY += Input.GetAxis("Mouse Y") * mouseSensitivityY;
+                rotationX = ClampAngle(rotationX, minimumX, maximumX);
+                rotationY = ClampAngle(rotationY, minimumY, maximumY);
+                Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
+                Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, -Vector3.right);
 
-            transform.localRotation = originalRotation * xQuaternion;
-            myCamera.transform.localRotation = originalCameraRotation * yQuaternion;
+                transform.localRotation = originalRotation * xQuaternion;
+                myCamera.transform.localRotation = originalCameraRotation * yQuaternion;
+            }
         }
 
         public static float ClampAngle(float angle, float min, float max)
@@ -201,14 +207,16 @@ namespace TopZombies
         // Handle general keyboard input for movement
         private void movementUpdate()
         {
-            horizontalInput = Input.GetAxis("Horizontal");
-            verticalInput = Input.GetAxis("Vertical");
-
-            if (Input.GetButtonDown("Jump"))
+            if (enableInput)
             {
-                pendingJumps++;
-            }
+                horizontalInput = Input.GetAxis("Horizontal");
+                verticalInput = Input.GetAxis("Vertical");
 
+                if (Input.GetButtonDown("Jump"))
+                {
+                    pendingJumps++;
+                }
+            }
 
 
         }
@@ -274,7 +282,7 @@ namespace TopZombies
 
         void handleSprint()
         {
-            if (Input.GetKey(KeyCode.LeftShift) && !isDucking)
+            if (Input.GetKey(KeyCode.LeftShift) && !isDucking && enableInput)
             {
                 isSprinting = true;
             }
@@ -289,7 +297,7 @@ namespace TopZombies
 
         void handleDuck()
         {
-            if (Input.GetButton("Duck"))
+            if (Input.GetButton("Duck") && enableInput)
             {
 
                 // Change colider size and camera location to duck size
@@ -334,10 +342,9 @@ namespace TopZombies
                 isGrounded = true;
         }
 
-
-        void AttemptUse()
+        public void InputControl(bool enabled)
         {
-
+           enableInput = enabled;
         }
     }
 }

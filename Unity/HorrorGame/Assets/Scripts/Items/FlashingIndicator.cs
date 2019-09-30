@@ -40,9 +40,9 @@ namespace TopZombies
                 scale = (scale / 2);
                 //Debug.Log("Base "+flashColor);
                 Color newColor = flashColor * scale + flashColor/2;
-                Debug.Log("Current: " +newColor);
+                //Debug.Log("Current: " +newColor);
                 mat.SetColor("_EmissionColor", newColor);
-                Debug.Log("Read: " + mat.GetColor("_EmissionColor"));
+                //Debug.Log("Read: " + mat.GetColor("_EmissionColor"));
             }
 
 
@@ -55,7 +55,7 @@ namespace TopZombies
             startTime = Time.time;
             mat.EnableKeyword("_EMISSION");
             mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
-            Debug.Log("Turn on lights");
+            //Debug.Log("Turn on lights");
 
         }
         public void turnOffFlasher()
@@ -64,7 +64,7 @@ namespace TopZombies
             mat.DisableKeyword("_EMISSION");
             mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
             mat.SetColor("_EMISSION", Color.black);
-            Debug.Log("Turn off lights");
+            //Debug.Log("Turn off lights");
         }
 
 
