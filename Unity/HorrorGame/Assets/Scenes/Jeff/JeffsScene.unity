@@ -843,7 +843,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingAudio: {fileID: 8300000, guid: 3f216e8583487604aa5daf75a4745396, type: 3}
-  percentAudioBeforemovement: 0.9
+  percentAudioBeforemovement: 0.5
+  postProcessingObject: {fileID: 1776826840}
 --- !u!114 &341797048
 MonoBehaviour:
   m_ObjectHideFlags: 0

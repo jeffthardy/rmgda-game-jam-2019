@@ -86,7 +86,6 @@ namespace TopZombies
             audioSource.PlayOneShot(spawnTalks[talkIndex]);
             //Debug.Log(Time.time + "spawnaudio");
 
-            
             yield return new WaitForSeconds(talkTimeBeforeSceenClear);
 
             //Clear screen

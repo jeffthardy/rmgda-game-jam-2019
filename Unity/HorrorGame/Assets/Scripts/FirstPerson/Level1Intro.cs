@@ -9,6 +9,7 @@ namespace TopZombies
     {
         public AudioClip startingAudio;
         public float percentAudioBeforemovement = 0.9f;
+        public GameObject postProcessingObject;
 
 
         private AudioSource audioSource;
@@ -32,13 +33,35 @@ namespace TopZombies
             GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
             audioSource.PlayOneShot(startingAudio);
 
-            yield return new WaitForSeconds(audioTime* percentAudioBeforemovement);
+            Debug.Log(Time.time + " waiting for " + audioTime * percentAudioBeforemovement);
+            yield return new WaitForSeconds(audioTime * percentAudioBeforemovement);
+            postProcessingObject.GetComponent<constantDOFChanger>().SetDOF(true, 0);
+            StartCoroutine(SlowClearBlackout(audioTime * (1 - percentAudioBeforemovement) / 2));
 
-            // Re-enable display and control
-            GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 0);            
+
+            Debug.Log(Time.time + " waiting for " + audioTime * (1 - percentAudioBeforemovement));
+            yield return new WaitForSeconds(audioTime * (1 - percentAudioBeforemovement));
+            postProcessingObject.GetComponent<constantDOFChanger>().SetDOF(false, 0);
+
+            // Re-enable display and control    
             fPSController.InputControl(true);
 
         }
-        
+
+
+        IEnumerator SlowClearBlackout(float time)
+        {
+
+            // Go through all levels of alpha over set time
+            for (int i = 0; i < 256; i++)
+            {
+                yield return new WaitForSeconds(time / 256);
+
+                Debug.Log(Time.time + " set alpha " + (255-i));
+                float alpha = (255.0f - i)/ 255.0f;
+                GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, alpha);
+            }
+
+        }
     }
 }
