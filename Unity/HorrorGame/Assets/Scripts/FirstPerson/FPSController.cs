@@ -10,6 +10,8 @@ namespace TopZombies
         // How do we treat the cursor in game mode?  Locked == invisible and stuck in game
         public CursorLockMode cursorLockedMode = CursorLockMode.Locked;
 
+        public GameObject pauseMenu;
+
         // How sensitive do we want turning?  Menu controlled?
         public float mouseSensitivityX = 8;
         public float mouseSensitivityY = 8;
@@ -90,16 +92,7 @@ namespace TopZombies
         {
             if (Input.GetButtonDown("Quit") || Input.GetButtonDown("Cancel"))
             {
-                Debug.Log("You have clicked the quit button!");
-                Cursor.lockState = cursorLockedMode = CursorLockMode.None;
-                Cursor.visible = (CursorLockMode.Locked != cursorLockedMode);
-#if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-#elif UNITY_WEBGL
-                SceneManager.LoadScene("Menu");
-#else
-                SceneManager.LoadScene("Menu");
-#endif
+                pauseMenu.GetComponent<PauseMenu>().PauseGame();
             }
 
             // Debug to allow getting the cursor back in game.  Remove later
@@ -216,6 +209,12 @@ namespace TopZombies
                 {
                     pendingJumps++;
                 }
+            }
+            else
+            {
+                // clear direction so we don't move while paused
+                horizontalInput = 0;
+                verticalInput = 0;
             }
 
 
