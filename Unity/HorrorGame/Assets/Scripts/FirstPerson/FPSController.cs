@@ -10,6 +10,9 @@ namespace TopZombies
         // How do we treat the cursor in game mode?  Locked == invisible and stuck in game
         public CursorLockMode cursorLockedMode = CursorLockMode.Locked;
 
+        public GameObject pauseMenu;
+        public GameObject flashlight;
+
         // How sensitive do we want turning?  Menu controlled?
         public float mouseSensitivityX = 8;
         public float mouseSensitivityY = 8;
@@ -21,6 +24,7 @@ namespace TopZombies
         public float walkSpeed = 3;
         public float sprintSpeed = 6;
         public float jumpMoveRate = 100;
+        public bool  enableInput = true;
 
 
         // Control the size of the player
@@ -89,16 +93,7 @@ namespace TopZombies
         {
             if (Input.GetButtonDown("Quit") || Input.GetButtonDown("Cancel"))
             {
-                Debug.Log("You have clicked the quit button!");
-                Cursor.lockState = cursorLockedMode = CursorLockMode.None;
-                Cursor.visible = (CursorLockMode.Locked != cursorLockedMode);
-#if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-#elif UNITY_WEBGL
-                SceneManager.LoadScene("Menu");
-#else
-                SceneManager.LoadScene("Menu");
-#endif
+                pauseMenu.GetComponent<PauseMenu>().PauseGame();
             }
 
             // Debug to allow getting the cursor back in game.  Remove later
@@ -120,14 +115,18 @@ namespace TopZombies
             //Handle Sprinting
             handleSprint();
 
+            // Handle toggling flashlight
+            HandleFlashlight();
 
 
         }
+
+        // Currently detecting items we can use based on trigger zones
         private void OnTriggerStay(Collider other)
         {
             if(other.gameObject.GetComponent<AudioPlayerOnUse>() != null)
             {
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetKey(KeyCode.E) && enableInput)
                 {
                     Debug.Log("Using  " + other.gameObject);
                     other.gameObject.GetComponent<AudioPlayerOnUse>().Use();
@@ -137,10 +136,20 @@ namespace TopZombies
 
             if (other.gameObject.GetComponent<DoorController>() != null)
             {
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetKey(KeyCode.E) && enableInput)
                 {
                     Debug.Log("Using  " + other.gameObject);
                     other.gameObject.GetComponent<DoorController>().Use();
+                }
+
+            }
+
+            if (other.gameObject.GetComponent<ClueController>() != null)
+            {
+                if (Input.GetKey(KeyCode.E) && enableInput)
+                {
+                    Debug.Log("Using  " + other.gameObject);
+                    other.gameObject.GetComponent<ClueController>().Use();
                 }
 
             }
@@ -167,16 +176,19 @@ namespace TopZombies
 
         private void mouseViewUpdate()
         {
-            // Read the mouse input axis
-            rotationX += Input.GetAxis("Mouse X") * mouseSensitivityX;
-            rotationY += Input.GetAxis("Mouse Y") * mouseSensitivityY;
-            rotationX = ClampAngle(rotationX, minimumX, maximumX);
-            rotationY = ClampAngle(rotationY, minimumY, maximumY);
-            Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
-            Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, -Vector3.right);
+            if (enableInput)
+            {
+                // Read the mouse input axis
+                rotationX += Input.GetAxis("Mouse X") * mouseSensitivityX;
+                rotationY += Input.GetAxis("Mouse Y") * mouseSensitivityY;
+                rotationX = ClampAngle(rotationX, minimumX, maximumX);
+                rotationY = ClampAngle(rotationY, minimumY, maximumY);
+                Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
+                Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, -Vector3.right);
 
-            transform.localRotation = originalRotation * xQuaternion;
-            myCamera.transform.localRotation = originalCameraRotation * yQuaternion;
+                transform.localRotation = originalRotation * xQuaternion;
+                myCamera.transform.localRotation = originalCameraRotation * yQuaternion;
+            }
         }
 
         public static float ClampAngle(float angle, float min, float max)
@@ -191,14 +203,22 @@ namespace TopZombies
         // Handle general keyboard input for movement
         private void movementUpdate()
         {
-            horizontalInput = Input.GetAxis("Horizontal");
-            verticalInput = Input.GetAxis("Vertical");
-
-            if (Input.GetButtonDown("Jump"))
+            if (enableInput)
             {
-                pendingJumps++;
-            }
+                horizontalInput = Input.GetAxis("Horizontal");
+                verticalInput = Input.GetAxis("Vertical");
 
+                if (Input.GetButtonDown("Jump"))
+                {
+                    pendingJumps++;
+                }
+            }
+            else
+            {
+                // clear direction so we don't move while paused
+                horizontalInput = 0;
+                verticalInput = 0;
+            }
 
 
         }
@@ -264,7 +284,7 @@ namespace TopZombies
 
         void handleSprint()
         {
-            if (Input.GetKey(KeyCode.LeftShift) && !isDucking)
+            if (Input.GetKey(KeyCode.LeftShift) && !isDucking && enableInput)
             {
                 isSprinting = true;
             }
@@ -279,7 +299,7 @@ namespace TopZombies
 
         void handleDuck()
         {
-            if (Input.GetButton("Duck"))
+            if (Input.GetButton("Duck") && enableInput)
             {
 
                 // Change colider size and camera location to duck size
@@ -324,9 +344,17 @@ namespace TopZombies
                 isGrounded = true;
         }
 
-
-        void AttemptUse()
+        public void InputControl(bool enabled)
         {
+           enableInput = enabled;
+        }
+
+        void HandleFlashlight()
+        {
+            if (Input.GetKeyDown(KeyCode.F) && enableInput)
+            {
+                flashlight.GetComponent<FlashlightController>().toggleFlashlight();
+            }
 
         }
     }

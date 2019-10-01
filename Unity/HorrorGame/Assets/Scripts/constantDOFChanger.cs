@@ -38,5 +38,19 @@ namespace TopZombies
                 //m_dof.focusDistance.value = 0;
             }
         }
+
+        public void SetDOF(bool enabled,float value)
+        {
+            if (enabled)
+            {
+                m_dof.enabled.value = true;
+                m_dof.focusDistance.value = value;
+            }
+            else
+            {
+                m_dof.enabled.value = false;
+                //m_dof.focusDistance.value = 0;
+            }
+        }
     }
 }

@@ -36,13 +36,14 @@ namespace TopZombies
             audioSource = GetComponent<AudioSource>();
 
             fPSController = GetComponent<FPSController>();
-            GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            //GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 0);
         }
         
         public void Death()
         {
             //Black screen
             GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
+            GetComponent<FPSController>().InputControl(false);
 
             //Play new scream
             if (deathScreams.Length > 1)
@@ -65,6 +66,7 @@ namespace TopZombies
             //Debug.Log(Time.time + "Respawned");
 
         }
+
         IEnumerator DeathCleanup()
         {
             //Debug.Log(Time.time + "yielding");
@@ -84,10 +86,10 @@ namespace TopZombies
             audioSource.PlayOneShot(spawnTalks[talkIndex]);
             //Debug.Log(Time.time + "spawnaudio");
 
-            
             yield return new WaitForSeconds(talkTimeBeforeSceenClear);
 
             //Clear screen
+            GetComponent<FPSController>().InputControl(true);
             GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 0); ;
             //Debug.Log(Time.time + "screen cleared");
 
