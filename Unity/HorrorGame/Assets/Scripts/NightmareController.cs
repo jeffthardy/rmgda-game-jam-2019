@@ -10,6 +10,10 @@ namespace TopZombies
         public Light nightmareLight;
         public GameObject GlobalLightParent;
         public GameObject GlobalWorldParent;
+        public GameObject GlobalAudioSourceGameObject;
+        public AudioClip nightmareAudio;
+        public AudioClip dreamAudio;
+
         public float nightmareBumpLevel = 5;
 
         public bool nightmareMode = false;
@@ -18,10 +22,13 @@ namespace TopZombies
         // Set this to true and continuously toggle between modes
         public bool debugToggler = false;
 
+        private AudioSource audioSource;
+
 
         // Start is called before the first frame update
         void Start()
         {
+            audioSource = GlobalAudioSourceGameObject.GetComponent<AudioSource>();
             if (debugToggler)
                 StartCoroutine(ToggleNightmare());
             if(!nightmareMode)
@@ -36,6 +43,7 @@ namespace TopZombies
 
         public void SwitchToNightmare()
         {
+            audioSource.PlayOneShot(nightmareAudio);
             nightmareMode = true;
             RenderSettings.ambientLight = new Color(0, 0, 0, 0);
             nightmareLight.enabled = true;
@@ -47,6 +55,7 @@ namespace TopZombies
 
         public void SwitchToDream()
         {
+            audioSource.PlayOneShot(dreamAudio);
             nightmareMode = false;
             RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f, 1);
             nightmareLight.enabled = false;
