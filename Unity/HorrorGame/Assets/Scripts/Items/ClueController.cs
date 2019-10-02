@@ -17,16 +17,29 @@ namespace TopZombies {
         public bool enablesClue = true;
         public GameObject nextClue;
 
+        private FlashlightController flashlight;
+
+
         private NightmareController nightmareController;
+
+        private FPSController fPSController;
+        private bool isViewingClue = false;
 
         private AudioSource audioSource;
         private float timeAvailable = 0;
+        private Quaternion originalRotation;
+        private Vector3 originalPosition;
+        private Vector3 originalScale;
 
         // Start is called before the first frame update
         void Start()
         {
             nightmareController = GameObject.Find("NightmareController").GetComponent<NightmareController>();
+            fPSController = GameObject.Find("Player").GetComponent<FPSController>();
+            flashlight = GameObject.Find("Player/MainCamera/Flashlight").GetComponent<FlashlightController>();
             audioSource = GetComponent<AudioSource>();
+
+            originalRotation = transform.rotation;
             //if (isEnabled)
             //{
             //    GetComponent<FlashingIndicator>().turnOnFlasher();
@@ -38,9 +51,38 @@ namespace TopZombies {
 
         }
 
+        float rotationX = 0;
+        float rotationY = 0;
+
+        float flashlightTimeAvailable;
         // Update is called once per frame
         void Update()
         {
+
+            // Normal input should be disabled during this...
+            if (isViewingClue)
+            {
+                if (Input.GetKey(KeyCode.G) || Input.GetKey(KeyCode.Q))
+                    PutDownClue();
+
+                // Still allow flashlight?
+                if (Input.GetKey(KeyCode.F))
+                {
+                    if(Time.realtimeSinceStartup > flashlightTimeAvailable)
+                    {
+                        flashlightTimeAvailable = Time.realtimeSinceStartup + 1.0f;
+                        flashlight.toggleFlashlight();
+                    }
+                }
+
+                // Read the mouse input axis
+                rotationX += Input.GetAxis("Mouse X") * fPSController.mouseSensitivityX;
+                rotationY += Input.GetAxis("Mouse Y") * fPSController.mouseSensitivityY;
+                Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
+                Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, -Vector3.right);
+
+                transform.localRotation = originalRotation * xQuaternion * yQuaternion;
+            }
 
         }
 
@@ -73,7 +115,44 @@ namespace TopZombies {
 
                 if (enablesClue)
                     nextClue.GetComponent<ClueController>().enableClue();
+
+                originalPosition = transform.position;
+                originalScale = transform.localScale;
+                ViewClue();
             }
+        }
+
+        private float targetSize = 1.0f;
+        void ViewClue()
+        {
+
+            // Disable player
+            fPSController.InputControl(false);
+            //disable scene time
+            Time.timeScale = 0;
+            isViewingClue = true;
+            Vector3 xyz = transform.GetComponentInChildren<MeshFilter>().mesh.bounds.size;
+            float size = Mathf.Max(xyz.x, xyz.y, xyz.z);
+            
+            transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1;
+            float scaleFactor = targetSize / size;
+            Vector3 newScale = new Vector3(originalScale.x * scaleFactor, originalScale.y * scaleFactor, originalScale.z * scaleFactor);
+            transform.localScale = newScale;
+        }
+
+
+
+        void PutDownClue()
+        {
+            transform.rotation = originalRotation;
+            transform.position = originalPosition;
+            transform.localScale = originalScale;
+
+            // Enable player
+            fPSController.InputControl(true);
+            //enable scene time
+            Time.timeScale = 1;
+            isViewingClue = false;
         }
 
         public void enableClue()

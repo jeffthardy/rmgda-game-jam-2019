@@ -38,7 +38,7 @@ namespace TopZombies
 
         public void toggleFlashlight()
         {
-            if (Time.time > availableTime)
+            if ((Time.time > availableTime) || (Time.timeScale == 0))
             {
                 availableTime = Time.time + toggleTime;
 
