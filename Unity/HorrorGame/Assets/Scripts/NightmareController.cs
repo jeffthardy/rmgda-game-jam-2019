@@ -23,11 +23,22 @@ namespace TopZombies
         public bool debugToggler = false;
 
         private AudioSource audioSource;
-
+        private List<Renderer> nightmareRenderers;
 
         // Start is called before the first frame update
         void Start()
         {
+            Renderer[] renderers = (Renderer[])Object.FindObjectsOfType(typeof(Renderer));
+
+            nightmareRenderers = new List<Renderer>();
+
+            foreach (Renderer objectRenderer in renderers)
+            {
+                if (objectRenderer.gameObject.layer == LayerMask.NameToLayer("House"))
+                    nightmareRenderers.Add(objectRenderer);
+            }
+
+
             audioSource = GlobalAudioSourceGameObject.GetComponent<AudioSource>();
             if (debugToggler)
                 StartCoroutine(ToggleNightmare());
@@ -81,22 +92,19 @@ namespace TopZombies
 
         private void setGlobalWorldTextureActive(bool enabled)
         {
-            for (int i = 0; i < GlobalWorldParent.transform.childCount; i++)
+            foreach (Renderer objectRenderer in nightmareRenderers)
             {
-                var child = GlobalWorldParent.transform.GetChild(i).gameObject.GetComponent<Renderer>();
-                if (child != null)
-                    if (!enabled)
-                    {
-                        child.material.color = new Color(1, 0, 0, 1);
-                        child.material.SetFloat("_BumpScale", nightmareBumpLevel);
-                    }
-                    else
-                    {
-                        child.material.color = new Color(1, 1, 1, 1);
-                        child.material.SetFloat("_BumpScale", 1);
-                    }
+                if (!enabled)
+                {
+                    objectRenderer.material.color = new Color(1, 0, 0, 1);
+                    objectRenderer.material.SetFloat("_BumpScale", nightmareBumpLevel);
+                }
+                else
+                {
+                    objectRenderer.material.color = new Color(1, 1, 1, 1);
+                    objectRenderer.material.SetFloat("_BumpScale", 1);
+                }
             }
-
         }
 
 

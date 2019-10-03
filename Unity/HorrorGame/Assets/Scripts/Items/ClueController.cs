@@ -16,6 +16,7 @@ namespace TopZombies {
         public GameObject blockage;
         public bool enablesClue = true;
         public GameObject nextClue;
+        public float minTimeToHoldItem = 1.0f;
 
         private FlashlightController flashlight;
 
@@ -24,12 +25,12 @@ namespace TopZombies {
 
         private FPSController fPSController;
         private bool isViewingClue = false;
-
         private AudioSource audioSource;
         private float timeAvailable = 0;
         private Quaternion originalRotation;
         private Vector3 originalPosition;
         private Vector3 originalScale;
+        private float releaseTime=0;
 
         // Start is called before the first frame update
         void Start()
@@ -62,7 +63,7 @@ namespace TopZombies {
             // Normal input should be disabled during this...
             if (isViewingClue)
             {
-                if (Input.GetKey(KeyCode.G) || Input.GetKey(KeyCode.Q))
+                if ((Input.GetKey(KeyCode.E) && (Time.realtimeSinceStartup > releaseTime)) || Input.GetKey(KeyCode.Q))
                     PutDownClue();
 
                 // Still allow flashlight?
@@ -138,6 +139,7 @@ namespace TopZombies {
             float scaleFactor = targetSize / size;
             Vector3 newScale = new Vector3(originalScale.x * scaleFactor, originalScale.y * scaleFactor, originalScale.z * scaleFactor);
             transform.localScale = newScale;
+            releaseTime = Time.realtimeSinceStartup + minTimeToHoldItem;
         }
 
 
