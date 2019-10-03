@@ -63,11 +63,11 @@ namespace TopZombies {
             // Normal input should be disabled during this...
             if (isViewingClue)
             {
-                if ((Input.GetKey(KeyCode.E) && (Time.realtimeSinceStartup > releaseTime)) || Input.GetKey(KeyCode.Q))
+                if ((Input.GetButton("Use") && (Time.realtimeSinceStartup > releaseTime)))
                     PutDownClue();
 
                 // Still allow flashlight?
-                if (Input.GetKey(KeyCode.F))
+                if (Input.GetButton("Flashlight"))
                 {
                     if(Time.realtimeSinceStartup > flashlightTimeAvailable)
                     {
