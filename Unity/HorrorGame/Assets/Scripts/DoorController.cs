@@ -3,6 +3,7 @@
 public class DoorController : MonoBehaviour
 {
 
+    public bool isEnabled = true;
     public bool isOpen = false;
     public bool rotateClockwise = true;
     public float useRate = 0.5f;
@@ -28,7 +29,7 @@ public class DoorController : MonoBehaviour
 
     public void Use()
     {
-        if(Time.time > availableTime)
+        if((Time.time > availableTime) && isEnabled)
         {
             isOpen = !isOpen;
            // Debug.Log("Using " + gameObject + " to make it open == " + isOpen);
@@ -63,5 +64,14 @@ public class DoorController : MonoBehaviour
             audioSource.Stop();
             audioSource.Play(0);
         }
+    }
+
+    public void DisableDoor()
+    {
+        isEnabled = false;
+    }
+    public void EnableDoor()
+    {
+        isEnabled = true;
     }
 }

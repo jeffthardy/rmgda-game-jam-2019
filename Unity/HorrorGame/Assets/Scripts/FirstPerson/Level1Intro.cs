@@ -54,7 +54,7 @@ namespace TopZombies
 
         IEnumerator SlowClearBlackout(float time)
         {
-
+            Time.timeScale = 0;
             // Go through all levels of alpha over set time
             for (int i = 0; i < 256; i++)
             {
