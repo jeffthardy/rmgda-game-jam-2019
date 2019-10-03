@@ -126,7 +126,7 @@ namespace TopZombies
         {
             if(other.gameObject.GetComponent<AudioPlayerOnUse>() != null)
             {
-                if (Input.GetKey(KeyCode.E) && enableInput)
+                if (Input.GetButton("Use") && enableInput)
                 {
                     Debug.Log("Using  " + other.gameObject);
                     other.gameObject.GetComponent<AudioPlayerOnUse>().Use();
@@ -136,7 +136,7 @@ namespace TopZombies
 
             if (other.gameObject.GetComponent<DoorController>() != null)
             {
-                if (Input.GetKey(KeyCode.E) && enableInput)
+                if (Input.GetButton("Use") && enableInput)
                 {
                     Debug.Log("Using  " + other.gameObject);
                     other.gameObject.GetComponent<DoorController>().Use();
@@ -146,7 +146,7 @@ namespace TopZombies
 
             if (other.gameObject.GetComponent<ClueController>() != null)
             {
-                if (Input.GetKey(KeyCode.E) && enableInput)
+                if (Input.GetButton("Use") && enableInput)
                 {
                     Debug.Log("Using  " + other.gameObject);
                     other.gameObject.GetComponent<ClueController>().Use();
@@ -284,7 +284,7 @@ namespace TopZombies
 
         void handleSprint()
         {
-            if (Input.GetKey(KeyCode.LeftShift) && !isDucking && enableInput)
+            if (Input.GetButton("Sprint") && !isDucking && enableInput)
             {
                 isSprinting = true;
             }
@@ -351,7 +351,7 @@ namespace TopZombies
 
         void HandleFlashlight()
         {
-            if (Input.GetKeyDown(KeyCode.F) && enableInput)
+            if (Input.GetButton("Flashlight") && enableInput)
             {
                 flashlight.GetComponent<FlashlightController>().toggleFlashlight();
             }
