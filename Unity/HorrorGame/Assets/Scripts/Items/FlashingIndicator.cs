@@ -6,7 +6,7 @@ namespace TopZombies
 {
     public class FlashingIndicator : MonoBehaviour
     {
-        public bool isFlashing = false;
+        public bool isFlashing = false;        
 
         public float pulseRate = 1.0f;
         public float startTime = 0;
@@ -15,6 +15,7 @@ namespace TopZombies
         private Renderer rend;
         private Material mat;
         public Color flashColor;
+        private bool flasherEnabled = false;
 
 
         // Start is called before the first frame update
@@ -24,7 +25,11 @@ namespace TopZombies
             mat = rend.material;
             if (isFlashing)
             {
-                turnOnFlasher();
+                flasherEnabled = true;
+                TurnOnFlasher();
+            } else
+            {
+                TurnOffFlasher();
             }
             //StartCoroutine(DummyChanger());
 
@@ -49,16 +54,19 @@ namespace TopZombies
         }
 
 
-        public void turnOnFlasher()
+        public void TurnOnFlasher()
         {
-            isFlashing = true;
-            startTime = Time.time;
-            mat.EnableKeyword("_EMISSION");
-            mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
-            //Debug.Log("Turn on lights");
+            if (flasherEnabled)
+            {
+                isFlashing = true;
+                startTime = Time.time;
+                mat.EnableKeyword("_EMISSION");
+                mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+                //Debug.Log("Turn on lights");
+            }
 
         }
-        public void turnOffFlasher()
+        public void TurnOffFlasher()
         {
             isFlashing = false;
             mat.DisableKeyword("_EMISSION");
@@ -67,6 +75,16 @@ namespace TopZombies
             //Debug.Log("Turn off lights");
         }
 
+        public void DisableFlasher()
+        {
+            flasherEnabled = false;
+            TurnOffFlasher();
+        }
+
+        public void EnableFlasher()
+        {
+            flasherEnabled = true;
+        }
 
         IEnumerator DummyChanger()
         {
@@ -75,14 +93,36 @@ namespace TopZombies
 
             if (isFlashing)
             {
-                turnOffFlasher();
+                TurnOffFlasher();
             }
             else
             {
-                turnOnFlasher();
+                TurnOnFlasher();
             }
 
             StartCoroutine(DummyChanger());
+        }
+
+
+
+        private void OnTriggerEnter(Collider other)
+        {
+            // Player is in range
+            if ((other.gameObject.GetComponent<FPSController>() != null) && flasherEnabled)
+            {
+                TurnOnFlasher();
+                Debug.Log("Detected player enter");
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            // Player is in range
+            if ((other.gameObject.GetComponent<FPSController>() != null) && flasherEnabled)
+            {
+                TurnOffFlasher();
+                Debug.Log("Detected player exit");
+            }
         }
     }
 }

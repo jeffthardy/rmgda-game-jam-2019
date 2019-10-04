@@ -66,8 +66,7 @@ namespace TopZombies
             }
             
         }
-
-
+        
         void ResumeButtonOnClick()
         {
             // Disable this menu view and re-enabl player

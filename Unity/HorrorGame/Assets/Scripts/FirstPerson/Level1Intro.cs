@@ -21,6 +21,7 @@ namespace TopZombies
         // Start is called before the first frame update
         void Start()
         {
+            Time.timeScale = 1;
             audioSource = GetComponent<AudioSource>();
             audioTime = startingAudio.length;
             fPSController = GetComponent<FPSController>();
@@ -54,7 +55,7 @@ namespace TopZombies
 
         IEnumerator SlowClearBlackout(float time)
         {
-
+            //Time.timeScale = 0;
             // Go through all levels of alpha over set time
             for (int i = 0; i < 256; i++)
             {
