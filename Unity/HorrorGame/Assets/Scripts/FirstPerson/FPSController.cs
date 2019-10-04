@@ -173,6 +173,12 @@ namespace TopZombies
             gameObject.transform.rotation = spawnRotation;
         }
 
+        public void RecordNewSpawnPoint()
+        {
+            spawnPoint = transform.position;
+            spawnRotation = transform.rotation;
+        }
+
 
         private void mouseViewUpdate()
         {

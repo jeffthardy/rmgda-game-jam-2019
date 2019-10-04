@@ -17,6 +17,7 @@ namespace TopZombies {
         public bool enablesClue = true;
         public GameObject nextClue;
         public float minTimeToHoldItem = 1.0f;
+        public bool triggersNewSpawnPoint = true;
 
         private FlashlightController flashlight;
 
@@ -112,10 +113,18 @@ namespace TopZombies {
                 {
                     nightmareController.SwitchToDream();
                     blockage.SetActive(false);
+                    if (triggersNewSpawnPoint)
+                        fPSController.RecordNewSpawnPoint();
                 }
 
                 if (enablesClue)
-                    nextClue.GetComponent<ClueController>().enableClue();
+                {
+                    if(nextClue.GetComponent<ClueController>() != null)
+                        nextClue.GetComponent<ClueController>().enableClue();
+                    // End case of clues
+                    if (nextClue.GetComponent<ChaseToHidingSpot>() != null)
+                        nextClue.SetActive(true);
+                }
 
                 originalPosition = transform.position;
                 originalScale = transform.localScale;

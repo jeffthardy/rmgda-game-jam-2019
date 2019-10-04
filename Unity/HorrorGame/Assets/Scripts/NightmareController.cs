@@ -96,12 +96,12 @@ namespace TopZombies
             {
                 if (!enabled)
                 {
-                    objectRenderer.material.color = new Color(1, 0, 0, 1);
+                    //objectRenderer.material.color = new Color(1, 0, 0, 1);
                     objectRenderer.material.SetFloat("_BumpScale", nightmareBumpLevel);
                 }
                 else
                 {
-                    objectRenderer.material.color = new Color(1, 1, 1, 1);
+                    //objectRenderer.material.color = new Color(1, 1, 1, 1);
                     objectRenderer.material.SetFloat("_BumpScale", 1);
                 }
             }
