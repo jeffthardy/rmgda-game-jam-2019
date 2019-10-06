@@ -20,9 +20,8 @@ ScriptedImporter:
     outputNames: baseColor,normal,metallic,height,ambientOcclusion
     materialProperties:
       shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-      shaderKeywords: _EMISSION _MAINTEX _METALLICGLOSSMAP _NORMALMAP _OCCLUSIONMAP
-        _PARALLAXMAP
-      lightmapFlags: 1
+      shaderKeywords: _MAINTEX _METALLICGLOSSMAP _NORMALMAP _OCCLUSIONMAP _PARALLAXMAP
+      lightmapFlags: 4
       texEnvs:
       - name: _BumpMap
         texture: {fileID: -2029627255300988836, guid: 1505093c9ec5eff4c89cf3f30031dfcf,

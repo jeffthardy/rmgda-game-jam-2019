@@ -18,6 +18,8 @@ namespace TopZombies {
         public GameObject nextClue;
         public float minTimeToHoldItem = 1.0f;
         public bool triggersNewSpawnPoint = true;
+        public bool spawnsEnemy=false;
+        public GameObject enemy;
 
         private FlashlightController flashlight;
 
@@ -40,6 +42,14 @@ namespace TopZombies {
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
             flashlight = GameObject.Find("Player/MainCamera/Flashlight").GetComponent<FlashlightController>();
             audioSource = GetComponent<AudioSource>();
+            if(spawnsEnemy)
+                enemy.SetActive(false);
+
+            //Disable final scene trigger at startup
+            if(enablesClue)
+                if (nextClue.GetComponent<ChaseToHidingSpot>() != null)
+                    nextClue.SetActive(false);
+
 
             originalRotation = transform.rotation;
             //if (isEnabled)
@@ -108,11 +118,15 @@ namespace TopZombies {
                 if (triggersNightmareMode)
                 {
                     nightmareController.SwitchToNightmare();
+                    if (spawnsEnemy)
+                        enemy.SetActive(true);
                 }
                 if (triggersDreamMode)
                 {
                     nightmareController.SwitchToDream();
                     blockage.SetActive(false);
+                    if (spawnsEnemy)
+                        enemy.SetActive(false);
                     if (triggersNewSpawnPoint)
                         fPSController.RecordNewSpawnPoint();
                 }

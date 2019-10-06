@@ -9,7 +9,10 @@ namespace TopZombies
         public GameObject blockers;
         public GameObject nextScene;
 
+
         private bool chaseHasHappened = false;
+
+
 
         public GameObject chaseDoor;
 
@@ -17,8 +20,8 @@ namespace TopZombies
         void Start()
         {
             blockers.SetActive(false);
-            nextScene.SetActive(false);
         }
+        
 
         // Update is called once per frame
         void Update()
@@ -38,6 +41,7 @@ namespace TopZombies
                         chaseDoor.GetComponent<DoorController>().Use();
 
                     StartCoroutine(PlayChase());
+
                 }
             }
         }
