@@ -16,6 +16,7 @@ namespace TopZombies
         public GameObject nextScene;
 
         public GameObject previousScene;
+        public GameObject enemy;
 
 
         private AudioSource finalFightAudioSource;
@@ -35,6 +36,7 @@ namespace TopZombies
                 entranceDoor1.GetComponent<DoorController>().Use();
 
             nextScene.SetActive(false);
+            enemy.SetActive(false);
         }
 
         // Update is called once per frame
@@ -53,7 +55,9 @@ namespace TopZombies
                         entranceDoor1.GetComponent<DoorController>().Use();
                     entranceDoor1.GetComponent<DoorController>().DisableDoor();
 
+                    enemy.SetActive(true);
                     StartCoroutine(PlayFinalFight());
+
                 }
             }
         }
