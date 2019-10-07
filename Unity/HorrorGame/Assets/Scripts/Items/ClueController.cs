@@ -25,6 +25,7 @@ namespace TopZombies {
 
 
         private NightmareController nightmareController;
+        private PlaySeriesOfAudioClips playSeriesOfAudioClips;
 
         private FPSController fPSController;
         private bool isViewingClue = false;
@@ -42,7 +43,8 @@ namespace TopZombies {
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
             flashlight = GameObject.Find("Player/MainCamera/Flashlight").GetComponent<FlashlightController>();
             audioSource = GetComponent<AudioSource>();
-            if(spawnsEnemy)
+            playSeriesOfAudioClips = GetComponent<PlaySeriesOfAudioClips>();
+            if (spawnsEnemy)
                 enemy.SetActive(false);
 
             //Disable final scene trigger at startup
@@ -107,7 +109,19 @@ namespace TopZombies {
                 timeAvailable = Time.time + timeDisabledAfterUse;
                 Debug.Log("using item " + gameObject);
                 useCount++;
-                audioSource.PlayOneShot(useSound);
+                if (playSeriesOfAudioClips != null)
+                {
+                    playSeriesOfAudioClips.PlaySeries();
+                    Debug.Log("Playing series");
+                }
+                else if (useSound != null)
+                {
+                    audioSource.PlayOneShot(useSound);
+                } else
+                {
+
+                    Debug.Log("No audio");
+                }
 
                 // This is the last use
                 if (useCount == uses)
