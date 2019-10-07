@@ -818,7 +818,7 @@ MonoBehaviour:
   optionsButton: {fileID: 0}
   creditsButton: {fileID: 119666232}
   quitButton: {fileID: 1663190875}
-  startSceneName: JeffsScene
+  startSceneName: DoctorsOffice
   creditsSceneName: Credits
 --- !u!4 &1511861980
 Transform:
