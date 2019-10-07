@@ -8,8 +8,13 @@ namespace TopZombies
     {
         public GameObject blockers;
         public GameObject nextScene;
+        public GameObject dad;
+        public GameObject ghost;
+
 
         private bool chaseHasHappened = false;
+
+
 
         public GameObject chaseDoor;
 
@@ -17,8 +22,10 @@ namespace TopZombies
         void Start()
         {
             blockers.SetActive(false);
-            nextScene.SetActive(false);
+            dad.SetActive(false);
+            ghost.SetActive(false);
         }
+        
 
         // Update is called once per frame
         void Update()
@@ -34,10 +41,13 @@ namespace TopZombies
                 if (!chaseHasHappened)
                 {
                     blockers.SetActive(true);
+                    dad.SetActive(false);
+                    dad.GetComponent<PlaySeriesOfAudioClips>().PlaySeries();
                     if (!chaseDoor.GetComponent<DoorController>().isOpen)
                         chaseDoor.GetComponent<DoorController>().Use();
 
                     StartCoroutine(PlayChase());
+
                 }
             }
         }
@@ -47,6 +57,7 @@ namespace TopZombies
 
             yield return new WaitForSeconds(1.0f);
             // Add enemy with chase and direction
+            ghost.SetActive(true);
 
             nextScene.SetActive(true);
         }

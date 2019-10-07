@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jeff/Credits.unity
     guid: a25a9fcae5f9d95428676ce732f0f2c6
+  - enabled: 1
+    path: Assets/Scenes/Jeff/DoctorsOffice.unity
+    guid: 2088af1a5e9bd694ea6aef57b615414e
   m_configObjects: {}

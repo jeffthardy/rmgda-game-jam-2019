@@ -18,11 +18,14 @@ namespace TopZombies {
         public GameObject nextClue;
         public float minTimeToHoldItem = 1.0f;
         public bool triggersNewSpawnPoint = true;
+        public bool spawnsEnemy=false;
+        public GameObject enemy;
 
         private FlashlightController flashlight;
 
 
         private NightmareController nightmareController;
+        private PlaySeriesOfAudioClips playSeriesOfAudioClips;
 
         private FPSController fPSController;
         private bool isViewingClue = false;
@@ -40,6 +43,15 @@ namespace TopZombies {
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
             flashlight = GameObject.Find("Player/MainCamera/Flashlight").GetComponent<FlashlightController>();
             audioSource = GetComponent<AudioSource>();
+            playSeriesOfAudioClips = GetComponent<PlaySeriesOfAudioClips>();
+            if (spawnsEnemy)
+                enemy.SetActive(false);
+
+            //Disable final scene trigger at startup
+            if(enablesClue)
+                if (nextClue.GetComponent<ChaseToHidingSpot>() != null)
+                    nextClue.SetActive(false);
+
 
             originalRotation = transform.rotation;
             //if (isEnabled)
@@ -97,7 +109,19 @@ namespace TopZombies {
                 timeAvailable = Time.time + timeDisabledAfterUse;
                 Debug.Log("using item " + gameObject);
                 useCount++;
-                audioSource.PlayOneShot(useSound);
+                if (playSeriesOfAudioClips != null)
+                {
+                    playSeriesOfAudioClips.PlaySeries();
+                    Debug.Log("Playing series");
+                }
+                else if (useSound != null)
+                {
+                    audioSource.PlayOneShot(useSound);
+                } else
+                {
+
+                    Debug.Log("No audio");
+                }
 
                 // This is the last use
                 if (useCount == uses)
@@ -108,11 +132,15 @@ namespace TopZombies {
                 if (triggersNightmareMode)
                 {
                     nightmareController.SwitchToNightmare();
+                    if (spawnsEnemy)
+                        enemy.SetActive(true);
                 }
                 if (triggersDreamMode)
                 {
                     nightmareController.SwitchToDream();
                     blockage.SetActive(false);
+                    if (spawnsEnemy)
+                        enemy.SetActive(false);
                     if (triggersNewSpawnPoint)
                         fPSController.RecordNewSpawnPoint();
                 }
