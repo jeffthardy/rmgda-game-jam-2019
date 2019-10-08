@@ -9,6 +9,7 @@ namespace TopZombies
     {
         public float percentAudioBeforemovement = 0.9f;
         public GameObject postProcessingObject;
+        public Animator viewAnimator;
 
         public bool skipIntro = false;
 
@@ -32,10 +33,12 @@ namespace TopZombies
 
         }
 
+
         IEnumerator Level1IntroScript()
         {
             // Disable display and control and start intro audio
             fPSController.InputControl(false);
+            fPSController.CameraTarget(viewAnimator.gameObject);
             GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
             //Wait a tiny bit to let things get out of start
             yield return new WaitForSeconds(0.1f);
@@ -48,12 +51,12 @@ namespace TopZombies
             yield return new WaitForSeconds(clipLength * percentAudioBeforemovement);
             postProcessingObject.GetComponent<constantDOFChanger>().SetDOF(true, 0);
             StartCoroutine(SlowClearBlackout(clipLength * (1 - percentAudioBeforemovement) / 2));
+            viewAnimator.SetTrigger("PlayView");
 
 
             Debug.Log(Time.time + " waiting for " + clipLength * (1 - percentAudioBeforemovement));
             yield return new WaitForSeconds(clipLength * (1 - percentAudioBeforemovement));
             postProcessingObject.GetComponent<constantDOFChanger>().SetDOF(false, 0);
-
 
             // Disable input until 2nd clip is done
             // Line 8
@@ -61,6 +64,7 @@ namespace TopZombies
             yield return new WaitForSeconds(clipLength);
 
             // Re-enable display and control    
+            fPSController.ResetMouseView();
             fPSController.InputControl(true);
 
             // Line 9

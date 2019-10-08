@@ -28,7 +28,7 @@ namespace TopZombies
         {
             audioSource = GetComponent<AudioSource>();
             nightmareController =  GameObject.Find("NightmareController").GetComponent<NightmareController>();
-            shakeObjectOnTrigger = GameObject.Find("Player/MainCamera").GetComponent<ShakeObjectOnTrigger>();
+            shakeObjectOnTrigger = GameObject.Find("Player/EnemyDetector").GetComponent<ShakeObjectOnTrigger>();
             nextVolume = 0.0f;
 
 
