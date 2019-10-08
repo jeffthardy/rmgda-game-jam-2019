@@ -33,7 +33,6 @@ public class DoorController : MonoBehaviour
     {
         if((Time.time > availableTime) && isEnabled)
         {
-            isOpen = !isOpen;
            // Debug.Log("Using " + gameObject + " to make it open == " + isOpen);
 
             if (isOpen)
@@ -64,6 +63,7 @@ public class DoorController : MonoBehaviour
                     //transform.Rotate(new Vector3(0, 90, 0));
                 }
             }
+            isOpen = !isOpen;
             // Dont allow the user to hit this too fast
             availableTime = Time.time + useRate;
 
