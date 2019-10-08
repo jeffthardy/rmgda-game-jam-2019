@@ -62,6 +62,9 @@ namespace TopZombies
         public bool isDucking = false;
         public bool isSprinting = false;
 
+        private bool cameraUnderControl = false;
+        private GameObject cameraControlTarget ;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -117,6 +120,11 @@ namespace TopZombies
 
             // Handle toggling flashlight
             HandleFlashlight();
+
+            if (cameraUnderControl)
+            {
+                myCamera.transform.LookAt(cameraControlTarget.transform.position);
+            }
 
 
         }
@@ -195,6 +203,18 @@ namespace TopZombies
                 transform.localRotation = originalRotation * xQuaternion;
                 myCamera.transform.localRotation = originalCameraRotation * yQuaternion;
             }
+        }
+
+        public void ResetMouseView()
+        {
+            cameraUnderControl = false;
+            myCamera.transform.localRotation = originalCameraRotation;
+        }
+
+        public void CameraTarget(GameObject gameObject)
+        {
+            cameraUnderControl = true;
+            cameraControlTarget = gameObject;
         }
 
         public static float ClampAngle(float angle, float min, float max)
