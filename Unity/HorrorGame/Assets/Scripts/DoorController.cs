@@ -13,12 +13,14 @@ public class DoorController : MonoBehaviour
 
     private float availableTime;
     private AudioSource audioSource;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         availableTime = Time.time + useRate;
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -31,7 +33,6 @@ public class DoorController : MonoBehaviour
     {
         if((Time.time > availableTime) && isEnabled)
         {
-            isOpen = !isOpen;
            // Debug.Log("Using " + gameObject + " to make it open == " + isOpen);
 
             if (isOpen)
@@ -39,11 +40,13 @@ public class DoorController : MonoBehaviour
                 audioSource.clip = doorClose;
                 if (rotateClockwise)
                 {
-                    transform.Rotate(new Vector3(0, 90, 0));
+                    animator.SetTrigger("Close");
+                    //transform.Rotate(new Vector3(0, 90, 0));
                 }
                 else
                 {
-                    transform.Rotate(new Vector3(0, -90, 0));
+                    animator.SetTrigger("Close");
+                    //transform.Rotate(new Vector3(0, -90, 0));
                 }
             }
             else
@@ -51,13 +54,16 @@ public class DoorController : MonoBehaviour
                 audioSource.clip = doorOpen;
                 if (rotateClockwise)
                 {
-                    transform.Rotate(new Vector3(0, -90, 0));
+                    animator.SetTrigger("Open");
+                    //transform.Rotate(new Vector3(0, -90, 0));
                 }
                 else
                 {
-                    transform.Rotate(new Vector3(0, 90, 0));
+                    animator.SetTrigger("Open");
+                    //transform.Rotate(new Vector3(0, 90, 0));
                 }
             }
+            isOpen = !isOpen;
             // Dont allow the user to hit this too fast
             availableTime = Time.time + useRate;
 
