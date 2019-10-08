@@ -7,6 +7,7 @@ public class TVNoiseMaker : MonoBehaviour
     float updateSpeed = 0.02f;
     Renderer rend;
     float updateTime;
+    public int materialIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class TVNoiseMaker : MonoBehaviour
             updateTime = Time.time + updateSpeed;
             float offsetx = Random.Range(-256.0f, 256.0f);
             float offsety = Random.Range(-256.0f, 256.0f);
-            rend.material.SetTextureOffset("_MainTex", new Vector2(offsetx, offsety));
+            rend.materials[materialIndex].SetTextureOffset("_MainTex", new Vector2(offsetx, offsety));
         }
     }
 }
