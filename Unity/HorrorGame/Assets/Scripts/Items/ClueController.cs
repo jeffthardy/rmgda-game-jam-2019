@@ -17,11 +17,15 @@ namespace TopZombies {
         public bool enablesClue = true;
         public GameObject nextClue;
         public float minTimeToHoldItem = 1.0f;
+        public bool triggersNewSpawnPoint = true;
+        public bool spawnsEnemy=false;
+        public GameObject enemy;
 
         private FlashlightController flashlight;
 
 
         private NightmareController nightmareController;
+        private PlaySeriesOfAudioClips playSeriesOfAudioClips;
 
         private FPSController fPSController;
         private bool isViewingClue = false;
@@ -39,20 +43,27 @@ namespace TopZombies {
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
             flashlight = GameObject.Find("Player/MainCamera/Flashlight").GetComponent<FlashlightController>();
             audioSource = GetComponent<AudioSource>();
+            playSeriesOfAudioClips = GetComponent<PlaySeriesOfAudioClips>();
+            if (spawnsEnemy)
+                enemy.SetActive(false);
+
+            //Disable final scene trigger at startup
+            if(enablesClue)
+                StartCoroutine(DisableNextClue());
+
 
             originalRotation = transform.rotation;
-            //if (isEnabled)
-            //{
-            //    GetComponent<FlashingIndicator>().turnOnFlasher();
-            //}
-            //else
-            //{
-            //    GetComponent<FlashingIndicator>().turnOffFlasher();
-            //}
 
         }
 
-        float rotationX = 0;
+        IEnumerator DisableNextClue()
+        {
+            //Wait a tiny bit to let things get out of start
+            yield return new WaitForSeconds(0.01f);
+            nextClue.SetActive(false);
+        }
+
+            float rotationX = 0;
         float rotationY = 0;
 
         float flashlightTimeAvailable;
@@ -87,6 +98,8 @@ namespace TopZombies {
 
         }
 
+        float lengthOfAudio;
+        float timeDoneWithAudio;
 
         public void Use()
         {
@@ -96,7 +109,21 @@ namespace TopZombies {
                 timeAvailable = Time.time + timeDisabledAfterUse;
                 Debug.Log("using item " + gameObject);
                 useCount++;
-                audioSource.PlayOneShot(useSound);
+                if (playSeriesOfAudioClips != null)
+                {
+                    playSeriesOfAudioClips.PlaySeries();
+                    lengthOfAudio = playSeriesOfAudioClips.GetClipsLength();
+                    timeDoneWithAudio = Time.time + lengthOfAudio;
+                    Debug.Log("Playing series");
+                }
+                else if (useSound != null)
+                {
+                    audioSource.PlayOneShot(useSound);
+                } else
+                {
+
+                    Debug.Log("No audio");
+                }
 
                 // This is the last use
                 if (useCount == uses)
@@ -107,21 +134,47 @@ namespace TopZombies {
                 if (triggersNightmareMode)
                 {
                     nightmareController.SwitchToNightmare();
+                    if (spawnsEnemy)
+                        enemy.SetActive(true);
                 }
                 if (triggersDreamMode)
                 {
                     nightmareController.SwitchToDream();
                     blockage.SetActive(false);
+                    if (spawnsEnemy)
+                        enemy.SetActive(false);
+                    if (triggersNewSpawnPoint)
+                        fPSController.RecordNewSpawnPoint();
                 }
 
-                if (enablesClue)
-                    nextClue.GetComponent<ClueController>().enableClue();
 
                 originalPosition = transform.position;
                 originalScale = transform.localScale;
                 ViewClue();
+
+                StartCoroutine(DelayClueEnable(timeDoneWithAudio));
             }
         }
+
+        IEnumerator DelayClueEnable(float timeDoneWithAudio)
+        {
+            //Wait a tiny bit to let things get out of start
+            while(Time.time < timeDoneWithAudio)
+                yield return new WaitForSeconds(1.0f);
+            if (enablesClue)
+            {
+                if (!nextClue.activeSelf)
+                {
+                    nextClue.SetActive(true);
+                }
+
+                if (nextClue.GetComponent<ClueController>() != null)
+                {
+                    nextClue.GetComponent<ClueController>().enableClue();
+                }
+            }
+        }
+        
 
         private float targetSize = 1.0f;
         void ViewClue()

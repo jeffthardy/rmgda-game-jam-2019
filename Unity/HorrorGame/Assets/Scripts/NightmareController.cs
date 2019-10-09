@@ -13,6 +13,7 @@ namespace TopZombies
         public GameObject GlobalAudioSourceGameObject;
         public AudioClip nightmareAudio;
         public AudioClip dreamAudio;
+        public float audioLevel = 0.5f;
 
         public float nightmareBumpLevel = 5;
 
@@ -54,31 +55,31 @@ namespace TopZombies
 
         public void SwitchToNightmare()
         {
-            audioSource.PlayOneShot(nightmareAudio);
+            audioSource.PlayOneShot(nightmareAudio, audioLevel);
             nightmareMode = true;
             RenderSettings.ambientLight = new Color(0, 0, 0, 0);
             nightmareLight.enabled = true;
 
             // Disable all the lights
-            setGlobalLightActive(false);
+            SetGlobalLightActive(false);
             setGlobalWorldTextureActive(false);
         }
 
         public void SwitchToDream()
         {
-            audioSource.PlayOneShot(dreamAudio);
+            audioSource.PlayOneShot(dreamAudio, audioLevel);
             nightmareMode = false;
             RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f, 1);
             nightmareLight.enabled = false;
 
             // Enable all the lights
-            setGlobalLightActive(true);
+            SetGlobalLightActive(true);
             setGlobalWorldTextureActive(true);
         }
 
 
         // Assumes all lights are under an empty parent GlobalLightParent.
-        private void setGlobalLightActive(bool enabled)
+        public void SetGlobalLightActive(bool enabled)
         {
             for (int i = 0; i < GlobalLightParent.transform.childCount; i++)
             {
@@ -96,12 +97,12 @@ namespace TopZombies
             {
                 if (!enabled)
                 {
-                    objectRenderer.material.color = new Color(1, 0, 0, 1);
+                    //objectRenderer.material.color = new Color(1, 0, 0, 1);
                     objectRenderer.material.SetFloat("_BumpScale", nightmareBumpLevel);
                 }
                 else
                 {
-                    objectRenderer.material.color = new Color(1, 1, 1, 1);
+                    //objectRenderer.material.color = new Color(1, 1, 1, 1);
                     objectRenderer.material.SetFloat("_BumpScale", 1);
                 }
             }

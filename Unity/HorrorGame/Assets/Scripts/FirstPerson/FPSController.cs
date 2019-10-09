@@ -62,6 +62,9 @@ namespace TopZombies
         public bool isDucking = false;
         public bool isSprinting = false;
 
+        private bool cameraUnderControl = false;
+        private GameObject cameraControlTarget ;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -118,6 +121,11 @@ namespace TopZombies
             // Handle toggling flashlight
             HandleFlashlight();
 
+            if (cameraUnderControl)
+            {
+                myCamera.transform.LookAt(cameraControlTarget.transform.position);
+            }
+
 
         }
 
@@ -173,6 +181,12 @@ namespace TopZombies
             gameObject.transform.rotation = spawnRotation;
         }
 
+        public void RecordNewSpawnPoint()
+        {
+            spawnPoint = transform.position;
+            spawnRotation = transform.rotation;
+        }
+
 
         private void mouseViewUpdate()
         {
@@ -189,6 +203,18 @@ namespace TopZombies
                 transform.localRotation = originalRotation * xQuaternion;
                 myCamera.transform.localRotation = originalCameraRotation * yQuaternion;
             }
+        }
+
+        public void ResetMouseView()
+        {
+            cameraUnderControl = false;
+            myCamera.transform.localRotation = originalCameraRotation;
+        }
+
+        public void CameraTarget(GameObject gameObject)
+        {
+            cameraUnderControl = true;
+            cameraControlTarget = gameObject;
         }
 
         public static float ClampAngle(float angle, float min, float max)
@@ -240,36 +266,14 @@ namespace TopZombies
                 pendingJumps = 0;
                 isGrounded = false;
             }
+                                   
 
-
-            //Bad code...diagonal is fast
-            float newXSpeed = rb.velocity.x;
-            float newYSpeed = rb.velocity.y;
-            float newZSpeed = rb.velocity.z;
-
-            float maxSpeed = walkSpeed;
-            if (isSprinting)
-                maxSpeed = sprintSpeed;
-            if (isDucking)
-                maxSpeed = duckSpeed;
-
-            // Fix max horzSpeed, which also comes into play when jumping
-            if (Mathf.Abs(newXSpeed) > maxSpeed)
+            // Clamp max speeds
+            var maxSpeed = isDucking? duckSpeed: (isSprinting ? sprintSpeed : walkSpeed);
+            var speed = rb.velocity.magnitude;
+            if (speed > maxSpeed)
             {
-                newXSpeed = Mathf.Sign(rb.velocity.x) * maxSpeed;
-                rb.velocity = new Vector3(newXSpeed, newYSpeed, newZSpeed);
-            }
-
-            if (Mathf.Abs(newYSpeed) > maxSpeed)
-            {
-                newYSpeed = Mathf.Sign(rb.velocity.y) * maxSpeed;
-                rb.velocity = new Vector3(newXSpeed, newYSpeed, newZSpeed);
-            }
-
-            if (Mathf.Abs(newZSpeed) > maxSpeed)
-            {
-                newZSpeed = Mathf.Sign(rb.velocity.z) * maxSpeed;
-                rb.velocity = new Vector3(newXSpeed, newYSpeed, newZSpeed);
+                rb.velocity = rb.velocity / speed * maxSpeed;
             }
 
         }
