@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
 namespace TopZombies
@@ -11,7 +12,7 @@ namespace TopZombies
         public AudioClip winningNewsStory;
         public AudioClip winnersMusic;
         public GameObject enemiesHolder;
-
+        
         private bool hasWon = false;
 
 
@@ -62,6 +63,9 @@ namespace TopZombies
         IEnumerator FadeToWhite(float time)
         {
             fPSController.InputControl(false);
+            // Give mouse back to user
+            Cursor.lockState = fPSController.cursorLockedMode = CursorLockMode.None;
+            Cursor.visible = (CursorLockMode.Locked != fPSController.cursorLockedMode);
 
 
             // Go through all levels of alpha over set time
