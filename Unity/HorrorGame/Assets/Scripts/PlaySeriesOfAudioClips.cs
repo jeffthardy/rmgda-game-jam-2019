@@ -24,7 +24,10 @@ namespace TopZombies
         {
 
         }
-
+        private void OnEnable()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
         public void PlaySeries()
         {
             StartCoroutine(PlaySeriesWithDelays());
