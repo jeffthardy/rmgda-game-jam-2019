@@ -142,12 +142,12 @@ namespace TopZombies
 
             }
 
-            if (other.gameObject.GetComponent<DoorController>() != null)
+            if (other.gameObject.layer == LayerMask.NameToLayer("Door"))
             {
                 if (Input.GetButton("Use") && enableInput)
                 {
                     Debug.Log("Using  " + other.gameObject);
-                    other.gameObject.GetComponent<DoorController>().Use();
+                    other.gameObject.transform.parent.gameObject.GetComponent<DoorController>().Use();
                 }
 
             }

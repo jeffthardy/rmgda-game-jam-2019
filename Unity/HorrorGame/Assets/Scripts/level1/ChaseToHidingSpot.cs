@@ -41,7 +41,7 @@ namespace TopZombies
                 if (!chaseHasHappened)
                 {
                     blockers.SetActive(true);
-                    dad.SetActive(false);
+                    dad.SetActive(true);
                     dad.GetComponent<PlaySeriesOfAudioClips>().PlaySeries();
                     if (!chaseDoor.GetComponent<DoorController>().isOpen)
                         chaseDoor.GetComponent<DoorController>().Use();
