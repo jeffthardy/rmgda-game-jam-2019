@@ -12,6 +12,8 @@ namespace TopZombies
         public Animator viewAnimator;
         public GameObject animatedTarget;
 
+        public GameObject firstClue;
+
         public bool skipIntro = false;
 
 
@@ -32,6 +34,7 @@ namespace TopZombies
             if (!skipIntro)
                 StartCoroutine(Level1IntroScript());
 
+
         }
 
 
@@ -43,6 +46,10 @@ namespace TopZombies
             GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
             //Wait a tiny bit to let things get out of start
             yield return new WaitForSeconds(0.1f);
+
+            // Disable first clue
+            firstClue.SetActive(false);
+
             // Line 7-19
             playSeriesOfAudioClips.PlaySeries();
             
@@ -98,10 +105,11 @@ namespace TopZombies
             //Normal again here
             nightmareController.SwitchToDream();
 
-            // Line 17-19
-            clipLength = playSeriesOfAudioClips.GetClipLength(10) + playSeriesOfAudioClips.GetClipLength(11) + playSeriesOfAudioClips.GetClipLength(12);
+            // Line 17-20
+            clipLength = playSeriesOfAudioClips.GetClipLength(10) + playSeriesOfAudioClips.GetClipLength(11) + playSeriesOfAudioClips.GetClipLength(12) + +playSeriesOfAudioClips.GetClipLength(13);
             yield return new WaitForSeconds(clipLength);
 
+            firstClue.SetActive(true);
 
 
         }
