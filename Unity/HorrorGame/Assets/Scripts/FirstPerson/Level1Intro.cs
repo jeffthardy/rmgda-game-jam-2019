@@ -10,6 +10,7 @@ namespace TopZombies
         public float percentAudioBeforemovement = 0.9f;
         public GameObject postProcessingObject;
         public Animator viewAnimator;
+        public GameObject animatedTarget;
 
         public bool skipIntro = false;
 
@@ -38,7 +39,7 @@ namespace TopZombies
         {
             // Disable display and control and start intro audio
             fPSController.InputControl(false);
-            fPSController.CameraTarget(viewAnimator.gameObject);
+            fPSController.CameraTarget(animatedTarget);
             GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
             //Wait a tiny bit to let things get out of start
             yield return new WaitForSeconds(0.1f);
