@@ -49,23 +49,21 @@ namespace TopZombies {
 
             //Disable final scene trigger at startup
             if(enablesClue)
-                if (nextClue.GetComponent<ChaseToHidingSpot>() != null)
-                    nextClue.SetActive(false);
+                StartCoroutine(DisableNextClue());
 
 
             originalRotation = transform.rotation;
-            //if (isEnabled)
-            //{
-            //    GetComponent<FlashingIndicator>().turnOnFlasher();
-            //}
-            //else
-            //{
-            //    GetComponent<FlashingIndicator>().turnOffFlasher();
-            //}
 
         }
 
-        float rotationX = 0;
+        IEnumerator DisableNextClue()
+        {
+            //Wait a tiny bit to let things get out of start
+            yield return new WaitForSeconds(0.01f);
+            nextClue.SetActive(false);
+        }
+
+            float rotationX = 0;
         float rotationY = 0;
 
         float flashlightTimeAvailable;
@@ -100,6 +98,8 @@ namespace TopZombies {
 
         }
 
+        float lengthOfAudio;
+        float timeDoneWithAudio;
 
         public void Use()
         {
@@ -112,6 +112,8 @@ namespace TopZombies {
                 if (playSeriesOfAudioClips != null)
                 {
                     playSeriesOfAudioClips.PlaySeries();
+                    lengthOfAudio = playSeriesOfAudioClips.GetClipsLength();
+                    timeDoneWithAudio = Time.time + lengthOfAudio;
                     Debug.Log("Playing series");
                 }
                 else if (useSound != null)
@@ -145,20 +147,34 @@ namespace TopZombies {
                         fPSController.RecordNewSpawnPoint();
                 }
 
-                if (enablesClue)
-                {
-                    if(nextClue.GetComponent<ClueController>() != null)
-                        nextClue.GetComponent<ClueController>().enableClue();
-                    // End case of clues
-                    if (nextClue.GetComponent<ChaseToHidingSpot>() != null)
-                        nextClue.SetActive(true);
-                }
 
                 originalPosition = transform.position;
                 originalScale = transform.localScale;
                 ViewClue();
+
+                StartCoroutine(DelayClueEnable(timeDoneWithAudio));
             }
         }
+
+        IEnumerator DelayClueEnable(float timeDoneWithAudio)
+        {
+            //Wait a tiny bit to let things get out of start
+            while(Time.time < timeDoneWithAudio)
+                yield return new WaitForSeconds(1.0f);
+            if (enablesClue)
+            {
+                if (!nextClue.activeSelf)
+                {
+                    nextClue.SetActive(true);
+                }
+
+                if (nextClue.GetComponent<ClueController>() != null)
+                {
+                    nextClue.GetComponent<ClueController>().enableClue();
+                }
+            }
+        }
+        
 
         private float targetSize = 1.0f;
         void ViewClue()
