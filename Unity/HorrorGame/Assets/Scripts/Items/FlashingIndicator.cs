@@ -12,17 +12,16 @@ namespace TopZombies
         public float startTime = 0;
         public float frequency = 0.25f;
 
-        private Renderer rend;
+        private Renderer[] renderers;
         private Material mat;
         public Color flashColor;
-        private bool flasherEnabled = false;
+        public bool flasherEnabled = false;
 
 
         // Start is called before the first frame update
         void Start()
         {
-            rend = GetComponentInChildren<Renderer>();
-            mat = rend.material;
+            renderers = GetComponentsInChildren<Renderer>();
             if (isFlashing)
             {
                 flasherEnabled = true;
@@ -46,7 +45,13 @@ namespace TopZombies
                 //Debug.Log("Base "+flashColor);
                 Color newColor = flashColor * scale + flashColor/2;
                 //Debug.Log("Current: " +newColor);
-                mat.SetColor("_EmissionColor", newColor);
+                foreach (Renderer rend in renderers)
+                {
+                    for (int i = 0; i < rend.materials.Length; i++)
+                    {
+                        rend.materials[i].SetColor("_EmissionColor", newColor);
+                    }
+                }
                 //Debug.Log("Read: " + mat.GetColor("_EmissionColor"));
             }
 
@@ -60,8 +65,14 @@ namespace TopZombies
             {
                 isFlashing = true;
                 startTime = Time.time;
-                mat.EnableKeyword("_EMISSION");
-                mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+                foreach (Renderer rend in renderers)
+                {
+                    for (int i= 0; i < rend.materials.Length; i++)
+                    {
+                        rend.materials[i].EnableKeyword("_EMISSION");
+                        rend.materials[i].globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+                    }
+                }
                 //Debug.Log("Turn on lights");
             }
 
@@ -69,9 +80,15 @@ namespace TopZombies
         public void TurnOffFlasher()
         {
             isFlashing = false;
-            mat.DisableKeyword("_EMISSION");
-            mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
-            mat.SetColor("_EMISSION", Color.black);
+            foreach (Renderer rend in renderers)
+            {
+                for (int i = 0; i < rend.materials.Length; i++)
+                {
+                    rend.materials[i].DisableKeyword("_EMISSION");
+                    rend.materials[i].globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+                    rend.materials[i].SetColor("_EMISSION", Color.black);
+                }
+            }
             //Debug.Log("Turn off lights");
         }
 
