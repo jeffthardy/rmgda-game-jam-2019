@@ -8,12 +8,16 @@ namespace TopZombies {
         Renderer rend;
         float updateTime;
         public int materialIndex;
+        public AudioClip whiteNoise;
 
         public bool tvIsOn = true;
+
+        private AudioSource audioSource;
 
         // Start is called before the first frame update
         void Start()
         {
+            audioSource = GetComponent<AudioSource>();
             rend = GetComponent<Renderer>();
             updateTime = Time.time;
         }
@@ -50,6 +54,17 @@ namespace TopZombies {
         public void SetPower(bool on)
         {
             tvIsOn = on;
+            if (on)
+            {
+                audioSource.Stop();
+                audioSource.loop = true;
+                audioSource.clip = whiteNoise;
+                audioSource.volume = 0.5f;
+                audioSource.Play();
+            } else
+            {
+                audioSource.Stop();
+            }
         }
     }
 }
