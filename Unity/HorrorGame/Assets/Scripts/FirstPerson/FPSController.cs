@@ -136,7 +136,7 @@ namespace TopZombies
             {
                 if (Input.GetButton("Use") && enableInput)
                 {
-                    Debug.Log("Using  " + other.gameObject);
+                    //Debug.Log("Using  " + other.gameObject);
                     other.gameObject.GetComponent<AudioPlayerOnUse>().Use();
                 }
 
@@ -146,7 +146,7 @@ namespace TopZombies
             {
                 if (Input.GetButton("Use") && enableInput)
                 {
-                    Debug.Log("Using  " + other.gameObject);
+                    //Debug.Log("Using  " + other.gameObject);
                     other.gameObject.transform.parent.gameObject.GetComponent<DoorController>().Use();
                 }
 
@@ -156,7 +156,7 @@ namespace TopZombies
             {
                 if (Input.GetButton("Use") && enableInput)
                 {
-                    Debug.Log("Using  " + other.gameObject);
+                    //Debug.Log("Using  " + other.gameObject);
                     other.gameObject.GetComponent<ClueController>().Use();
                 }
 

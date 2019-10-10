@@ -35,6 +35,11 @@ namespace TopZombies {
         private Vector3 originalPosition;
         private Vector3 originalScale;
         private float releaseTime=0;
+        private float targetSize = 0.8f;
+        private float minTargetSize = 0.1f;
+        private float maxTargetSize = 2.0f;
+
+        private float zoomStepSize = 0.05f;
 
         // Start is called before the first frame update
         void Start()
@@ -52,7 +57,7 @@ namespace TopZombies {
                 StartCoroutine(DisableNextClue());
 
 
-            originalRotation = transform.rotation;
+            //Debug.Log("Started up " + gameObject.name);
 
         }
 
@@ -63,8 +68,10 @@ namespace TopZombies {
             nextClue.SetActive(false);
         }
 
-            float rotationX = 0;
+        float rotationX = 0;
         float rotationY = 0;
+        float horizontalInput;
+        float verticalInput;
 
         float flashlightTimeAvailable;
         // Update is called once per frame
@@ -74,8 +81,6 @@ namespace TopZombies {
             // Normal input should be disabled during this...
             if (isViewingClue)
             {
-                if ((Input.GetButton("Use") && (Time.realtimeSinceStartup > releaseTime)))
-                    PutDownClue();
 
                 // Still allow flashlight?
                 if (Input.GetButton("Flashlight"))
@@ -87,6 +92,23 @@ namespace TopZombies {
                     }
                 }
 
+
+                var posScale = Input.GetKey(KeyCode.W) ? 1 : 0;
+                var negScale = Input.GetKey(KeyCode.S) ? 1 : 0;
+                var scaleChange = posScale - negScale;
+                if (scaleChange != 0)
+                {
+                    //Debug.Log("Scaling due to input " + scaleChange);
+                    targetSize = targetSize + scaleChange * zoomStepSize;
+                    // Dont allow zoom to get too out of hand and go negative or massive
+                    if (targetSize < minTargetSize)
+                        targetSize = minTargetSize;
+                    if (targetSize > maxTargetSize)
+                        targetSize = maxTargetSize;
+                    //Debug.Log("New Size " + targetSize);
+                    RescaleClue();
+                }
+
                 // Read the mouse input axis
                 rotationX += Input.GetAxis("Mouse X") * fPSController.mouseSensitivityX;
                 rotationY += Input.GetAxis("Mouse Y") * fPSController.mouseSensitivityY;
@@ -94,6 +116,11 @@ namespace TopZombies {
                 Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, -Vector3.right);
 
                 transform.localRotation = originalRotation * xQuaternion * yQuaternion;
+
+                // This will reset position of clue to original orientation
+                if ((Input.GetButton("Use") && (Time.realtimeSinceStartup > releaseTime)))
+                    PutDownClue();
+
             }
 
         }
@@ -114,7 +141,7 @@ namespace TopZombies {
                     playSeriesOfAudioClips.PlaySeries();
                     lengthOfAudio = playSeriesOfAudioClips.GetClipsLength();
                     timeDoneWithAudio = Time.time + lengthOfAudio;
-                    Debug.Log("Playing series");
+                    //Debug.Log("Playing series");
                 }
                 else if (useSound != null)
                 {
@@ -150,6 +177,7 @@ namespace TopZombies {
 
                 originalPosition = transform.position;
                 originalScale = transform.localScale;
+                originalRotation = transform.rotation;
                 ViewClue();
 
                 StartCoroutine(DelayClueEnable(timeDoneWithAudio));
@@ -176,7 +204,6 @@ namespace TopZombies {
         }
         
 
-        private float targetSize = 1.0f;
         void ViewClue()
         {
 
@@ -195,7 +222,14 @@ namespace TopZombies {
             releaseTime = Time.realtimeSinceStartup + minTimeToHoldItem;
         }
 
-
+        void RescaleClue()
+        {
+            Vector3 xyz = transform.GetComponentInChildren<MeshFilter>().mesh.bounds.size;
+            float size = Mathf.Max(xyz.x, xyz.y, xyz.z);
+            float scaleFactor = targetSize / size;
+            Vector3 newScale = new Vector3(originalScale.x * scaleFactor, originalScale.y * scaleFactor, originalScale.z * scaleFactor);
+            transform.localScale = newScale;
+        }
 
         void PutDownClue()
         {
