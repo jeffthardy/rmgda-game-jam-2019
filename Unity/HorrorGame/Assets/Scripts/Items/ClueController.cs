@@ -12,6 +12,7 @@ namespace TopZombies {
         public float timeDisabledAfterUse = 0.5f;
 
         public bool triggersNightmareMode = false;
+        public int audioClipsBeforeTrigger = 0;
         public bool triggersDreamMode = false;
         public GameObject blockage;
         public bool enablesClue = true;
@@ -160,10 +161,12 @@ namespace TopZombies {
 
                 if (triggersNightmareMode)
                 {
-                    nightmareController.SwitchToNightmare();
-                    if (spawnsEnemy)
-                        enemy.SetActive(true);
+                    var triggerDelay = 0.0f;
+                    for(int i=0;i< audioClipsBeforeTrigger;i++)
+                        triggerDelay += playSeriesOfAudioClips.GetClipLength(i);
+                    StartCoroutine(TriggerNightmareWithDelay(triggerDelay));
                 }
+
                 if (triggersDreamMode)
                 {
                     nightmareController.SwitchToDream();
@@ -183,8 +186,15 @@ namespace TopZombies {
                 StartCoroutine(DelayClueEnable(timeDoneWithAudio));
             }
         }
+        IEnumerator TriggerNightmareWithDelay(float triggerDelay)
+        {
+            yield return new WaitForSeconds(triggerDelay);
+            nightmareController.SwitchToNightmare();
+            if (spawnsEnemy)
+                enemy.SetActive(true);
+        }
 
-        IEnumerator DelayClueEnable(float timeDoneWithAudio)
+            IEnumerator DelayClueEnable(float timeDoneWithAudio)
         {
             //Wait a tiny bit to let things get out of start
             while(Time.time < timeDoneWithAudio)
