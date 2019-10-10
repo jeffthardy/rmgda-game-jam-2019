@@ -24,33 +24,54 @@ namespace TopZombies
         private constantDOFChanger myDOFChanger;
 
 
+        List<Collider> TriggerList = new List<Collider>();
+        float closestEnemyDistance = 100.0f;
+
+
         // Start is called before the first frame update
         void Start()
         {
-            initialPosition = transform.localPosition;
+            initialPosition = Camera.main.transform.localPosition;
             currentPosition = initialPosition;
             timeToChange = Time.time;
             myDOFChanger = GameObject.Find("PostProcessingEffects").GetComponent<constantDOFChanger>();
+            closestEnemyDistance = dofDistanceMax;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if((triggerCount > 0) && (Time.time > timeToChange))
+            //Cleanup deactivated enemies since they dont triggerExit
+            foreach (Collider col in TriggerList)
+            {
+                if (!col.gameObject.activeSelf)
+                    TriggerList.Remove(col);
+            }
+
+            if ((TriggerList.Count > 0) && (Time.time > timeToChange))
             {
                 timeToChange = Time.time + changeRate;
                 MoveTransformOffset();
 
+                foreach (Collider col in TriggerList)
+                {
+                    closestEnemyDistance = dofDistanceMax;
+                    if (Vector3.Distance(col.transform.position, transform.position) < closestEnemyDistance)
+                        closestEnemyDistance = Vector3.Distance(col.transform.position, transform.position);
+                }
                 // Calculate distance to enemy and use that to set DOF 2 closest and 6 furthest?
+                currentDOF = ((closestEnemyDistance) / dofDistanceMax) * (dofMax - dofMin) + dofMin;
+                Debug.Log("Closest enemy is " + closestEnemyDistance + "  DOF " + currentDOF);
                 myDOFChanger.SetDOF(true, currentDOF);
                 isTriggered = true;
             }
 
-            if (triggerCount == 0)
+            if (TriggerList.Count == 0)
             {
-                transform.localPosition = initialPosition;
+                Camera.main.transform.localPosition = initialPosition;
                 myDOFChanger.SetDOF(false, currentDOF);
                 isTriggered = false;
+                closestEnemyDistance = dofDistanceMax;
             }
 
         }
@@ -60,35 +81,40 @@ namespace TopZombies
             float xChange = Random.Range(-xOffsetMax, xOffsetMax);
             float yChange = Random.Range(-yOffsetMax, yOffsetMax);
             float zChange = Random.Range(-zOffsetMax, zOffsetMax);
-
+                        
             currentPosition = new Vector3(initialPosition.x + xChange, initialPosition.y + yChange, initialPosition.z + zChange);
-            Debug.Log("Setting new offset " + currentPosition);
-            transform.localPosition = currentPosition;
+            //Debug.Log("Setting new offset " + currentPosition);
+            Camera.main.transform.localPosition = currentPosition;
+        }
+
+        public void ResetDetector()
+        {
+            triggerCount = 0;
+            isTriggered = false;
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
-                triggerCount++;
-                Debug.Log("Enemy Count " + triggerCount);
-                currentDOF = (Vector3.Distance(other.transform.position, transform.position) / dofDistanceMax) * (dofMax- dofMin) + dofMin; 
+                TriggerList.Add(other);
             }
         }
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-            {
-                currentDOF = (Vector3.Distance(other.transform.position, transform.position) / dofDistanceMax) * (dofMax - dofMin) + dofMin;
-            }
-        }
+//        private void OnTriggerStay(Collider other)
+//        {
+//            if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+//            {
+//                if(Vector3.Distance(other.transform.position, transform.position) < closestEnemyDistance)
+//                    closestEnemyDistance = Vector3.Distance(other.transform.position, transform.position);
+//            }
+//        }
 
         private void OnTriggerExit(Collider other)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
-                triggerCount--;
-                Debug.Log("Enemy Count " + triggerCount);
+                if (TriggerList.Contains(other))
+                    TriggerList.Remove(other);
             }
         }
 
