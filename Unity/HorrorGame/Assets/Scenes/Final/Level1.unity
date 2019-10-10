@@ -578,12 +578,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.129
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.056
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
@@ -907,7 +907,7 @@ Transform:
   - {fileID: 1257218493}
   - {fileID: 1419619655}
   m_Father: {fileID: 1021749234}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &96095592
 GameObject:
@@ -1528,12 +1528,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 8aeaedc99ff10b3479ae6396caf9837f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.85
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8aeaedc99ff10b3479ae6396caf9837f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.03
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8aeaedc99ff10b3479ae6396caf9837f,
         type: 3}
@@ -1684,7 +1684,7 @@ Transform:
   - {fileID: 6292094859924585567}
   - {fileID: 8736263092350334007}
   m_Father: {fileID: 1021749234}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &196006715
 GameObject:
@@ -3810,6 +3810,7 @@ MonoBehaviour:
   useCount: 0
   timeDisabledAfterUse: 0.5
   triggersNightmareMode: 1
+  audioClipsBeforeTrigger: 0
   triggersDreamMode: 0
   blockage: {fileID: 0}
   enablesClue: 1
@@ -4202,6 +4203,7 @@ MonoBehaviour:
   useCount: 0
   timeDisabledAfterUse: 0.5
   triggersNightmareMode: 0
+  audioClipsBeforeTrigger: 0
   triggersDreamMode: 1
   blockage: {fileID: 1054435637}
   enablesClue: 1
@@ -5085,6 +5087,7 @@ MonoBehaviour:
   useCount: 0
   timeDisabledAfterUse: 0.5
   triggersNightmareMode: 0
+  audioClipsBeforeTrigger: 0
   triggersDreamMode: 1
   blockage: {fileID: 927621151}
   enablesClue: 1
@@ -5658,6 +5661,7 @@ MonoBehaviour:
   useCount: 0
   timeDisabledAfterUse: 0.5
   triggersNightmareMode: 0
+  audioClipsBeforeTrigger: 0
   triggersDreamMode: 1
   blockage: {fileID: 142775081}
   enablesClue: 1
@@ -6846,10 +6850,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1232015983}
-  - {fileID: 1974350503443201567}
-  - {fileID: 416885548}
   - {fileID: 89712333}
   - {fileID: 192270162}
+  - {fileID: 1974350503443201567}
+  - {fileID: 416885548}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7034,6 +7038,7 @@ MonoBehaviour:
   useCount: 0
   timeDisabledAfterUse: 0.5
   triggersNightmareMode: 1
+  audioClipsBeforeTrigger: 0
   triggersDreamMode: 0
   blockage: {fileID: 0}
   enablesClue: 1
@@ -7697,6 +7702,7 @@ MonoBehaviour:
   useCount: 0
   timeDisabledAfterUse: 0.5
   triggersNightmareMode: 0
+  audioClipsBeforeTrigger: 0
   triggersDreamMode: 0
   blockage: {fileID: 1669560370}
   enablesClue: 1
@@ -10337,6 +10343,7 @@ MonoBehaviour:
   useCount: 0
   timeDisabledAfterUse: 0.5
   triggersNightmareMode: 1
+  audioClipsBeforeTrigger: 1
   triggersDreamMode: 0
   blockage: {fileID: 0}
   enablesClue: 1
@@ -10913,6 +10920,7 @@ MonoBehaviour:
   useCount: 0
   timeDisabledAfterUse: 0.5
   triggersNightmareMode: 1
+  audioClipsBeforeTrigger: 1
   triggersDreamMode: 0
   blockage: {fileID: 0}
   enablesClue: 1
@@ -11249,6 +11257,7 @@ MonoBehaviour:
   useCount: 0
   timeDisabledAfterUse: 0.5
   triggersNightmareMode: 1
+  audioClipsBeforeTrigger: 0
   triggersDreamMode: 0
   blockage: {fileID: 0}
   enablesClue: 1
@@ -11517,6 +11526,7 @@ MonoBehaviour:
   useCount: 0
   timeDisabledAfterUse: 0.5
   triggersNightmareMode: 0
+  audioClipsBeforeTrigger: 0
   triggersDreamMode: 1
   blockage: {fileID: 713687205}
   enablesClue: 1
@@ -11797,6 +11807,7 @@ MonoBehaviour:
   useCount: 0
   timeDisabledAfterUse: 0.5
   triggersNightmareMode: 0
+  audioClipsBeforeTrigger: 0
   triggersDreamMode: 1
   blockage: {fileID: 362792479}
   enablesClue: 1
@@ -13975,6 +13986,7 @@ MonoBehaviour:
   useCount: 0
   timeDisabledAfterUse: 0.5
   triggersNightmareMode: 1
+  audioClipsBeforeTrigger: 0
   triggersDreamMode: 0
   blockage: {fileID: 0}
   enablesClue: 1
