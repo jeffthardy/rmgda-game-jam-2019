@@ -50,8 +50,8 @@ namespace TopZombies {
             flashlight = GameObject.Find("Player/MainCamera/Flashlight").GetComponent<FlashlightController>();
             audioSource = GetComponent<AudioSource>();
             playSeriesOfAudioClips = GetComponent<PlaySeriesOfAudioClips>();
-            if (spawnsEnemy)
-                enemy.SetActive(false);
+            //if (spawnsEnemy)
+            //    enemy.SetActive(false);
 
             //Disable final scene trigger at startup
             if(enablesClue)

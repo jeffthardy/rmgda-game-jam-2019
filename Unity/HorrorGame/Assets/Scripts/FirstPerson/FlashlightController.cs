@@ -17,7 +17,9 @@ namespace TopZombies
         private Light flashlight;
         private float availableTime = 0;
         private int index=0;
-        private bool isUseable = false;
+
+        //making public for debug 
+        public bool isUseable = false;
 
         // Start is called before the first frame update
         void Start()

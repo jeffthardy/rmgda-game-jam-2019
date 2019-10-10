@@ -15,12 +15,21 @@ namespace TopZombies
 
         private float minDistanceToPoint = 0.5f;
 
+        float pingRate = 1.0f;
+        float nextPing = 0.0f;
+
+        float minDistancePerPing= 1.0f;
+        Vector3 myLastPosition;
+
         // Start is called before the first frame update
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
             currentTarget = goals[0].transform.position;
+            myLastPosition = transform.position;
         }
+
+
 
 
         // Update is called once per frame
@@ -44,6 +53,19 @@ namespace TopZombies
                 //Debug.Log("Distance to player" + Vector3.Distance(transform.position, playerLocation));
 
             }
+
+
+            if(Time.time > nextPing)
+            {
+                nextPing = Time.time + pingRate;
+
+                if (Vector3.Distance(transform.position, myLastPosition) < minDistancePerPing)
+                    Debug.Log("WARNING: " + gameObject.name + " might be stuck?");
+
+                myLastPosition = transform.position;
+            }
+
+
         }
 
         private void OnTriggerEnter(Collider other)

@@ -65,6 +65,9 @@ namespace TopZombies
         private bool cameraUnderControl = false;
         private GameObject cameraControlTarget ;
 
+
+        private ShakeObjectOnTrigger shakeObjectOnTrigger;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -78,6 +81,7 @@ namespace TopZombies
             myCamera = GetComponentInChildren<Camera>();
             myCameraObject = myCamera.gameObject;
             coll = GetComponentInChildren<CapsuleCollider>();
+            shakeObjectOnTrigger = GetComponentInChildren<ShakeObjectOnTrigger>();
             deathEffects = GetComponent<PlayerDeathEffects>();
 
             // Setup initial conditions
@@ -161,6 +165,7 @@ namespace TopZombies
 
         public void Respawn()
         {
+            shakeObjectOnTrigger.ResetDetector();
             gameObject.transform.position = spawnPoint;
             gameObject.transform.rotation = spawnRotation;
         }
