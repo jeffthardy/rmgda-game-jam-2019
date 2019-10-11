@@ -26,6 +26,7 @@ namespace TopZombies {
 
 
         private NightmareController nightmareController;
+        private float nightmareTriggerDelay = 0.0f;
         private PlaySeriesOfAudioClips playSeriesOfAudioClips;
 
         private FPSController fPSController;
@@ -53,8 +54,14 @@ namespace TopZombies {
             //if (spawnsEnemy)
             //    enemy.SetActive(false);
 
+            nightmareTriggerDelay = 0.0f;
+            for (int i = 0; i < audioClipsBeforeTrigger; i++)
+                nightmareTriggerDelay += playSeriesOfAudioClips.GetClipLength(i);
+            if(nightmareTriggerDelay != 0)
+                Debug.Log("Nightmare triggers with " + nightmareTriggerDelay + " s delay.");
+
             //Disable final scene trigger at startup
-            if(enablesClue)
+            if (enablesClue)
                 StartCoroutine(DisableNextClue());
 
 
@@ -161,10 +168,7 @@ namespace TopZombies {
 
                 if (triggersNightmareMode)
                 {
-                    var triggerDelay = 0.0f;
-                    for(int i=0;i< audioClipsBeforeTrigger;i++)
-                        triggerDelay += playSeriesOfAudioClips.GetClipLength(i);
-                    StartCoroutine(TriggerNightmareWithDelay(triggerDelay));
+                    StartCoroutine(TriggerNightmareWithDelay(nightmareTriggerDelay));
                 }
 
                 if (triggersDreamMode)
@@ -220,7 +224,7 @@ namespace TopZombies {
             // Disable player
             fPSController.InputControl(false);
             //disable scene time
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             isViewingClue = true;
             Vector3 xyz = transform.GetComponentInChildren<MeshFilter>().mesh.bounds.size;
             float size = Mathf.Max(xyz.x, xyz.y, xyz.z);
