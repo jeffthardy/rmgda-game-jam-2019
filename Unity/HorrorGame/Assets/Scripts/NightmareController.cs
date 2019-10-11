@@ -58,14 +58,14 @@ namespace TopZombies
             audioSource.PlayOneShot(nightmareAudio, audioLevel);
             nightmareMode = true;
             RenderSettings.ambientLight = new Color(0, 0, 0, 0);
-            nightmareLight.enabled = true;
 
             // Disable all the lights
-            SetGlobalLightActive(false);
+            StartCoroutine(ToggleLightsTo(false));
+            //SetGlobalLightActive(false);
             setGlobalWorldTextureActive(false);
         }
 
-        public void SwitchToDream()
+            public void SwitchToDream()
         {
             audioSource.PlayOneShot(dreamAudio, audioLevel);
             nightmareMode = false;
@@ -73,7 +73,8 @@ namespace TopZombies
             nightmareLight.enabled = false;
 
             // Enable all the lights
-            SetGlobalLightActive(true);
+            StartCoroutine(ToggleLightsTo(true));
+            //SetGlobalLightActive(true);
             setGlobalWorldTextureActive(true);
         }
 
@@ -90,6 +91,36 @@ namespace TopZombies
 
         }
 
+
+        float toggleTime = 2.0f;
+        IEnumerator ToggleLightsTo(bool finalSetting)
+        {
+            var startTime = Time.time;
+            var delay = 0.0f;
+            bool lightSetting = finalSetting;
+
+            // Toggle lights while transitition audio is playing
+            if (finalSetting)
+                toggleTime = dreamAudio.length;
+            else
+                toggleTime = nightmareAudio.length;
+
+            while (Time.time < startTime + toggleTime)
+            {
+                delay = Random.Range(0.1f, 0.3f);
+                yield return new WaitForSeconds(delay);
+                SetGlobalLightActive(lightSetting);
+                lightSetting = !lightSetting;
+            }
+            lightSetting = finalSetting;
+            yield return new WaitForSeconds(delay);
+            SetGlobalLightActive(lightSetting);
+
+            //Enable weak red light when other lights are all off
+            if(finalSetting == false)
+                nightmareLight.enabled = true;
+
+        }
 
         private void setGlobalWorldTextureActive(bool enabled)
         {

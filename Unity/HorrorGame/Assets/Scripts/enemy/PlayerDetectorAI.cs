@@ -29,7 +29,8 @@ namespace TopZombies
 
                 //Debug.Log("Detected " + other.gameObject + " And setting as new destination!");
                 //Set player as new target
-                gameObject.GetComponentInParent<enemyMover>().SetNewGoal(other.gameObject.transform.position);
+                transform.parent.gameObject.GetComponentInChildren<enemyMover>().SetNewGoal(other.gameObject.transform.position);
+                //gameObject.GetComponentInParent<enemyMover>().SetNewGoal(other.gameObject.transform.position);
 
                 // Play audio on detection
                 //Debug.Log("Attempting to play detect audio");

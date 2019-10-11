@@ -61,7 +61,7 @@ namespace TopZombies
                 }
                 // Calculate distance to enemy and use that to set DOF 2 closest and 6 furthest?
                 currentDOF = ((closestEnemyDistance) / dofDistanceMax) * (dofMax - dofMin) + dofMin;
-                Debug.Log("Closest enemy is " + closestEnemyDistance + "  DOF " + currentDOF);
+                //Debug.Log("Closest enemy is " + closestEnemyDistance + "  DOF " + currentDOF);
                 myDOFChanger.SetDOF(true, currentDOF);
                 isTriggered = true;
             }

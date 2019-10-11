@@ -15,7 +15,7 @@ namespace TopZombies
 
         private Animator viewAnimator;
 
-        private float minDistanceToPoint = 0.5f;
+        private float minDistanceToPoint = 1.5f;
 
         float pingRate = 1.0f;
         float nextPing = 0.0f;
@@ -26,9 +26,10 @@ namespace TopZombies
         // Start is called before the first frame update
         void Start()
         {
-            viewAnimator = GetComponentInChildren<Animator>();
-            agent = GetComponent<NavMeshAgent>();
+            viewAnimator = transform.parent.GetComponentInChildren<Animator>();
+            agent = transform.parent.GetComponent<NavMeshAgent>();
             currentTarget = goals[0].transform.position;
+            Debug.Log("initial target  " + currentTarget + " from " + goals[0].transform.position);
             myLastPosition = transform.position;
         }
 
@@ -70,7 +71,7 @@ namespace TopZombies
                 nextPing = Time.time + pingRate;
 
                 if (Vector3.Distance(transform.position, myLastPosition) < minDistancePerPing)
-                    Debug.Log("WARNING: " + gameObject.name + " might be stuck?");
+                    Debug.Log("WARNING: " + gameObject.name + " might be stuck? going to target " + currentTarget + " with distance of " + Vector3.Distance(transform.position, currentTarget));
 
                 myLastPosition = transform.position;
             }
@@ -86,10 +87,10 @@ namespace TopZombies
                 if (other.gameObject == goals[i].gameObject)
                 {
                     int next = (i + 1) % goals.Length;
-                    //Debug.Log(currentTarget);
+                    Debug.Log(currentTarget);
                     currentTarget = goals[next].transform.position;
-                    //Debug.Log("changing target from  " + i + " to " + next);
-                    //Debug.Log(currentTarget);
+                    Debug.Log("changing target from  " + i + " to " + next);
+                    Debug.Log(currentTarget);
                 }
             }
         }
@@ -97,6 +98,7 @@ namespace TopZombies
         {
             playerLocation = target;
             currentTarget = playerLocation;
+            Debug.Log("changing target to player  " + playerLocation);
         }
 
         IEnumerator ResetMovePatternAfterWait(Vector3 target)
