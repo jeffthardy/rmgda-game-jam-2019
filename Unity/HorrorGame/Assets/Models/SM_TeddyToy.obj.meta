@@ -3,7 +3,12 @@ guid: 29759f47de79c694ea0bcb950b662dec
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: teddyzsphere_unfold3dMat
+    second: {fileID: 2100000, guid: e1861f07708254e46b3618deb5188bf8, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
