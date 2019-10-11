@@ -48,6 +48,11 @@ namespace TopZombies
         bool previousFPSInputEnabled;
         float previousTimeScale;
 
+        CursorLockMode pauseCursorLockState;
+        bool pauseCursorVisible;
+        bool pauseFPSInputEnabled;
+        float pauseTimeScale;
+
         public void PauseGame()
         {
             previousCursorLockState = Cursor.lockState;
@@ -55,14 +60,19 @@ namespace TopZombies
             previousFPSInputEnabled = fPSController.enableInput;
             previousTimeScale = Time.timeScale;
 
+            pauseCursorLockState = CursorLockMode.None;
+            pauseCursorVisible = (CursorLockMode.Locked != fPSController.cursorLockedMode);
+            pauseFPSInputEnabled = false;
+            pauseTimeScale = 0;
+
             // Give mouse back to user
-            Cursor.lockState = fPSController.cursorLockedMode = CursorLockMode.None;
-            Cursor.visible = (CursorLockMode.Locked != fPSController.cursorLockedMode);
+            Cursor.lockState = fPSController.cursorLockedMode = pauseCursorLockState;
+            Cursor.visible = pauseCursorVisible;
 
             // Disable player
-            fPSController.InputControl(false);
+            fPSController.InputControl(pauseFPSInputEnabled);
             //disable scene time
-            Time.timeScale = 0;
+            Time.timeScale = pauseTimeScale;
 
             //Enable panel views
             GameObject.Find("[UI]/Canvas/PausePanel").GetComponent<Image>().color = initialColor;
@@ -79,11 +89,13 @@ namespace TopZombies
         
         void ResumeButtonOnClick()
         {
-            // Disable this menu view and re-enabl player
-            fPSController.cursorLockedMode = previousCursorLockState;
+            // Disable this menu view and re-enable player
+            if(fPSController.cursorLockedMode == pauseCursorLockState)
+                fPSController.cursorLockedMode = previousCursorLockState;
             Cursor.lockState = previousCursorLockState;
             // Hide cursor when locking
-            Cursor.visible = previousCursorVisible;
+            if (Cursor.visible == pauseCursorVisible)
+                Cursor.visible = previousCursorVisible;
 
 
             //Enable panel views
@@ -98,9 +110,11 @@ namespace TopZombies
             }
 
             // Re-enable player control
-            fPSController.InputControl(previousFPSInputEnabled);
+            if (fPSController.enableInput == pauseFPSInputEnabled)
+                fPSController.InputControl(previousFPSInputEnabled);
             //Re-enable scene time
-            Time.timeScale = previousTimeScale;
+            if (Time.timeScale == pauseTimeScale)
+                Time.timeScale = previousTimeScale;
         }
 
 
