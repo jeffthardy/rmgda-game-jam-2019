@@ -2675,7 +2675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341797041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.24, y: 7, z: -35.497}
+  m_LocalPosition: {x: 24.24, y: 7.4, z: -35.497}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963194228}
@@ -2813,12 +2813,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathScreams:
-  - {fileID: 8300000, guid: a948bdcc03ca0d348a892d961d7bfadb, type: 3}
+  - {fileID: 8300000, guid: 6368e28e6ad679f4381b1981f3c4525e, type: 3}
+  - {fileID: 8300000, guid: 301835f4edf22054ca474f17cbec6eb8, type: 3}
+  - {fileID: 8300000, guid: 3bfc45f51af45de45935e330b17b708a, type: 3}
+  - {fileID: 8300000, guid: 570b5b3f8bc49ff4c864acb66b20d235, type: 3}
+  - {fileID: 8300000, guid: b5e77a16ff1c71a499abde3ce1ba1e0b, type: 3}
   spawnTalks:
-  - {fileID: 8300000, guid: 1802b86f7010d354ab2bb4bd2f77b67c, type: 3}
-  - {fileID: 8300000, guid: 804b79a24f9171343bde3b6ce06bd2af, type: 3}
-  - {fileID: 8300000, guid: 0c3e67045fc25a14ab60e4806fe64545, type: 3}
-  - {fileID: 8300000, guid: 77c45b443df402c48a26a89da7894092, type: 3}
+  - {fileID: 8300000, guid: 15d0b04dafc41ef43b52086f610cc438, type: 3}
+  - {fileID: 8300000, guid: e4bd5a426a19a9f4e96c9cb95fe9a956, type: 3}
+  - {fileID: 8300000, guid: 7122c24bea90d2f45b0d29c387f40eb2, type: 3}
+  - {fileID: 8300000, guid: 769cdc37d44bfb5479f80c7fe40732e0, type: 3}
+  - {fileID: 8300000, guid: 22039482ef095644a9ef36e9d43d03fe, type: 3}
+  - {fileID: 8300000, guid: cf705a1d05c57444d887617ad2d430e7, type: 3}
+  - {fileID: 8300000, guid: 6527dc73ba5db894b907549854657644, type: 3}
   innerAudioGap: 0.5
   talkTimeBeforeSceenClear: 0.5
 --- !u!114 &341797049
