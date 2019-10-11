@@ -44,7 +44,7 @@ namespace TopZombies
             //Cleanup deactivated enemies since they dont triggerExit
             foreach (Collider col in TriggerList)
             {
-                if (!col.gameObject.activeSelf)
+                if (!col.gameObject.activeInHierarchy)
                     TriggerList.Remove(col);
             }
 
