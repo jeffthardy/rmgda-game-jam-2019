@@ -6,6 +6,7 @@ namespace TopZombies
 {
     public class FlashlightController : MonoBehaviour
     {
+
         public float maxIntensity = 3;
         public bool isOn = true;
         public float toggleTime = 0.2f;
@@ -17,13 +18,16 @@ namespace TopZombies
         private float availableTime = 0;
         private int index=0;
 
+        //making public for debug 
+        public bool isUseable = false;
+
         // Start is called before the first frame update
         void Start()
         {
             flashlight = GetComponent<Light>();
             audioSource = GetComponent<AudioSource>();
 
-            if (isOn)
+            if (isOn && isUseable)
                 flashlight.intensity = maxIntensity;
             else
                 flashlight.intensity = 0;
@@ -36,9 +40,14 @@ namespace TopZombies
 
         }
 
+        public void makeUseable()
+        {
+            isUseable = true;
+        }
+
         public void toggleFlashlight()
         {
-            if ((Time.time > availableTime) || (Time.timeScale == 0))
+            if (((Time.time > availableTime) || (Time.timeScale == 0)) && isUseable)
             {
                 availableTime = Time.time + toggleTime;
 

@@ -6,15 +6,48 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Jeff/Menu.unity
-    guid: 0179867151d3e8d46a21dda4f5b8375b
+    path: Assets/Scenes/Final/Menu.unity
+    guid: 0c47d449ac1cb844fb826f1f81ae30b9
   - enabled: 1
-    path: Assets/Scenes/Jeff/JeffsScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/Final/Credits.unity
+    guid: fd686852dfdbc0440ad5471fe45dd02d
   - enabled: 1
-    path: Assets/Scenes/Jeff/Credits.unity
-    guid: a25a9fcae5f9d95428676ce732f0f2c6
+    path: Assets/Scenes/Final/DoctorsOffice.unity
+    guid: 7c72676de34878c45ae511589a891cd0
   - enabled: 1
-    path: Assets/Scenes/Jeff/DoctorsOffice.unity
-    guid: 2088af1a5e9bd694ea6aef57b615414e
+    path: Assets/Scenes/Final/Level1.unity
+    guid: 7fb8280b2e9a52245a75a5296a065b50
+  - enabled: 1
+    path: Assets/Scenes/Final/Level1_KatsBedroom.unity
+    guid: 9e696b63a3c75664292fb55284f50eaf
+  - enabled: 1
+    path: Assets/Scenes/Final/Level1_DiningRoom.unity
+    guid: feca35815d101e84bb485e90c110e337
+  - enabled: 1
+    path: Assets/Scenes/Final/Level1_GuestRoom.unity
+    guid: 29bc7f77b6d71a94b8e4fafe16332126
+  - enabled: 1
+    path: Assets/Scenes/Final/Level1_Kitchen.unity
+    guid: e761508224d7085488741eccb56d9c2c
+  - enabled: 1
+    path: Assets/Scenes/Final/Level1_LivingRoom.unity
+    guid: 455c5d6a1317cf349ad3446d29db43c1
+  - enabled: 1
+    path: Assets/Scenes/Final/Level1_ParentsBathroom.unity
+    guid: 16be1b9c9fe3c9945aa9d41baf665919
+  - enabled: 1
+    path: Assets/Scenes/Final/Level1_ParentsBedroom.unity
+    guid: 7debd31144b98704d81648b6b002a22d
+  - enabled: 1
+    path: Assets/Scenes/Final/Level1_Twin1Bedroom.unity
+    guid: 64560184a2f3e4e41a17b1c7a105a4a1
+  - enabled: 1
+    path: Assets/Scenes/Final/Level1_Twin2Bedroom.unity
+    guid: e4f2b67c347cfaa468804dac668172b5
+  - enabled: 1
+    path: Assets/Scenes/Final/Level1_ExitArea.unity
+    guid: 6d278dcdb43ed6e4cba246d5c92d9683
+  - enabled: 1
+    path: Assets/Scenes/Final/Level1_House.unity
+    guid: f206588ecdda1294ab3a6dfa56fc6104
   m_configObjects: {}

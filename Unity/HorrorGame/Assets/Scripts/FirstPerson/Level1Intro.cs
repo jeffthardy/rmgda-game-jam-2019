@@ -9,6 +9,10 @@ namespace TopZombies
     {
         public float percentAudioBeforemovement = 0.9f;
         public GameObject postProcessingObject;
+        public Animator viewAnimator;
+        public GameObject animatedTarget;
+
+        public GameObject firstClue;
 
         public bool skipIntro = false;
 
@@ -30,15 +34,22 @@ namespace TopZombies
             if (!skipIntro)
                 StartCoroutine(Level1IntroScript());
 
+
         }
+
 
         IEnumerator Level1IntroScript()
         {
             // Disable display and control and start intro audio
             fPSController.InputControl(false);
+            fPSController.CameraTarget(animatedTarget);
             GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
             //Wait a tiny bit to let things get out of start
             yield return new WaitForSeconds(0.1f);
+
+            // Disable first clue
+            firstClue.SetActive(false);
+
             // Line 7-19
             playSeriesOfAudioClips.PlaySeries();
             
@@ -48,12 +59,12 @@ namespace TopZombies
             yield return new WaitForSeconds(clipLength * percentAudioBeforemovement);
             postProcessingObject.GetComponent<constantDOFChanger>().SetDOF(true, 0);
             StartCoroutine(SlowClearBlackout(clipLength * (1 - percentAudioBeforemovement) / 2));
+            viewAnimator.SetTrigger("PlayView");
 
 
             Debug.Log(Time.time + " waiting for " + clipLength * (1 - percentAudioBeforemovement));
             yield return new WaitForSeconds(clipLength * (1 - percentAudioBeforemovement));
             postProcessingObject.GetComponent<constantDOFChanger>().SetDOF(false, 0);
-
 
             // Disable input until 2nd clip is done
             // Line 8
@@ -61,6 +72,7 @@ namespace TopZombies
             yield return new WaitForSeconds(clipLength);
 
             // Re-enable display and control    
+            fPSController.ResetMouseView();
             fPSController.InputControl(true);
 
             // Line 9
@@ -93,10 +105,11 @@ namespace TopZombies
             //Normal again here
             nightmareController.SwitchToDream();
 
-            // Line 17-19
-            clipLength = playSeriesOfAudioClips.GetClipLength(10) + playSeriesOfAudioClips.GetClipLength(11) + playSeriesOfAudioClips.GetClipLength(12);
+            // Line 17-20
+            clipLength = playSeriesOfAudioClips.GetClipLength(10) + playSeriesOfAudioClips.GetClipLength(11) + playSeriesOfAudioClips.GetClipLength(12) + +playSeriesOfAudioClips.GetClipLength(13);
             yield return new WaitForSeconds(clipLength);
 
+            firstClue.SetActive(true);
 
 
         }

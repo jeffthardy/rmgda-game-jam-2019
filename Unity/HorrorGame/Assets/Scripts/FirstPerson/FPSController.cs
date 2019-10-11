@@ -62,6 +62,12 @@ namespace TopZombies
         public bool isDucking = false;
         public bool isSprinting = false;
 
+        private bool cameraUnderControl = false;
+        private GameObject cameraControlTarget ;
+
+
+        private ShakeObjectOnTrigger shakeObjectOnTrigger;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -75,6 +81,7 @@ namespace TopZombies
             myCamera = GetComponentInChildren<Camera>();
             myCameraObject = myCamera.gameObject;
             coll = GetComponentInChildren<CapsuleCollider>();
+            shakeObjectOnTrigger = GetComponentInChildren<ShakeObjectOnTrigger>();
             deathEffects = GetComponent<PlayerDeathEffects>();
 
             // Setup initial conditions
@@ -118,43 +125,32 @@ namespace TopZombies
             // Handle toggling flashlight
             HandleFlashlight();
 
+            if (cameraUnderControl)
+            {
+                myCamera.transform.LookAt(cameraControlTarget.transform.position);
+            }
+
 
         }
 
         // Currently detecting items we can use based on trigger zones
         private void OnTriggerStay(Collider other)
         {
-            if(other.gameObject.GetComponent<AudioPlayerOnUse>() != null)
+
+            if (Input.GetButton("Use") && enableInput)
             {
-                if (Input.GetButton("Use") && enableInput)
-                {
-                    Debug.Log("Using  " + other.gameObject);
+                if (other.gameObject.GetComponent<AudioPlayerOnUse>() != null)
                     other.gameObject.GetComponent<AudioPlayerOnUse>().Use();
-                }
 
-            }
+                if (other.gameObject.layer == LayerMask.NameToLayer("Door"))
+                    other.gameObject.transform.parent.gameObject.GetComponent<DoorController>().Use();
 
-            if (other.gameObject.GetComponent<DoorController>() != null)
-            {
-                if (Input.GetButton("Use") && enableInput)
-                {
-                    Debug.Log("Using  " + other.gameObject);
-                    other.gameObject.GetComponent<DoorController>().Use();
-                }
-
-            }
-
-            if (other.gameObject.GetComponent<ClueController>() != null)
-            {
-                if (Input.GetButton("Use") && enableInput)
-                {
-                    Debug.Log("Using  " + other.gameObject);
+                if (other.gameObject.GetComponent<ClueController>() != null)
                     other.gameObject.GetComponent<ClueController>().Use();
-                }
 
+                if (other.gameObject.GetComponent<InitialFlashlightPickup>() != null)
+                    other.gameObject.GetComponent<InitialFlashlightPickup>().Use();
             }
-
-
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -169,6 +165,7 @@ namespace TopZombies
 
         public void Respawn()
         {
+            shakeObjectOnTrigger.ResetDetector();
             gameObject.transform.position = spawnPoint;
             gameObject.transform.rotation = spawnRotation;
         }
@@ -195,6 +192,18 @@ namespace TopZombies
                 transform.localRotation = originalRotation * xQuaternion;
                 myCamera.transform.localRotation = originalCameraRotation * yQuaternion;
             }
+        }
+
+        public void ResetMouseView()
+        {
+            cameraUnderControl = false;
+            myCamera.transform.localRotation = originalCameraRotation;
+        }
+
+        public void CameraTarget(GameObject gameObject)
+        {
+            cameraUnderControl = true;
+            cameraControlTarget = gameObject;
         }
 
         public static float ClampAngle(float angle, float min, float max)
