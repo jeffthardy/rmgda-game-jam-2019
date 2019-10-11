@@ -40,12 +40,12 @@ public class DoorController : MonoBehaviour
                 audioSource.clip = doorClose;
                 if (rotateClockwise)
                 {
-                    animator.SetTrigger("Close");
+                    animator.SetTrigger("CloseNegative");
                     //transform.Rotate(new Vector3(0, 90, 0));
                 }
                 else
                 {
-                    animator.SetTrigger("Close");
+                    animator.SetTrigger("ClosePositive");
                     //transform.Rotate(new Vector3(0, -90, 0));
                 }
             }
@@ -54,12 +54,12 @@ public class DoorController : MonoBehaviour
                 audioSource.clip = doorOpen;
                 if (rotateClockwise)
                 {
-                    animator.SetTrigger("Open");
+                    animator.SetTrigger("OpenNegative");
                     //transform.Rotate(new Vector3(0, -90, 0));
                 }
                 else
                 {
-                    animator.SetTrigger("Open");
+                    animator.SetTrigger("OpenPositive");
                     //transform.Rotate(new Vector3(0, 90, 0));
                 }
             }
