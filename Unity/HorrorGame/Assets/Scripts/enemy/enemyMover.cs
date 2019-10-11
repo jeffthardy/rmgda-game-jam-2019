@@ -13,6 +13,8 @@ namespace TopZombies
         private Vector3 currentTarget;
         private Vector3 playerLocation;
 
+        private Animator viewAnimator;
+
         private float minDistanceToPoint = 0.5f;
 
         float pingRate = 1.0f;
@@ -24,6 +26,7 @@ namespace TopZombies
         // Start is called before the first frame update
         void Start()
         {
+            viewAnimator = GetComponentInChildren<Animator>();
             agent = GetComponent<NavMeshAgent>();
             currentTarget = goals[0].transform.position;
             myLastPosition = transform.position;
@@ -40,6 +43,13 @@ namespace TopZombies
 
             //Handle cases where path detect gets frozen?  FIXME
 
+            if (agent.isStopped)
+            {
+                viewAnimator.SetTrigger("Idle");
+            } else
+            {
+                viewAnimator.SetTrigger("Walk");
+            }
 
             //Handle player tracking and resetting once reaching the last know player location
             if ((Vector3.Distance(transform.position, playerLocation) < minDistanceToPoint) && (currentTarget == playerLocation))
@@ -53,7 +63,7 @@ namespace TopZombies
                 //Debug.Log("Distance to player" + Vector3.Distance(transform.position, playerLocation));
 
             }
-
+            
 
             if(Time.time > nextPing)
             {
