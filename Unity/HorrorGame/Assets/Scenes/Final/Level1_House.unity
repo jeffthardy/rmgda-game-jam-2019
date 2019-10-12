@@ -52728,8 +52728,8 @@ GameObject:
   m_Name: SM_Floor454
   m_TagString: ground
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_NavMeshLayer: 2
+  m_StaticEditorFlags: 40
   m_IsActive: 1
 --- !u!64 &4233233637274637565
 MeshCollider:
@@ -94609,8 +94609,8 @@ GameObject:
   m_Name: SM_Floor214
   m_TagString: ground
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 2
+  m_StaticEditorFlags: 40
   m_IsActive: 1
 --- !u!64 &7467511634912722121
 MeshCollider:
