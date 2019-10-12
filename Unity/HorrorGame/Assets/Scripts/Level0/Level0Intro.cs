@@ -27,5 +27,15 @@ namespace TopZombies
             yield return new WaitForSeconds(clipsLength);
             SceneManager.LoadScene(nextScene);
         }
+
+
+        private void Update()
+        {
+            // Allow user to skip intro
+            if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Q))
+            {
+                SceneManager.LoadScene(nextScene);
+            }
+        }
     }
 }
