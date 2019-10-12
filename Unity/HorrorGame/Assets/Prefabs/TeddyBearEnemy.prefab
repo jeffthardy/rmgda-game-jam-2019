@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6851702284939942763}
   - component: {fileID: 6851702284939942756}
   m_Layer: 10
-  m_Name: Enemy
+  m_Name: TeddyBearEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,8 +239,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectClips:
-  - {fileID: 8300000, guid: 4f8ed171732a6554aa0e6cff4f5c96f8, type: 3}
-  - {fileID: 8300000, guid: bfdb3e378b41fd247964194ea0c11b2b, type: 3}
+  - {fileID: 8300000, guid: a3833b4430909654bb080d01a25db7b9, type: 3}
+  idleClips:
+  - {fileID: 8300000, guid: 9ec8fa410a755604a8155770141bcc3a, type: 3}
+  - {fileID: 8300000, guid: 888e1e659d2edca40a1e075647538b1d, type: 3}
+  - {fileID: 8300000, guid: 1339598efb702bc43a1842da7e336b01, type: 3}
+  walkingClips:
+  - {fileID: 8300000, guid: dc692fbfeb5f3a342b25c07a0cd0ac11, type: 3}
   deadTimeBetweenDetections: 1
 --- !u!82 &6851702285887893589
 AudioSource:
@@ -263,7 +268,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 40
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0

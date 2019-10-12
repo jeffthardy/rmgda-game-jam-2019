@@ -397,7 +397,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectClips:
   - {fileID: 8300000, guid: 4f8ed171732a6554aa0e6cff4f5c96f8, type: 3}
-  - {fileID: 8300000, guid: bfdb3e378b41fd247964194ea0c11b2b, type: 3}
+  idleClips:
+  - {fileID: 8300000, guid: 4f8ed171732a6554aa0e6cff4f5c96f8, type: 3}
+  walkingClips:
+  - {fileID: 8300000, guid: 4f8ed171732a6554aa0e6cff4f5c96f8, type: 3}
   deadTimeBetweenDetections: 1
 --- !u!82 &6851702285887893589
 AudioSource:
