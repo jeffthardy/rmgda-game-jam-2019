@@ -19,6 +19,8 @@ namespace TopZombies
 
         public bool nightmareMode = false;
 
+        private Color initialAmbientLight;
+
 
         // Set this to true and continuously toggle between modes
         public bool debugToggler = false;
@@ -32,6 +34,7 @@ namespace TopZombies
             Renderer[] renderers = (Renderer[])Object.FindObjectsOfType(typeof(Renderer));
 
             nightmareRenderers = new List<Renderer>();
+            initialAmbientLight = RenderSettings.ambientLight;
 
             foreach (Renderer objectRenderer in renderers)
             {
@@ -69,7 +72,7 @@ namespace TopZombies
         {
             audioSource.PlayOneShot(dreamAudio, audioLevel);
             nightmareMode = false;
-            RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f, 1);
+            RenderSettings.ambientLight = initialAmbientLight;
             nightmareLight.enabled = false;
 
             // Enable all the lights
