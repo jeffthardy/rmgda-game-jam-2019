@@ -9,6 +9,7 @@ namespace TopZombies
     {
         public GameObject[] goals;
         public float playerLostWait = 3.0f;
+        public bool isStatic = false;
         private NavMeshAgent agent;
         private Vector3 currentTarget;
         private Vector3 playerLocation;
@@ -44,75 +45,84 @@ namespace TopZombies
         // Update is called once per frame
         void Update()
         {
-            agent.destination = currentTarget;
-            //Debug.Log(agent.destination);
-
-            //Handle player tracking and resetting once reaching the last know player location
-            if ((Vector3.Distance(transform.position, playerLocation) < minDistanceToPoint) && (currentTarget == playerLocation))
+            if (!isStatic)
             {
-                // Go back to waypoints
-                if (!isCurrentlyResettingTarget)
-                    StartCoroutine(ResetMovePatternAfterWait());
-                //Debug.Log("Reached last player location, Resetting back to goals." + Vector3.Distance(transform.position, playerLocation));
-            }
-            else if (currentTarget == playerLocation)
-            {
-                //Debug.Log("Distance to player" + Vector3.Distance(transform.position, playerLocation));
+                agent.destination = currentTarget;
+                //Debug.Log(agent.destination);
 
-            }
-
-            if ((Time.time > nextPing) && !isCurrentlyResettingTarget)
-            {
-                nextPing = Time.time + pingRate;
-            
-                if (Vector3.Distance(transform.position, myLastPosition) < minDistancePerPing)
+                //Handle player tracking and resetting once reaching the last know player location
+                if ((Vector3.Distance(transform.position, playerLocation) < minDistanceToPoint) && (currentTarget == playerLocation))
                 {
-                    Debug.Log("WARNING: " + gameObject.name + " might be stuck? going to target " + currentTarget + " with distance of " + Vector3.Distance(transform.position, currentTarget));
-                    Debug.Log("Path Status: " + agent.pathStatus);
-                    Debug.Log("Path exists: " + agent.hasPath);
-                    if(agent.hasPath == false)
-                    {
+                    // Go back to waypoints
+                    if (!isCurrentlyResettingTarget)
                         StartCoroutine(ResetMovePatternAfterWait());
-                        Debug.Log("Reset to next waypoint goal after wait");
-                    }
+                    //Debug.Log("Reached last player location, Resetting back to goals." + Vector3.Distance(transform.position, playerLocation));
                 }
-            
-                
-                myLastPosition = transform.position;
-            }
+                else if (currentTarget == playerLocation)
+                {
+                    //Debug.Log("Distance to player" + Vector3.Distance(transform.position, playerLocation));
+
+                }
+
+                if ((Time.time > nextPing) && !isCurrentlyResettingTarget)
+                {
+                    nextPing = Time.time + pingRate;
+
+                    if (Vector3.Distance(transform.position, myLastPosition) < minDistancePerPing)
+                    {
+                        Debug.Log("WARNING: " + gameObject.name + " might be stuck? going to target " + currentTarget + " with distance of " + Vector3.Distance(transform.position, currentTarget));
+                        Debug.Log("Path Status: " + agent.pathStatus);
+                        Debug.Log("Path exists: " + agent.hasPath);
+                        if (agent.hasPath == false)
+                        {
+                            StartCoroutine(ResetMovePatternAfterWait());
+                            Debug.Log("Reset to next waypoint goal after wait");
+                        }
+                    }
+
+
+                    myLastPosition = transform.position;
+                }
+            }        
         }
 
 
         int lastGoal;
         private void OnTriggerEnter(Collider other)
         {
-            //Debug.Log("Collision detected with " + other.gameObject);
-            for (int i = 0; i < goals.Length; i++)
+            if (!isStatic)
             {
-                if (other.gameObject == goals[i].gameObject)
+                //Debug.Log("Collision detected with " + other.gameObject);
+                for (int i = 0; i < goals.Length; i++)
                 {
-                    lastGoal = i;
-                    if (!isCurrentlyResettingTarget)
-                        StartCoroutine(ResetMovePatternAfterWait());
-                    //int next = (i + 1) % goals.Length;
-                    //lastGoal = next;
-                    //Debug.Log(currentTarget);
-                    //currentTarget = goals[next].transform.position;
-                    //Debug.Log("changing target from  " + i + " to " + next);
-                    //Debug.Log(currentTarget);
+                    if (other.gameObject == goals[i].gameObject)
+                    {
+                        lastGoal = i;
+                        if (!isCurrentlyResettingTarget)
+                            StartCoroutine(ResetMovePatternAfterWait());
+                        //int next = (i + 1) % goals.Length;
+                        //lastGoal = next;
+                        //Debug.Log(currentTarget);
+                        //currentTarget = goals[next].transform.position;
+                        //Debug.Log("changing target from  " + i + " to " + next);
+                        //Debug.Log(currentTarget);
+                    }
                 }
             }
         }
 
         private void OnTriggerStay(Collider other)
         {
-            for (int i = 0; i < goals.Length; i++)
+            if (!isStatic)
             {
-                if (other.gameObject == goals[i].gameObject)
+                for (int i = 0; i < goals.Length; i++)
                 {
-                    lastGoal = i;
-                    if (!isCurrentlyResettingTarget)
-                        StartCoroutine(ResetMovePatternAfterWait());
+                    if (other.gameObject == goals[i].gameObject)
+                    {
+                        lastGoal = i;
+                        if (!isCurrentlyResettingTarget)
+                            StartCoroutine(ResetMovePatternAfterWait());
+                    }
                 }
             }
         }
