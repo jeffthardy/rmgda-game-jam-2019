@@ -174,6 +174,7 @@ namespace TopZombies
         {
             spawnPoint = transform.position;
             spawnRotation = transform.rotation;
+            Debug.Log("Recording new spawn location " + spawnPoint);
         }
 
 

@@ -19,6 +19,8 @@ namespace TopZombies
 
         public bool nightmareMode = false;
 
+        private Color initialAmbientLight;
+
 
         // Set this to true and continuously toggle between modes
         public bool debugToggler = false;
@@ -32,6 +34,7 @@ namespace TopZombies
             Renderer[] renderers = (Renderer[])Object.FindObjectsOfType(typeof(Renderer));
 
             nightmareRenderers = new List<Renderer>();
+            initialAmbientLight = RenderSettings.ambientLight;
 
             foreach (Renderer objectRenderer in renderers)
             {
@@ -58,22 +61,23 @@ namespace TopZombies
             audioSource.PlayOneShot(nightmareAudio, audioLevel);
             nightmareMode = true;
             RenderSettings.ambientLight = new Color(0, 0, 0, 0);
-            nightmareLight.enabled = true;
 
             // Disable all the lights
-            SetGlobalLightActive(false);
+            StartCoroutine(ToggleLightsTo(false));
+            //SetGlobalLightActive(false);
             setGlobalWorldTextureActive(false);
         }
 
-        public void SwitchToDream()
+            public void SwitchToDream()
         {
             audioSource.PlayOneShot(dreamAudio, audioLevel);
             nightmareMode = false;
-            RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f, 1);
+            RenderSettings.ambientLight = initialAmbientLight;
             nightmareLight.enabled = false;
 
             // Enable all the lights
-            SetGlobalLightActive(true);
+            StartCoroutine(ToggleLightsTo(true));
+            //SetGlobalLightActive(true);
             setGlobalWorldTextureActive(true);
         }
 
@@ -90,6 +94,36 @@ namespace TopZombies
 
         }
 
+
+        float toggleTime = 2.0f;
+        IEnumerator ToggleLightsTo(bool finalSetting)
+        {
+            var startTime = Time.time;
+            var delay = 0.0f;
+            bool lightSetting = finalSetting;
+
+            // Toggle lights while transitition audio is playing
+            if (finalSetting)
+                toggleTime = dreamAudio.length;
+            else
+                toggleTime = nightmareAudio.length;
+
+            while (Time.time < startTime + toggleTime)
+            {
+                delay = Random.Range(0.1f, 0.3f);
+                yield return new WaitForSeconds(delay);
+                SetGlobalLightActive(lightSetting);
+                lightSetting = !lightSetting;
+            }
+            lightSetting = finalSetting;
+            yield return new WaitForSeconds(delay);
+            SetGlobalLightActive(lightSetting);
+
+            //Enable weak red light when other lights are all off
+            if(finalSetting == false)
+                nightmareLight.enabled = true;
+
+        }
 
         private void setGlobalWorldTextureActive(bool enabled)
         {

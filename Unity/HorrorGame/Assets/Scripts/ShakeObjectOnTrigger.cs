@@ -44,7 +44,7 @@ namespace TopZombies
             //Cleanup deactivated enemies since they dont triggerExit
             foreach (Collider col in TriggerList)
             {
-                if (!col.gameObject.activeSelf)
+                if (!col.gameObject.activeInHierarchy)
                     TriggerList.Remove(col);
             }
 
@@ -61,7 +61,7 @@ namespace TopZombies
                 }
                 // Calculate distance to enemy and use that to set DOF 2 closest and 6 furthest?
                 currentDOF = ((closestEnemyDistance) / dofDistanceMax) * (dofMax - dofMin) + dofMin;
-                Debug.Log("Closest enemy is " + closestEnemyDistance + "  DOF " + currentDOF);
+                //Debug.Log("Closest enemy is " + closestEnemyDistance + "  DOF " + currentDOF);
                 myDOFChanger.SetDOF(true, currentDOF);
                 isTriggered = true;
             }

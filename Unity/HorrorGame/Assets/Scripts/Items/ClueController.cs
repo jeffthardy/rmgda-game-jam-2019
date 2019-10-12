@@ -26,6 +26,7 @@ namespace TopZombies {
 
 
         private NightmareController nightmareController;
+        private float nightmareTriggerDelay = 0.0f;
         private PlaySeriesOfAudioClips playSeriesOfAudioClips;
 
         private FPSController fPSController;
@@ -53,8 +54,14 @@ namespace TopZombies {
             //if (spawnsEnemy)
             //    enemy.SetActive(false);
 
+            nightmareTriggerDelay = 0.0f;
+            for (int i = 0; i < audioClipsBeforeTrigger; i++)
+                nightmareTriggerDelay += playSeriesOfAudioClips.GetClipLength(i);
+            if(nightmareTriggerDelay != 0)
+                Debug.Log("Nightmare triggers with " + nightmareTriggerDelay + " s delay.");
+
             //Disable final scene trigger at startup
-            if(enablesClue)
+            if (enablesClue)
                 StartCoroutine(DisableNextClue());
 
 
@@ -100,7 +107,7 @@ namespace TopZombies {
                 if (scaleChange != 0)
                 {
                     //Debug.Log("Scaling due to input " + scaleChange);
-                    targetSize = targetSize + scaleChange * zoomStepSize;
+                    targetSize = targetSize + scaleChange * Time.deltaTime;
                     // Dont allow zoom to get too out of hand and go negative or massive
                     if (targetSize < minTargetSize)
                         targetSize = minTargetSize;
@@ -161,10 +168,7 @@ namespace TopZombies {
 
                 if (triggersNightmareMode)
                 {
-                    var triggerDelay = 0.0f;
-                    for(int i=0;i< audioClipsBeforeTrigger;i++)
-                        triggerDelay += playSeriesOfAudioClips.GetClipLength(i);
-                    StartCoroutine(TriggerNightmareWithDelay(triggerDelay));
+                    StartCoroutine(TriggerNightmareWithDelay(nightmareTriggerDelay));
                 }
 
                 if (triggersDreamMode)
@@ -173,9 +177,12 @@ namespace TopZombies {
                     blockage.SetActive(false);
                     if (spawnsEnemy)
                         enemy.SetActive(false);
-                    if (triggersNewSpawnPoint)
-                        fPSController.RecordNewSpawnPoint();
                 }
+
+                // Changing to respawn even at nightmare trigger, because last good location could be harder to get back to the new good location
+                // This could end up resulting in repeated deaths though... 
+                if (triggersNewSpawnPoint)
+                    fPSController.RecordNewSpawnPoint();
 
 
                 originalPosition = transform.position;
@@ -212,7 +219,9 @@ namespace TopZombies {
                 }
             }
         }
-        
+
+        Vector3 originalBounds;
+        float originalSize;
 
         void ViewClue()
         {
@@ -220,23 +229,25 @@ namespace TopZombies {
             // Disable player
             fPSController.InputControl(false);
             //disable scene time
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             isViewingClue = true;
-            Vector3 xyz = transform.GetComponentInChildren<MeshFilter>().mesh.bounds.size;
-            float size = Mathf.Max(xyz.x, xyz.y, xyz.z);
-            
+            originalBounds = transform.GetComponentInChildren<Renderer>().bounds.size;
+            originalSize = Mathf.Max(originalBounds.x, originalBounds.y, originalBounds.z);
+            Debug.Log("Object size is " + originalSize);
             transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1;
-            float scaleFactor = targetSize / size;
+            float scaleFactor = targetSize / originalSize;
+            Debug.Log("scaleFactor is " + scaleFactor);
             Vector3 newScale = new Vector3(originalScale.x * scaleFactor, originalScale.y * scaleFactor, originalScale.z * scaleFactor);
             transform.localScale = newScale;
+            Debug.Log("newScale is " + newScale);
             releaseTime = Time.realtimeSinceStartup + minTimeToHoldItem;
         }
 
         void RescaleClue()
         {
-            Vector3 xyz = transform.GetComponentInChildren<MeshFilter>().mesh.bounds.size;
-            float size = Mathf.Max(xyz.x, xyz.y, xyz.z);
-            float scaleFactor = targetSize / size;
+            //Vector3 xyz = transform.GetComponentInChildren<Renderer>().bounds.size;
+            //float size = Mathf.Max(originalBounds.x, xyz.y, xyz.z);
+            float scaleFactor = targetSize / originalSize;
             Vector3 newScale = new Vector3(originalScale.x * scaleFactor, originalScale.y * scaleFactor, originalScale.z * scaleFactor);
             transform.localScale = newScale;
         }
