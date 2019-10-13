@@ -15,11 +15,15 @@ namespace TopZombies
 
 
         private AudioSource dadGoodbyeAudioSource;
+        public bool triggersNewSpawnPoint = true;
+        private FPSController fPSController;
+
 
         // Start is called before the first frame update
         void Start()
         {
             dadGoodbyeAudioSource = GetComponent<AudioSource>();
+            fPSController = GameObject.Find("Player").GetComponent<FPSController>();
 
             exitDoor1.GetComponent<DoorController>().DisableDoor();
             exitDoor2.GetComponent<DoorController>().DisableDoor();
@@ -40,6 +44,8 @@ namespace TopZombies
                 {
                     //Debug.Log("Final Goodbyes");
                     StartCoroutine(PlayFinalDadWords());
+                    if (triggersNewSpawnPoint)
+                        fPSController.RecordNewSpawnPoint();
                 }
             }
         }

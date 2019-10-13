@@ -22,15 +22,16 @@ namespace TopZombies
 
         private AudioSource finalFightAudioSource;
         private bool fightHasHappened = false;
-        
 
-
+        public bool triggersNewSpawnPoint = true;
+        private FPSController fPSController;
 
 
         // Start is called before the first frame update
         void Start()
         {
             finalFightAudioSource = finalFightAudio.GetComponent<AudioSource>();
+            fPSController = GameObject.Find("Player").GetComponent<FPSController>();
 
             entranceDoor1.GetComponent<DoorController>().EnableDoor();
             if (!entranceDoor1.GetComponent<DoorController>().isOpen)
@@ -59,6 +60,11 @@ namespace TopZombies
                     enemy.SetActive(true);
                     dad.SetActive(false);
                     StartCoroutine(PlayFinalFight());
+
+
+                    if (triggersNewSpawnPoint)
+                        fPSController.RecordNewSpawnPoint();
+
 
                 }
             }
