@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e805eb991ae9105479a6f1fe128c87af
+guid: dc9a33d89ed2b7d47aff1470f0f8f7e8
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: BoogieSpectre2
-    second: {fileID: 2100000, guid: 07e453a237effc24998b5d44b13c5863, type: 2}
+      name: Girl6Mat
+    second: {fileID: 2100000, guid: 3c9abb5f7ab6f194f89b17049f7886fa, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -41,7 +41,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
