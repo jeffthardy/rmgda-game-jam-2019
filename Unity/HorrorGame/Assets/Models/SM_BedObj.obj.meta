@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: fc77dcc605a164d488b7742e23374409
+guid: e64d5785231da3c4db9cdaad59bfbf2f
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SM_bedMat
+    second: {fileID: 2100000, guid: bb8f681d91536d9408fa85e151900b57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: initialShadingGroup_SM_bedMat
+    second: {fileID: 2100000, guid: bb8f681d91536d9408fa85e151900b57, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
