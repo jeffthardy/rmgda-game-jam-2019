@@ -45,6 +45,8 @@ namespace TopZombies {
         private SpectreVisionController spectreVisionController;
         private BackgroundMusicController backgroundMusicController;
 
+        private CameraTracker clueCameraTracker;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -53,6 +55,7 @@ namespace TopZombies {
             flashlight = GameObject.Find("Player/MainCamera/Flashlight").GetComponent<FlashlightController>();
             spectreVisionController = GameObject.Find("Player/SpectrePopup").GetComponent<SpectreVisionController>();
             backgroundMusicController = GameObject.Find("Player/BGMusic").GetComponent<BackgroundMusicController>();
+            clueCameraTracker = GameObject.Find("Player/ClueCamera").GetComponent<CameraTracker>();
             audioSource = GetComponent<AudioSource>();
             playSeriesOfAudioClips = GetComponent<PlaySeriesOfAudioClips>();
             //if (spawnsEnemy)
@@ -248,6 +251,7 @@ namespace TopZombies {
             transform.localScale = newScale;
             Debug.Log("newScale is " + newScale);
             releaseTime = Time.realtimeSinceStartup + minTimeToHoldItem;
+            clueCameraTracker.EnableCamera(true);
         }
 
         void RescaleClue()
@@ -273,6 +277,8 @@ namespace TopZombies {
 
             if (causesSpectreVision)
                 spectreVisionController.DisplaySpectreForTime(0.5f);
+
+            clueCameraTracker.EnableCamera(false);
         }
 
         public void enableClue()
