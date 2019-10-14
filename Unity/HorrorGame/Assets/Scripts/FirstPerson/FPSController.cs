@@ -66,6 +66,7 @@ namespace TopZombies
         private GameObject cameraControlTarget ;
 
 
+
         private ShakeObjectOnTrigger shakeObjectOnTrigger;
 
         // Start is called before the first frame update
@@ -93,6 +94,7 @@ namespace TopZombies
             Cursor.lockState = cursorLockedMode;
             // Hide cursor when locking
             Cursor.visible = (CursorLockMode.Locked != cursorLockedMode);
+
         }
 
         // Update is called once per frame
