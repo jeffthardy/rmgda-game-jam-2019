@@ -16,6 +16,7 @@ namespace TopZombies
         private Color initialColorOff;
 
         private FPSController fPSController;
+        public Slider mouseSlider;
 
         bool isPaused = false;
 
@@ -28,6 +29,9 @@ namespace TopZombies
 
             if (quitButton)
                 quitButton.onClick.AddListener(QuitButtonOnClick);
+
+            if (mouseSlider)
+                mouseSlider.onValueChanged.AddListener(delegate { UpdateMouseSensitivity(); });
 
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
             //initialColor = GetComponent<Image>().color;
@@ -54,6 +58,15 @@ namespace TopZombies
         bool pauseCursorVisible;
         bool pauseFPSInputEnabled;
         float pauseTimeScale;
+
+        void UpdateMouseSensitivity()
+        {
+            float mouseSense = mouseSlider.value;
+            if (fPSController.mouseSensitivityX != mouseSense)
+                fPSController.mouseSensitivityX = mouseSense;
+            if (fPSController.mouseSensitivityY != mouseSense)
+                fPSController.mouseSensitivityY = mouseSense;
+        }
 
         public void PauseGame()
         {
