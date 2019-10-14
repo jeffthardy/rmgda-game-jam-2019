@@ -1659,6 +1659,7 @@ MonoBehaviour:
   exitDoor2: {fileID: 103196021}
   dadGoodbyeClip: {fileID: 8300000, guid: 4dbb650b26a91584f9516a33bc849560, type: 3}
   postAudioDoorDelay: 1
+  triggersNewSpawnPoint: 1
 --- !u!82 &261251730
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2048,8 +2049,8 @@ MonoBehaviour:
   cursorLockedMode: 1
   pauseMenu: {fileID: 1403225928}
   flashlight: {fileID: 426616771}
-  mouseSensitivityX: 8
-  mouseSensitivityY: 8
+  mouseSensitivityX: 4
+  mouseSensitivityY: 4
   horizontalMoveRate: 1000
   forwardMoveRate: 1000
   duckSpeed: 2
@@ -2078,6 +2079,7 @@ Transform:
   - {fileID: 1247442824}
   - {fileID: 405262337}
   - {fileID: 1321434827}
+  - {fileID: 1160036215}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3233,6 +3235,7 @@ MonoBehaviour:
   triggersNewSpawnPoint: 1
   spawnsEnemy: 0
   enemy: {fileID: 0}
+  causesSpectreVision: 0
 --- !u!114 &479939937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3639,6 +3642,7 @@ MonoBehaviour:
   triggersNewSpawnPoint: 1
   spawnsEnemy: 0
   enemy: {fileID: 0}
+  causesSpectreVision: 0
 --- !u!4 &530252886
 Transform:
   m_ObjectHideFlags: 0
@@ -4844,6 +4848,7 @@ MonoBehaviour:
   triggersNewSpawnPoint: 1
   spawnsEnemy: 1
   enemy: {fileID: 1573978762}
+  causesSpectreVision: 0
 --- !u!1 &713687205
 GameObject:
   m_ObjectHideFlags: 0
@@ -5426,6 +5431,7 @@ MonoBehaviour:
   triggersNewSpawnPoint: 1
   spawnsEnemy: 0
   enemy: {fileID: 0}
+  causesSpectreVision: 0
 --- !u!4 &860269614
 Transform:
   m_ObjectHideFlags: 0
@@ -6892,6 +6898,7 @@ MonoBehaviour:
   triggersNewSpawnPoint: 1
   spawnsEnemy: 1
   enemy: {fileID: 850200033}
+  causesSpectreVision: 0
 --- !u!114 &1041866688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7253,6 +7260,50 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 10
   m_ShadowAngle: 0
+--- !u!1 &1160036214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1160036215}
+  - component: {fileID: 1160036216}
+  m_Layer: 0
+  m_Name: SpectrePopup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1160036215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160036214}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2101382203}
+  m_Father: {fileID: 341797045}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1160036216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160036214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db95654a6aef75b4a8d7f3ed1b8081bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1170406960
 GameObject:
   m_ObjectHideFlags: 0
@@ -7520,6 +7571,7 @@ MonoBehaviour:
   triggersNewSpawnPoint: 1
   spawnsEnemy: 1
   enemy: {fileID: 850200033}
+  causesSpectreVision: 0
 --- !u!114 &1174824569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8253,6 +8305,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door_FrontLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505694066796156288, guid: b2d7b4e69eebf9f4588bc4edffa6f01f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7505694066796156293, guid: b2d7b4e69eebf9f4588bc4edffa6f01f,
         type: 3}
@@ -10299,6 +10356,7 @@ MonoBehaviour:
   triggersNewSpawnPoint: 1
   spawnsEnemy: 1
   enemy: {fileID: 1366181438}
+  causesSpectreVision: 0
 --- !u!114 &1680241757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10772,6 +10830,7 @@ MonoBehaviour:
   triggersNewSpawnPoint: 1
   spawnsEnemy: 0
   enemy: {fileID: 0}
+  causesSpectreVision: 0
 --- !u!4 &1716960309
 Transform:
   m_ObjectHideFlags: 0
@@ -11167,6 +11226,7 @@ MonoBehaviour:
   triggersNewSpawnPoint: 1
   spawnsEnemy: 1
   enemy: {fileID: 1573978762}
+  causesSpectreVision: 1
 --- !u!114 &1764981165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11436,6 +11496,7 @@ MonoBehaviour:
   triggersNewSpawnPoint: 1
   spawnsEnemy: 1
   enemy: {fileID: 1366181438}
+  causesSpectreVision: 0
 --- !u!1 &1820863225
 GameObject:
   m_ObjectHideFlags: 0
@@ -11841,6 +11902,7 @@ MonoBehaviour:
   triggersNewSpawnPoint: 1
   spawnsEnemy: 0
   enemy: {fileID: 0}
+  causesSpectreVision: 0
 --- !u!1 &1863566118
 GameObject:
   m_ObjectHideFlags: 0
@@ -13592,6 +13654,86 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &2101382202
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1160036215}
+    m_Modifications:
+    - target: {fileID: -927199367670048503, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_Name
+      value: SM_SpectreMonster
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.86
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.44
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e805eb991ae9105479a6f1fe128c87af, type: 3}
+--- !u!4 &2101382203 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: e805eb991ae9105479a6f1fe128c87af,
+    type: 3}
+  m_PrefabInstance: {fileID: 2101382202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2125954006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13921,6 +14063,7 @@ MonoBehaviour:
   triggersNewSpawnPoint: 1
   spawnsEnemy: 0
   enemy: {fileID: 0}
+  causesSpectreVision: 0
 --- !u!114 &2144467462
 MonoBehaviour:
   m_ObjectHideFlags: 0

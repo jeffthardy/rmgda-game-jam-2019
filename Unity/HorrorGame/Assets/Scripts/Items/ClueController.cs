@@ -43,12 +43,16 @@ namespace TopZombies {
 
         private float zoomStepSize = 0.05f;
 
+        public bool causesSpectreVision = false;
+        private SpectreVisionController spectreVisionController;
+
         // Start is called before the first frame update
         void Start()
         {
             nightmareController = GameObject.Find("NightmareController").GetComponent<NightmareController>();
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
             flashlight = GameObject.Find("Player/MainCamera/Flashlight").GetComponent<FlashlightController>();
+            spectreVisionController = GameObject.Find("Player/SpectrePopup").GetComponent<SpectreVisionController>();
             audioSource = GetComponent<AudioSource>();
             playSeriesOfAudioClips = GetComponent<PlaySeriesOfAudioClips>();
             //if (spawnsEnemy)
@@ -179,6 +183,7 @@ namespace TopZombies {
                         enemy.SetActive(false);
                 }
 
+
                 // Changing to respawn even at nightmare trigger, because last good location could be harder to get back to the new good location
                 // This could end up resulting in repeated deaths though... 
                 if (triggersNewSpawnPoint)
@@ -263,6 +268,9 @@ namespace TopZombies {
             //enable scene time
             Time.timeScale = 1;
             isViewingClue = false;
+
+            if (causesSpectreVision)
+                spectreVisionController.DisplaySpectreForTime(0.5f);
         }
 
         public void enableClue()
