@@ -226,10 +226,10 @@ namespace TopZombies
                 horizontalInput = Input.GetAxis("Horizontal");
                 verticalInput = Input.GetAxis("Vertical");
 
-                if (Input.GetButtonDown("Jump"))
-                {
-                    pendingJumps++;
-                }
+                //if (Input.GetButtonDown("Jump"))
+                //{
+                //    pendingJumps++;
+                //}
             }
             else
             {
@@ -252,12 +252,12 @@ namespace TopZombies
             float moveForward = verticalInput * forwardMoveRate;
             rb.AddForce(transform.forward * moveForward);
 
-            if (pendingJumps > 0 && isGrounded)
-            {
-                handleJump();
-                pendingJumps = 0;
-                isGrounded = false;
-            }
+            //if (pendingJumps > 0 && isGrounded)
+            //{
+            //    handleJump();
+            //    pendingJumps = 0;
+            //    isGrounded = false;
+            //}
                                    
 
             // Clamp max speeds
