@@ -61,7 +61,12 @@ namespace TopZombies
         [HideInInspector]
         public bool isDucking = false;
         public bool isSprinting = false;
+        public bool isTired = false;
+        public float maxSprintTime = 10.0f;
+        public float sprintCoolTime = 3.0f;
+        private float nextSprintTime = 0.0f;
 
+        private float sprintTime = 0.0f;
         private bool cameraUnderControl = false;
         private GameObject cameraControlTarget ;
 
@@ -282,15 +287,35 @@ namespace TopZombies
         {
             if (Input.GetButton("Sprint") && !isDucking && enableInput)
             {
-                isSprinting = true;
+                if (Time.time > nextSprintTime)
+                {
+                    // Record when we start sprinting
+                    if (isSprinting == false)
+                        sprintTime = Time.time;
+
+                    if (Time.time - sprintTime > maxSprintTime)
+                    {
+                        isSprinting = false;
+                        nextSprintTime = Time.time + sprintCoolTime;
+                        StartCoroutine(SignalPlayerTired());
+                    } else
+                    {
+                        isSprinting = true;
+                    }
+                }
             }
             else
             {
                 isSprinting = false;
             }
-            //Debug.Log("sprinting " + isSprinting);
+        }
 
-
+        // Cool off time between sprints
+        IEnumerator SignalPlayerTired()
+        {
+            isTired = true;
+            yield return new WaitForSeconds(sprintCoolTime);
+            isTired = false;
         }
 
         void handleDuck()

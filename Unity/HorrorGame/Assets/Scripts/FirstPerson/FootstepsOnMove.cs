@@ -32,8 +32,8 @@ namespace TopZombies
         {
             rb = GetComponentInParent<Rigidbody>(); 
             audioSource = GetComponent<AudioSource>();
-            audioSource.clip = walkSounds[currentSound];
             currentSound = 0;
+            audioSource.clip = walkSounds[currentSound];
             soundMode = SoundMode.walking;
             isActive = true;
             readyTime = Time.time + playRate[currentSound];
