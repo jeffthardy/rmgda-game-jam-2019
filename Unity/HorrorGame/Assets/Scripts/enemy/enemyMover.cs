@@ -32,8 +32,11 @@ namespace TopZombies
             viewAnimator = transform.parent.GetComponentInChildren<Animator>();
             enemyAudioGenerator = transform.parent.GetComponentInChildren<EnemyAudioGenerator>();
             agent = transform.parent.GetComponent<NavMeshAgent>();
-            currentTarget = goals[0].transform.position;
-            Debug.Log("initial target  " + currentTarget + " from " + goals[0].transform.position);
+            if (goals[0] != null)
+            {
+                currentTarget = goals[0].transform.position;
+                Debug.Log("initial target  " + currentTarget + " from " + goals[0].transform.position);
+            }
             myLastPosition = transform.position;
             if(viewAnimator != null)
                 viewAnimator.SetTrigger("Walk");
@@ -47,7 +50,8 @@ namespace TopZombies
         {
             if (!isStatic)
             {
-                agent.destination = currentTarget;
+                if(agent.enabled)
+                    agent.destination = currentTarget;
                 //Debug.Log(agent.destination);
 
                 //Handle player tracking and resetting once reaching the last know player location

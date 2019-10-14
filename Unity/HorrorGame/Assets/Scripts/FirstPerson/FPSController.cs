@@ -54,8 +54,6 @@ namespace TopZombies
         private GameObject myCameraObject;
         private float horizontalInput;
         private float verticalInput;
-        private float pendingJumps = 0;
-        private bool jumpHeldDown;
         private Vector3 spawnPoint;
         private Quaternion spawnRotation;
         [HideInInspector]

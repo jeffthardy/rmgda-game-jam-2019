@@ -22,8 +22,6 @@ namespace TopZombies
         private Color initialAmbientLight;
 
 
-        // Set this to true and continuously toggle between modes
-        public bool debugToggler = false;
 
         private AudioSource audioSource;
         private List<Renderer> nightmareRenderers;
@@ -44,8 +42,6 @@ namespace TopZombies
 
 
             audioSource = GlobalAudioSourceGameObject.GetComponent<AudioSource>();
-            if (debugToggler)
-                StartCoroutine(ToggleNightmare());
             if(!nightmareMode)
                 nightmareLight.enabled = false;
         }
@@ -95,6 +91,8 @@ namespace TopZombies
         }
 
 
+        public float toggleRate = 0.3f;
+        public float toggleVariance = 0.2f;
         float toggleTime = 2.0f;
         IEnumerator ToggleLightsTo(bool finalSetting)
         {
@@ -110,7 +108,7 @@ namespace TopZombies
 
             while (Time.time < startTime + toggleTime)
             {
-                delay = Random.Range(0.1f, 0.3f);
+                delay = Random.Range(toggleRate - toggleVariance, toggleRate + toggleVariance);
                 yield return new WaitForSeconds(delay);
                 SetGlobalLightActive(lightSetting);
                 lightSetting = !lightSetting;
@@ -144,16 +142,6 @@ namespace TopZombies
 
 
 
-        public float toggleRate = 1.0f;
-        IEnumerator ToggleNightmare()
-        {
-            yield return new WaitForSeconds(toggleRate);
-            SwitchToNightmare();
-            yield return new WaitForSeconds(toggleRate);
-            SwitchToDream();
-            StartCoroutine(ToggleNightmare());
-
-        }
 
     }
 }
