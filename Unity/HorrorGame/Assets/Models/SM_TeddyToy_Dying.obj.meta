@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e64d5785231da3c4db9cdaad59bfbf2f
+guid: 51d44810ee73dcb49b6fe36440f76225
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -7,13 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: SM_bedMat
-    second: {fileID: 2100000, guid: bb8f681d91536d9408fa85e151900b57, type: 2}
+      name: SM_TeddyToy_Dying_teddyzsphere_unfold3d1Mat
+    second: {fileID: 2100000, guid: e1861f07708254e46b3618deb5188bf8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: initialShadingGroup_SM_bedMat
-    second: {fileID: 2100000, guid: bb8f681d91536d9408fa85e151900b57, type: 2}
+      name: teddyzsphere_unfold3d1Mat
+    second: {fileID: 2100000, guid: e1861f07708254e46b3618deb5188bf8, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -44,7 +44,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 2
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -91,7 +91,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 2
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
