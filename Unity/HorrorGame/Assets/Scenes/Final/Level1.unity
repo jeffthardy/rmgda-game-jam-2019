@@ -1953,7 +1953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &261251727
 Transform:
   m_ObjectHideFlags: 0
@@ -2537,7 +2537,7 @@ MonoBehaviour:
   viewAnimator: {fileID: 146058045}
   animatedTarget: {fileID: 1406158530}
   firstClue: {fileID: 1716960304}
-  skipIntro: 1
+  skipIntro: 0
 --- !u!114 &341797048
 MonoBehaviour:
   m_ObjectHideFlags: 0
