@@ -17,7 +17,8 @@ namespace TopZombies
 
 
         private FPSController fPSController;
-        
+        private BackgroundMusicController backgroundMusicController;
+
         private AudioSource audioSource;
         // Start is called before the first frame update
         void Start()
@@ -25,6 +26,7 @@ namespace TopZombies
             audioSource = GetComponent<AudioSource>();
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
             GameObject.Find("[UI]/Canvas/GameCredits").SetActive(false);
+            backgroundMusicController = GameObject.Find("Player/BGMusic").GetComponent<BackgroundMusicController>();
         }
 
         // Update is called once per frame
@@ -41,7 +43,7 @@ namespace TopZombies
                 {
                     hasWon = true;
 
-                    audioSource.PlayOneShot(winnersMusic, 0.5f);
+                    backgroundMusicController.PlayMusic(BackgroundMusicController.MusicTypes.win);
                     audioSource.PlayOneShot(winningNewsStory);
 
                     // Disable any existing enemies

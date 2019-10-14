@@ -14,7 +14,6 @@ namespace TopZombies
         public float dofMax = 5.0f;
         public bool isTriggered = false;
 
-        private int triggerCount = 0;
         private float timeToChange;
 
         private Vector3 initialPosition;
@@ -89,7 +88,6 @@ namespace TopZombies
 
         public void ResetDetector()
         {
-            triggerCount = 0;
             isTriggered = false;
         }
 
