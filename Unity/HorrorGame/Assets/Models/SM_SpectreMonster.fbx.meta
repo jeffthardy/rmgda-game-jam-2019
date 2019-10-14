@@ -20,7 +20,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftUpperLeg' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -28,7 +29,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -54,7 +55,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    skinWeightsMode: 0
+    skinWeightsMode: 1
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     meshOptimizationFlags: -1
@@ -78,7 +79,187 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: SM_SpectreMonster(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: SM_SpectreMonster
+      parentName: SM_SpectreMonster(Clone)
+      position: {x: -0, y: 0.060121763, z: 0.0023853458}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 237.83252, y: 237.83252, z: 237.83252}
+    - name: Hip
+      parentName: SM_SpectreMonster(Clone)
+      position: {x: 0.013541772, y: 1.2189407, z: -0.14993893}
+      rotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1.000001, y: 1.000001, z: 1}
+    - name: Spine1
+      parentName: Hip
+      position: {x: -0.20480959, y: -0.000022600805, z: 0.037292697}
+      rotation: {x: -0.0000000031327008, y: -1.5297761e-12, z: -0, w: 1}
+      scale: {x: 0.99322027, y: 0.99322027, z: 0.9932196}
+    - name: Spine2
+      parentName: Spine1
+      position: {x: -0.30131137, y: -0.000019083254, z: -0.026895303}
+      rotation: {x: 0.0000000031327008, y: -0.00000003759088, z: -1.1776577e-16, w: 1}
+      scale: {x: 0.99427533, y: 0.99427557, z: 0.99427533}
+    - name: Spine3
+      parentName: Spine2
+      position: {x: -0.39077327, y: 8.454865e-17, z: -0.06693702}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000005, y: 1.0000004, z: 1.0000001}
+    - name: Chest
+      parentName: Spine3
+      position: {x: -0.42696878, y: 0.000000027388284, z: 0.019625243}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1}
+    - name: Neck
+      parentName: Chest
+      position: {x: -0.41332477, y: -0.000000027388282, z: 0.0071495674}
+      rotation: {x: -0.000000044303082, y: 0.00000002658185, z: 0.7071068, w: 0.7071068}
+      scale: {x: 0.9999992, y: 0.99999994, z: 1.0000005}
+    - name: Head
+      parentName: Neck
+      position: {x: -0.00568701, y: 0.4960244, z: 0.17939122}
+      rotation: {x: -0, y: -0, z: 1.1776578e-15, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tongue1
+      parentName: Head
+      position: {x: 0.0025349504, y: -0.5522869, z: 0.45046064}
+      rotation: {x: -0.000000008860618, y: -0.00000006202431, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1.0000011, y: 1.0000007, z: 0.9999999}
+    - name: Tongue2
+      parentName: Tongue1
+      position: {x: -0.19900012, y: 0, z: 0}
+      rotation: {x: 0.000000050123216, y: -0.000000012530806, z: -3.1404207e-16, w: 1}
+      scale: {x: 1.0000007, y: 1.0000005, z: 1}
+    - name: Tongue3
+      parentName: Tongue2
+      position: {x: -0.18144128, y: 0, z: 0.04688218}
+      rotation: {x: -0.00000003544247, y: -0.000000035442472, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 0.9999998, z: 1.0000002}
+    - name: L_Controller_Chest
+      parentName: Chest
+      position: {x: 0.0036549368, y: -0.1841555, z: -0.112754464}
+      rotation: {x: 0.000000008860619, y: 0.000000008860619, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: L_Shoulder
+      parentName: L_Controller_Chest
+      position: {x: -0.2917846, y: -0.017698629, z: -0.25226584}
+      rotation: {x: 0.028468389, y: 0.045236923, z: 0.14714724, w: 0.98766947}
+      scale: {x: 0.9999997, y: 0.9999999, z: 1.0000001}
+    - name: L_Arm_RollJoint
+      parentName: L_Shoulder
+      position: {x: -0.35910067, y: -0.0000008539311, z: -0.043097906}
+      rotation: {x: 0.013071452, y: 0.0062733307, z: -0.10891169, w: 0.99394566}
+      scale: {x: 1, y: 1.0000001, z: 0.9999999}
+    - name: L_Elbow
+      parentName: L_Arm_RollJoint
+      position: {x: -0.48864254, y: 0.0000008539311, z: -0.058646366}
+      rotation: {x: 0.19050257, y: -0.32284582, z: -0.08186175, w: 0.9234598}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1}
+    - name: L_Forearm_RollJoint
+      parentName: L_Elbow
+      position: {x: -0.19320324, y: 0.0000016553123, z: 0.117146365}
+      rotation: {x: -0, y: -0, z: 3.1113225e-16, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1}
+    - name: L_Wrist
+      parentName: L_Forearm_RollJoint
+      position: {x: -0.5442528, y: -0.0000016553123, z: 0.32999295}
+      rotation: {x: 0.000000034788574, y: -0.000000010387649, z: 0.22810027, w: 0.97363764}
+      scale: {x: 0.9999996, y: 1.0000001, z: 1.0000004}
+    - name: L_FingerJoint1
+      parentName: L_Wrist
+      position: {x: -0.3564975, y: -0.12188229, z: 0.16371629}
+      rotation: {x: -0.105088666, y: 0.13910358, z: -0.06517053, w: 0.9825271}
+      scale: {x: 1.0000002, y: 0.9999995, z: 1}
+    - name: L_FingerJoint2
+      parentName: L_FingerJoint1
+      position: {x: -0.27625865, y: 0.015062289, z: 0.07983493}
+      rotation: {x: -0.04687345, y: 0.086043775, z: 0.032610655, w: 0.9946537}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000001}
+    - name: L_FingerJoint3
+      parentName: L_FingerJoint2
+      position: {x: -0.2516043, y: 0.011425889, z: 0.02440514}
+      rotation: {x: 0.000000010251699, y: 0.0000000112987255, z: -0.48970905, w: 0.8718859}
+      scale: {x: 1, y: 1.0000004, z: 1}
+    - name: L_Thumb_Joint1
+      parentName: L_Wrist
+      position: {x: 0.03070326, y: -0.1206048, z: 0.081416704}
+      rotation: {x: 0.4670242, y: 0.75430113, z: -0.27517202, w: 0.37040326}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000007}
+    - name: L_ThumbJoint_2
+      parentName: L_Thumb_Joint1
+      position: {x: -0.16457649, y: -2.9562964e-16, z: -0.22143303}
+      rotation: {x: 0.028073331, y: -0.19133681, z: 0.019326441, w: 0.9809326}
+      scale: {x: 1.0000017, y: 1.0000007, z: 1.0000014}
+    - name: L_Thumb_Joint3
+      parentName: L_ThumbJoint_2
+      position: {x: -0.20241335, y: -0.004612237, z: -0.106133975}
+      rotation: {x: -0.5857688, y: -0.8104782, z: 0.0000000066123222, w: 0.000000049949282}
+      scale: {x: 0.99999994, y: 0.9999998, z: 0.9999997}
+    - name: R_Controller_Chest
+      parentName: Chest
+      position: {x: 0.00365, y: 0.1841552, z: -0.112754196}
+      rotation: {x: 0.7071068, y: 0.7071068, z: -0.000000016613656, w: -0.00000001882881}
+      scale: {x: 1, y: 1.0000012, z: 1.0000014}
+    - name: R_Shoulder
+      parentName: R_Controller_Chest
+      position: {x: 0.29178497, y: 0.0177, z: 0.252266}
+      rotation: {x: 0.028468272, y: 0.04523681, z: 0.14714497, w: 0.9876697}
+      scale: {x: 1.0000011, y: 1.0000008, z: 1.0000015}
+    - name: R_Arm_RollJoint
+      parentName: R_Shoulder
+      position: {x: 0.35910404, y: 0.0000021300937, z: 0.043098}
+      rotation: {x: 0.013071224, y: 0.0062730415, z: -0.10891102, w: 0.9939458}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000006}
+    - name: R_Elbow
+      parentName: R_Arm_RollJoint
+      position: {x: 0.4886449, y: 0.00000040620392, z: 0.058646}
+      rotation: {x: 0.19050513, y: -0.3228462, z: -0.08185973, w: 0.92345935}
+      scale: {x: 0.9999997, y: 0.99999994, z: 1.0000006}
+    - name: R_Forearm_RollJoint
+      parentName: R_Elbow
+      position: {x: 0.19320095, y: -0.000005778057, z: -0.11714599}
+      rotation: {x: -1.7763564e-15, y: -1.7763564e-15, z: -4.0486293e-18, w: 1}
+      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000008}
+    - name: R_Wrist
+      parentName: R_Forearm_RollJoint
+      position: {x: 0.5442532, y: 0.0000034167224, z: -0.32999298}
+      rotation: {x: -0.000000012200463, y: -0.000000027259203, z: 0.2281003, w: 0.9736377}
+      scale: {x: 1.0000002, y: 1.0000011, z: 1.0000005}
+    - name: R_FingerJoint1
+      parentName: R_Wrist
+      position: {x: 0.3565, y: 0.121879995, z: -0.16371629}
+      rotation: {x: -0.105091155, y: 0.13910407, z: -0.06517323, w: 0.98252654}
+      scale: {x: 0.9999994, y: 1.0000011, z: 1.0000011}
+    - name: R_FingerJoint2
+      parentName: R_FingerJoint1
+      position: {x: 0.27625552, y: -0.015061029, z: -0.0798349}
+      rotation: {x: -0.04687097, y: 0.086045444, z: 0.03262144, w: 0.9946533}
+      scale: {x: 1, y: 1.0000023, z: 1.0000015}
+    - name: R_FingerJoint3
+      parentName: R_FingerJoint2
+      position: {x: 0.25160763, y: -0.011430398, z: -0.0244051}
+      rotation: {x: 0.000000049838174, y: -0.00000001092543, z: -0.48970908, w: 0.87188596}
+      scale: {x: 1.0000013, y: 0.99999857, z: 0.9999994}
+    - name: R_Thumb_Joint1
+      parentName: R_Wrist
+      position: {x: -0.030699998, y: 0.1206, z: -0.081416994}
+      rotation: {x: -0.46702248, y: -0.75429624, z: 0.27518424, w: -0.3704062}
+      scale: {x: 1.0000012, y: 1, z: 1.0000005}
+    - name: R_ThumbJoint_2
+      parentName: R_Thumb_Joint1
+      position: {x: 0.16458245, y: 0.0000041366843, z: 0.2214327}
+      rotation: {x: 0.02806611, y: -0.19132604, z: 0.019334463, w: 0.9809347}
+      scale: {x: 1.0000004, y: 1.000001, z: 1}
+    - name: R_Thumb_Joint3
+      parentName: R_ThumbJoint_2
+      position: {x: 0.2024143, y: 0.00461022, z: 0.106134295}
+      rotation: {x: 0.5857689, y: 0.8104782, z: 0.000000002815778, w: -0.000000037807997}
+      scale: {x: 1.0000007, y: 0.9999998, z: 1.000001}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -89,7 +270,7 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
