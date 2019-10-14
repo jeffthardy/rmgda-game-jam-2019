@@ -78,10 +78,10 @@ namespace TopZombies
         private void MoveTransformOffset()
         {
             float xChange = Random.Range(-xOffsetMax, xOffsetMax);
-            float yChange = Random.Range(-yOffsetMax, yOffsetMax);
-            float zChange = Random.Range(-zOffsetMax, zOffsetMax);
+            //float yChange = Random.Range(-yOffsetMax, yOffsetMax);
+            //float zChange = Random.Range(-zOffsetMax, zOffsetMax);
                         
-            currentPosition = new Vector3(initialPosition.x + xChange, initialPosition.y + yChange, initialPosition.z + zChange);
+            currentPosition = new Vector3(initialPosition.x + xChange, Camera.main.transform.localPosition.y, Camera.main.transform.localPosition.z);
             //Debug.Log("Setting new offset " + currentPosition);
             Camera.main.transform.localPosition = currentPosition;
         }
