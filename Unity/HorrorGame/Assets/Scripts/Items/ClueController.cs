@@ -41,10 +41,9 @@ namespace TopZombies {
         private float minTargetSize = 0.1f;
         private float maxTargetSize = 2.0f;
 
-        private float zoomStepSize = 0.05f;
-
         public bool causesSpectreVision = false;
         private SpectreVisionController spectreVisionController;
+        private BackgroundMusicController backgroundMusicController;
 
         // Start is called before the first frame update
         void Start()
@@ -53,6 +52,7 @@ namespace TopZombies {
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
             flashlight = GameObject.Find("Player/MainCamera/Flashlight").GetComponent<FlashlightController>();
             spectreVisionController = GameObject.Find("Player/SpectrePopup").GetComponent<SpectreVisionController>();
+            backgroundMusicController = GameObject.Find("Player/BGMusic").GetComponent<BackgroundMusicController>();
             audioSource = GetComponent<AudioSource>();
             playSeriesOfAudioClips = GetComponent<PlaySeriesOfAudioClips>();
             //if (spawnsEnemy)
@@ -172,11 +172,13 @@ namespace TopZombies {
 
                 if (triggersNightmareMode)
                 {
+                    backgroundMusicController.PlayMusic(BackgroundMusicController.MusicTypes.nightmare);
                     StartCoroutine(TriggerNightmareWithDelay(nightmareTriggerDelay));
                 }
 
                 if (triggersDreamMode)
                 {
+                    backgroundMusicController.PlayMusic(BackgroundMusicController.MusicTypes.normal);
                     nightmareController.SwitchToDream();
                     blockage.SetActive(false);
                     if (spawnsEnemy)

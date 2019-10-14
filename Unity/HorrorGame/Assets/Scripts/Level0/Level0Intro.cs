@@ -13,6 +13,7 @@ namespace TopZombies
         // Start is called before the first frame update
         void Start()
         {
+            Time.timeScale = 1;
             playSeriesOfAudioClips = GetComponent<PlaySeriesOfAudioClips>();
             StartCoroutine(DoctorOfficeIntro());
         }
@@ -36,6 +37,8 @@ namespace TopZombies
             {
                 SceneManager.LoadScene(nextScene);
             }
+            //Debug.Log(Time.time + " , timescale " + Time.timeScale);
+
         }
     }
 }
