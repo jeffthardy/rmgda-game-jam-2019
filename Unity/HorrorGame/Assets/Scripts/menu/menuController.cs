@@ -18,6 +18,7 @@ namespace TopZombies
         // Start is called before the first frame update
         void Start()
         {
+            Time.timeScale = 1;
             if (startButton)
                 startButton.onClick.AddListener(StartButtonOnClick);
             if (creditsButton)
@@ -26,6 +27,27 @@ namespace TopZombies
                 quitButton.onClick.AddListener(QuitOnClick);
             if (optionsButton)
                 optionsButton.onClick.AddListener(OptionsOnClick);
+
+
+            string[] scenes = { "Level1_KatsBedroom",
+                                "Level1_House",
+                                "Level1_ExitArea",
+                                "Level1_Twin1Bedroom",
+                                "Level1_Twin2Bedroom",
+                                "Level1_ParentsBedroom",
+                                "Level1_ParentsBathroom",
+                                "Level1_LivingRoom",
+                                "Level1_GuestRoom",
+                                "Level1_Kitchen",
+                                "Level1_DiningRoom",
+            };
+
+            foreach (string scene in scenes)
+            {
+                Scene sceneToLoad = SceneManager.GetSceneByName(scene);
+                if (!sceneToLoad.isLoaded)
+                    SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+            }
 
         }
 
