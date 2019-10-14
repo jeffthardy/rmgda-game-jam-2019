@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e805eb991ae9105479a6f1fe128c87af
+guid: e64d5785231da3c4db9cdaad59bfbf2f
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: BoogieSpectre2
-    second: {fileID: 2100000, guid: 07e453a237effc24998b5d44b13c5863, type: 2}
+      name: SM_bedMat
+    second: {fileID: 2100000, guid: bb8f681d91536d9408fa85e151900b57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: initialShadingGroup_SM_bedMat
+    second: {fileID: 2100000, guid: bb8f681d91536d9408fa85e151900b57, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -41,7 +46,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
