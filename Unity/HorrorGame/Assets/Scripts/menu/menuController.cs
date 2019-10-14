@@ -15,9 +15,15 @@ namespace TopZombies
         public string startSceneName;
         public string creditsSceneName;
 
+
+        public GameObject buttonPanel;
+        public GameObject gameCreditsPanel;
+
         // Start is called before the first frame update
         void Start()
         {
+            buttonPanel =  GameObject.Find("[UI]/Canvas/ButtonPanel");
+            gameCreditsPanel = GameObject.Find("[UI]/Canvas/GameCreditsPanel");
             Time.timeScale = 1;
             if (startButton)
                 startButton.onClick.AddListener(StartButtonOnClick);
@@ -51,6 +57,16 @@ namespace TopZombies
 
         }
 
+        private void Update()
+        {
+
+            if (Input.GetButtonDown("Quit") || Input.GetButtonDown("Cancel"))
+            {
+                buttonPanel.SetActive(true);
+                gameCreditsPanel.SetActive(false);
+            }
+        }
+
         void StartButtonOnClick()
         {
             Debug.Log("You have clicked the start button!");
@@ -65,7 +81,10 @@ namespace TopZombies
         {
             Debug.Log("You have clicked the start button!");
             //SceneManager.LoadScene("About");
-            SceneManager.LoadScene(creditsSceneName);
+            //SceneManager.LoadScene(creditsSceneName);
+            buttonPanel.SetActive(false);
+            gameCreditsPanel.SetActive(true);
+
         }
 
         void OptionsOnClick()
