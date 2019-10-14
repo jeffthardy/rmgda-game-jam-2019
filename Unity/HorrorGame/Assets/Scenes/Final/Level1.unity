@@ -304,6 +304,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rudge_SM_PaperClues
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: db8112546151fa249819c88c2593b25d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -501,6 +506,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_TeddyToy
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 29759f47de79c694ea0bcb950b662dec,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653268373997516661, guid: 29759f47de79c694ea0bcb950b662dec,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 29759f47de79c694ea0bcb950b662dec,
         type: 3}
@@ -1001,7 +1016,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 341797045}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &142653609
 MonoBehaviour:
@@ -1360,6 +1375,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rudge_SM_GameCube
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8aeaedc99ff10b3479ae6396caf9837f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8aeaedc99ff10b3479ae6396caf9837f,
         type: 3}
@@ -2394,6 +2414,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963194228}
+  - {fileID: 1160450627}
   - {fileID: 1203625462}
   - {fileID: 1247442824}
   - {fileID: 405262337}
@@ -2516,7 +2537,7 @@ MonoBehaviour:
   viewAnimator: {fileID: 146058045}
   animatedTarget: {fileID: 1406158530}
   firstClue: {fileID: 1716960304}
-  skipIntro: 1
+  skipIntro: 0
 --- !u!114 &341797048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3127,7 +3148,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 341797045}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &414641845
 GameObject:
@@ -3502,6 +3523,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_SpectreMonster
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: e805eb991ae9105479a6f1fe128c87af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e805eb991ae9105479a6f1fe128c87af,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3580,7 +3606,7 @@ GameObject:
   - component: {fileID: 479939933}
   - component: {fileID: 479939937}
   - component: {fileID: 479939938}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BadClue3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4284,7 +4310,7 @@ GameObject:
   - component: {fileID: 530252883}
   - component: {fileID: 530252887}
   - component: {fileID: 530252888}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GoodClue1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4697,6 +4723,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_jewelery
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 1a57b443dabbaf346b35b5848c11ea8e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1a57b443dabbaf346b35b5848c11ea8e,
         type: 3}
@@ -5741,7 +5772,7 @@ GameObject:
   - component: {fileID: 710130125}
   - component: {fileID: 710130124}
   - component: {fileID: 710130123}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GoodClue5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6282,6 +6313,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Mom_Doll
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 2eb5e575cc25e2d40925c080185966e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6386695242542836729, guid: 2eb5e575cc25e2d40925c080185966e8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2eb5e575cc25e2d40925c080185966e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6602,7 +6643,7 @@ GameObject:
   - component: {fileID: 860269612}
   - component: {fileID: 860269611}
   - component: {fileID: 860269610}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GoodClue2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7582,6 +7623,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Blanket
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: fdda91cf295c67f4a8ef85d5c368cdf4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337744225829522273, guid: fdda91cf295c67f4a8ef85d5c368cdf4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: fdda91cf295c67f4a8ef85d5c368cdf4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8256,7 +8307,7 @@ GameObject:
   - component: {fileID: 1041866685}
   - component: {fileID: 1041866684}
   - component: {fileID: 1041866688}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BadClue6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8385,7 +8436,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 2, z: 3}
+  m_Size: {x: 5, y: 2, z: 3}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &1041866686
 MonoBehaviour:
@@ -8639,6 +8690,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rudge_SM_GrandmaLetter
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: bfe6e337e874eed40b3041d14af65b8e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bfe6e337e874eed40b3041d14af65b8e,
         type: 3}
@@ -8917,7 +8973,7 @@ Transform:
   m_Children:
   - {fileID: 2101382203}
   m_Father: {fileID: 341797045}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1160036216
 MonoBehaviour:
@@ -8929,6 +8985,102 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db95654a6aef75b4a8d7f3ed1b8081bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1160450626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1160450627}
+  - component: {fileID: 1160450629}
+  - component: {fileID: 1160450628}
+  - component: {fileID: 1160450630}
+  m_Layer: 0
+  m_Name: ClueCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1160450627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160450626}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 341797045}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &1160450628
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160450626}
+  m_Enabled: 1
+--- !u!20 &1160450629
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160450626}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.1
+  far clip plane: 2.5
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 8192
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!114 &1160450630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160450626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b83dc7d3ed48394d882137fcf78ed1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1169869358
@@ -9115,7 +9267,7 @@ GameObject:
   - component: {fileID: 1174824566}
   - component: {fileID: 1174824565}
   - component: {fileID: 1174824569}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GoodClue6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9453,7 +9605,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 341797045}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1203625463
 AudioSource:
@@ -10131,7 +10283,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 341797045}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1247442825
 MonoBehaviour:
@@ -10163,6 +10315,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rudge_SM_PaperClues
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: db8112546151fa249819c88c2593b25d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
@@ -10537,7 +10694,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 341797045}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1321434828
 Rigidbody:
@@ -12323,7 +12480,7 @@ GameObject:
   - component: {fileID: 1680241754}
   - component: {fileID: 1680241753}
   - component: {fileID: 1680241757}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BadClue4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12631,6 +12788,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rudge_SM_Bunnies
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7263d5388e5e63d4aa360379f9eca321,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: -5321263355935912417, guid: 7263d5388e5e63d4aa360379f9eca321,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495310568678418557, guid: 7263d5388e5e63d4aa360379f9eca321,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583715124549004403, guid: 7263d5388e5e63d4aa360379f9eca321,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 969569354418009344, guid: 7263d5388e5e63d4aa360379f9eca321,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7263d5388e5e63d4aa360379f9eca321,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12812,7 +12994,7 @@ GameObject:
   - component: {fileID: 1716960306}
   - component: {fileID: 1716960305}
   - component: {fileID: 1716960310}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BadClue1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13122,6 +13304,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_bathtub
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: fe5614797a4e9c444b4d1318a96f378d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: fe5614797a4e9c444b4d1318a96f378d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13199,7 +13386,7 @@ GameObject:
   - component: {fileID: 1764981162}
   - component: {fileID: 1764981161}
   - component: {fileID: 1764981165}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BadClue5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13469,7 +13656,7 @@ GameObject:
   - component: {fileID: 1797296301}
   - component: {fileID: 1797296300}
   - component: {fileID: 1797296299}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GoodClue4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13875,7 +14062,7 @@ GameObject:
   - component: {fileID: 1844468122}
   - component: {fileID: 1844468121}
   - component: {fileID: 1844468120}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GoodClue3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14539,6 +14726,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rudge_SM_Knife
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7aace0b5cc626ef42beb0e9f4acb24e2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7aace0b5cc626ef42beb0e9f4acb24e2,
         type: 3}
@@ -15653,6 +15845,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rudge_SM_BirthdayCake
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 1c216227e43503b4e91acbe02748c1f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: -1969360493302755733, guid: 1c216227e43503b4e91acbe02748c1f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: -9011853447714801979, guid: 1c216227e43503b4e91acbe02748c1f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: -7137730668778553816, guid: 1c216227e43503b4e91acbe02748c1f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1c216227e43503b4e91acbe02748c1f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16321,7 +16533,7 @@ GameObject:
   - component: {fileID: 2144467459}
   - component: {fileID: 2144467458}
   - component: {fileID: 2144467462}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BadClue2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
