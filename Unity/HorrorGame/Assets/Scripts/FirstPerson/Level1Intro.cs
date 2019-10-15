@@ -48,7 +48,7 @@ namespace TopZombies
             yield return new WaitForSeconds(0.1f);
 
             // Disable first clue
-            firstClue.SetActive(false);
+            //firstClue.SetActive(false);
 
             // Line 7-19
             playSeriesOfAudioClips.PlaySeries();
@@ -109,7 +109,7 @@ namespace TopZombies
             clipLength = playSeriesOfAudioClips.GetClipLength(10) + playSeriesOfAudioClips.GetClipLength(11) + playSeriesOfAudioClips.GetClipLength(12) + +playSeriesOfAudioClips.GetClipLength(13);
             yield return new WaitForSeconds(clipLength);
 
-            firstClue.SetActive(true);
+            firstClue.GetComponent<ClueController>().enableClue();
 
 
         }
