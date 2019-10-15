@@ -9,6 +9,7 @@ namespace TopZombies {
         float updateTime;
         public int materialIndex;
         public AudioClip whiteNoise;
+        public AudioClip newscast;
 
         public bool tvIsOn = true;
 
@@ -45,11 +46,11 @@ namespace TopZombies {
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.GetComponent<FPSController>() != null)
+            if (!tvIsOn && other.gameObject.GetComponent<FPSController>() != null)
             {
                 SetPower(true);
             }
-    }
+        }
 
         public void SetPower(bool on)
         {
@@ -65,6 +66,16 @@ namespace TopZombies {
             {
                 audioSource.Stop();
             }
+        }
+
+        public void PlayNewscast()
+        {
+            tvIsOn = true;
+            audioSource.Stop();
+            audioSource.loop = false;
+            audioSource.clip = newscast;
+            audioSource.volume = 0.5f;
+            audioSource.Play();
         }
     }
 }
