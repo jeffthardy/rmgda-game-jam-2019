@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e805eb991ae9105479a6f1fe128c87af
+guid: fd127bad77b25944ba265e60f0ff300b
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: BoogieSpectre2
-    second: {fileID: 2100000, guid: 07e453a237effc24998b5d44b13c5863, type: 2}
+      name: lambert1
+    second: {fileID: 2100000, guid: 507888991aa61084b8f862ba4a85d89e, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -41,7 +41,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
@@ -92,7 +92,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
