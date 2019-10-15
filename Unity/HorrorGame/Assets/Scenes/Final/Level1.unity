@@ -14868,7 +14868,7 @@ MonoBehaviour:
   nextClue: {fileID: 1764981159}
   minTimeToHoldItem: 1
   triggersNewSpawnPoint: 1
-  spawnsEnemy: 0
+  spawnsEnemy: 1
   enemy: {fileID: 1366181438}
   causesSpectreVision: 0
 --- !u!114 &1797296303
