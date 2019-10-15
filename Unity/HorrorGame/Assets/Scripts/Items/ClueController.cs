@@ -190,7 +190,7 @@ namespace TopZombies {
 
 
                 // Changing to respawn even at nightmare trigger, because last good location could be harder to get back to the new good location
-                // This could end up resulting in repeated deaths though... 
+                // This could end up resulting in repeated deaths though...
                 if (triggersNewSpawnPoint)
                     fPSController.RecordNewSpawnPoint();
 

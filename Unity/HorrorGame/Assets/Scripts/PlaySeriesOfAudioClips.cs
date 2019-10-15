@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 namespace TopZombies
@@ -10,6 +11,7 @@ namespace TopZombies
 
         public AudioClip[] clipSeries;
         public float[] seriesDelay;
+        public UnityEvent[] clipAction;
 
         private AudioSource audioSource;
 
@@ -66,6 +68,7 @@ namespace TopZombies
             for (int i = 0; i < clipSeries.Length; i++)
             {
                 Debug.Log(Time.time + " : playing clip " + i);
+
                 var remainingTime = clipSeries[i].length;
                 audioSource.PlayOneShot(clipSeries[i]);
                 while (remainingTime > 0)
@@ -80,6 +83,12 @@ namespace TopZombies
                     }
                     yield return null;
                 }
+
+                if (clipAction.Length > i && clipAction[i] != null)
+                {
+                    clipAction[i].Invoke();
+                }
+
                 yield return new WaitForSeconds(seriesDelay[i]);
             }
 

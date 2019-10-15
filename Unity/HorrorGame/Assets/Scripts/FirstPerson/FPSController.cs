@@ -42,9 +42,6 @@ namespace TopZombies
 
 
         // Internal variables
-        private float rotationX = 0;
-        private float rotationY = 0;
-        Quaternion originalRotation;
         Quaternion originalCameraRotation;
         private CapsuleCollider coll;
         private Rigidbody rb;
@@ -76,7 +73,6 @@ namespace TopZombies
         void Start()
         {
             // Remember where we started to apply changes and respawn
-            originalRotation = transform.localRotation;
             spawnPoint = transform.position;
             spawnRotation = transform.rotation;
 
@@ -188,15 +184,15 @@ namespace TopZombies
             if (enableInput)
             {
                 // Read the mouse input axis
-                rotationX += Input.GetAxis("Mouse X") * mouseSensitivityX;
-                rotationY += Input.GetAxis("Mouse Y") * mouseSensitivityY;
-                rotationX = ClampAngle(rotationX, minimumX, maximumX);
-                rotationY = ClampAngle(rotationY, minimumY, maximumY);
-                Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
-                Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, -Vector3.right);
+                var rotationX = transform.localEulerAngles;
+                rotationX.y += Input.GetAxis("Mouse X") * mouseSensitivityX;
+                rotationX.y = ClampAngle(rotationX.y, minimumX, maximumX);
+                transform.localEulerAngles = rotationX;
 
-                transform.localRotation = originalRotation * xQuaternion;
-                myCamera.transform.localRotation = originalCameraRotation * yQuaternion;
+                var rotationY = myCamera.transform.localEulerAngles;
+                rotationY.x -= Input.GetAxis("Mouse Y") * mouseSensitivityY;
+                rotationY.y = ClampAngle(rotationY.y, minimumY, maximumY);
+                myCamera.transform.localEulerAngles = rotationY;
             }
         }
 
@@ -208,6 +204,7 @@ namespace TopZombies
 
         public void CameraTarget(GameObject gameObject)
         {
+            originalCameraRotation = myCamera.transform.localRotation;
             cameraUnderControl = true;
             cameraControlTarget = gameObject;
         }
@@ -261,7 +258,7 @@ namespace TopZombies
             //    pendingJumps = 0;
             //    isGrounded = false;
             //}
-                                   
+
 
             // Clamp max speeds
             var maxSpeed = isDucking? duckSpeed: (isSprinting ? sprintSpeed : walkSpeed);
