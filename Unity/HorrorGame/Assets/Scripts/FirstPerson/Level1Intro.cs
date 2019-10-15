@@ -32,7 +32,12 @@ namespace TopZombies
             playSeriesOfAudioClips = GetComponent<PlaySeriesOfAudioClips>();
             nightmareController = GameObject.Find("NightmareController").GetComponent<NightmareController>();
             if (!skipIntro)
+            {
                 StartCoroutine(Level1IntroScript());
+            } else
+            {
+                firstClue.GetComponent<ClueController>().enableClue();
+            }
 
 
         }
