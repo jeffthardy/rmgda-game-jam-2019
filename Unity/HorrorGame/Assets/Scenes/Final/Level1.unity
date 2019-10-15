@@ -12501,6 +12501,7 @@ MonoBehaviour:
   enemy: {fileID: 1366181438}
   triggersNightmareMode: 0
   lookAtEnemy: 1
+  lookTime: 3
 --- !u!114 &1430087013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14857,7 +14858,7 @@ MonoBehaviour:
   nextClue: {fileID: 1764981159}
   minTimeToHoldItem: 1
   triggersNewSpawnPoint: 1
-  spawnsEnemy: 0
+  spawnsEnemy: 1
   enemy: {fileID: 1366181438}
   causesSpectreVision: 0
 --- !u!114 &1797296303
