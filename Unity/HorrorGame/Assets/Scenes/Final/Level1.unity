@@ -6073,6 +6073,7 @@ GameObject:
   - component: {fileID: 710130125}
   - component: {fileID: 710130124}
   - component: {fileID: 710130123}
+  - component: {fileID: 710130127}
   m_Layer: 13
   m_Name: GoodClue5
   m_TagString: Untagged
@@ -6250,6 +6251,22 @@ MonoBehaviour:
   spawnsEnemy: 1
   enemy: {fileID: 1573978762}
   causesSpectreVision: 0
+--- !u!114 &710130127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710130121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6239c8e72fee20b4eb7477524ac7805a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipSeries:
+  - {fileID: 8300000, guid: bc8f5a5c76f1c714e9aac0c191fea3b3, type: 3}
+  seriesDelay:
+  - 0
 --- !u!1 &713687205
 GameObject:
   m_ObjectHideFlags: 0
@@ -7288,6 +7305,7 @@ GameObject:
   - component: {fileID: 860269612}
   - component: {fileID: 860269611}
   - component: {fileID: 860269610}
+  - component: {fileID: 860269615}
   m_Layer: 13
   m_Name: GoodClue2
   m_TagString: Untagged
@@ -7465,6 +7483,22 @@ Transform:
   m_Father: {fileID: 975658321}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &860269615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860269609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6239c8e72fee20b4eb7477524ac7805a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipSeries:
+  - {fileID: 8300000, guid: 6fd13293cc5acec4780457e3639078c9, type: 3}
+  seriesDelay:
+  - 0
 --- !u!1 &868537084
 GameObject:
   m_ObjectHideFlags: 0
@@ -14339,6 +14373,7 @@ GameObject:
   - component: {fileID: 1797296301}
   - component: {fileID: 1797296300}
   - component: {fileID: 1797296299}
+  - component: {fileID: 1797296303}
   m_Layer: 13
   m_Name: GoodClue4
   m_TagString: Untagged
@@ -14516,6 +14551,22 @@ MonoBehaviour:
   spawnsEnemy: 1
   enemy: {fileID: 1366181438}
   causesSpectreVision: 0
+--- !u!114 &1797296303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797296297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6239c8e72fee20b4eb7477524ac7805a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipSeries:
+  - {fileID: 8300000, guid: fb31dc73039e53844b712621b799c36a, type: 3}
+  seriesDelay:
+  - 0
 --- !u!1 &1820863225
 GameObject:
   m_ObjectHideFlags: 0
@@ -14750,6 +14801,7 @@ GameObject:
   - component: {fileID: 1844468122}
   - component: {fileID: 1844468121}
   - component: {fileID: 1844468120}
+  - component: {fileID: 1844468124}
   m_Layer: 13
   m_Name: GoodClue3
   m_TagString: Untagged
@@ -14927,6 +14979,22 @@ MonoBehaviour:
   spawnsEnemy: 0
   enemy: {fileID: 0}
   causesSpectreVision: 0
+--- !u!114 &1844468124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844468118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6239c8e72fee20b4eb7477524ac7805a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipSeries:
+  - {fileID: 8300000, guid: 533d56b1bf8608c4f9a754fc6f65a4a5, type: 3}
+  seriesDelay:
+  - 0
 --- !u!1 &1863566118
 GameObject:
   m_ObjectHideFlags: 0

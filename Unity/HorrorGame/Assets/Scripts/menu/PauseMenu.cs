@@ -102,10 +102,12 @@ namespace TopZombies
                     if (child != null)
                         child.SetActive(true);
                 }
+
+                PlaySeriesOfAudioClips.PauseAll();
             }
-            
+
         }
-        
+
         void ResumeButtonOnClick()
         {
             // Disable this menu view and re-enable player
@@ -135,6 +137,7 @@ namespace TopZombies
             if (Time.timeScale == pauseTimeScale)
                 Time.timeScale = previousTimeScale;
 
+            PlaySeriesOfAudioClips.UnpauseAll();
             isPaused = false;
         }
 
