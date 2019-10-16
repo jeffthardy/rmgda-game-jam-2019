@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 namespace TopZombies {
     public class TVNoiseMaker : MonoBehaviour
     {
@@ -10,6 +12,7 @@ namespace TopZombies {
         public int materialIndex;
         public AudioClip whiteNoise;
         public AudioClip newscast;
+        public UnityEvent[] newscastActions;
 
         public bool tvIsOn = true;
 
@@ -70,12 +73,24 @@ namespace TopZombies {
 
         public void PlayNewscast()
         {
+            StartCoroutine(PlayNewscastRoutine());
+        }
+
+        IEnumerator PlayNewscastRoutine()
+        {
             tvIsOn = true;
             audioSource.Stop();
             audioSource.loop = false;
             audioSource.clip = newscast;
             audioSource.volume = 0.5f;
             audioSource.Play();
+
+            yield return new WaitForSeconds(audioSource.clip.length);
+
+            foreach (var action in newscastActions)
+            {
+                action.Invoke();
+            }
         }
     }
 }

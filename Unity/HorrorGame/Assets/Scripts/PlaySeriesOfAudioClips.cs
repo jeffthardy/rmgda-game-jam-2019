@@ -14,12 +14,14 @@ namespace TopZombies
         public UnityEvent[] clipAction;
 
         private AudioSource audioSource;
+        private float restartDelay;
 
         private enum State
         {
             Stopped,
             Playing,
             Paused,
+            Restarting,
         }
         private State state = State.Stopped;
 
@@ -61,9 +63,14 @@ namespace TopZombies
             return timeTotal;
         }
 
-        IEnumerator PlaySeriesWithDelays()
+        IEnumerator PlaySeriesWithDelays(float initialDelay = 0.0f)
         {
             state = State.Playing;
+
+            if (initialDelay > 0.0f)
+            {
+                yield return new WaitForSeconds(initialDelay);
+            }
 
             for (int i = 0; i < clipSeries.Length; i++)
             {
@@ -81,7 +88,21 @@ namespace TopZombies
                     {
                         remainingTime -= Time.deltaTime;
                     }
+                    if (state == State.Restarting)
+                    {
+                        break;
+                    }
                     yield return null;
+                }
+
+                //Restart at begining of current clip
+                if (state == State.Restarting)
+                {
+                    state = State.Playing;
+                    audioSource.Stop();
+                    yield return new WaitForSeconds(restartDelay);
+                    --i;
+                    continue;
                 }
 
                 if (clipAction.Length > i && clipAction[i] != null)
@@ -119,6 +140,15 @@ namespace TopZombies
             state = State.Stopped;
         }
 
+        private void Restart(float delay)
+        {
+            if (state == State.Playing)
+            {
+                restartDelay = delay;
+                state = State.Restarting;
+            }
+        }
+
         public static void PauseAll()
         {
             foreach (var series in FindObjectsOfType<PlaySeriesOfAudioClips>())
@@ -140,6 +170,14 @@ namespace TopZombies
             foreach (var series in FindObjectsOfType<PlaySeriesOfAudioClips>())
             {
                 series.Stop();
+            }
+        }
+
+        public static void RestartAll(float delay)
+        {
+            foreach (var series in FindObjectsOfType<PlaySeriesOfAudioClips>())
+            {
+                series.Restart(delay);
             }
         }
     }
