@@ -182,7 +182,6 @@ namespace TopZombies {
 
                 if (triggersNightmareMode)
                 {
-                    backgroundMusicController.PlayMusic(BackgroundMusicController.MusicTypes.nightmare);
                     StartCoroutine(TriggerNightmareWithDelay(nightmareTriggerDelay));
                 }
 
@@ -213,6 +212,7 @@ namespace TopZombies {
         IEnumerator TriggerNightmareWithDelay(float triggerDelay)
         {
             yield return new WaitForSeconds(triggerDelay);
+            backgroundMusicController.PlayMusic(BackgroundMusicController.MusicTypes.nightmare);
             nightmareController.SwitchToNightmare();
             if (spawnsEnemy)
                 enemy.SetActive(true);
@@ -284,7 +284,7 @@ namespace TopZombies {
             //enable scene time
             Time.timeScale = 1;
             isViewingClue = false;
-            
+
             clueCameraTracker.EnableCamera(false);
 
             if (causesSpectreVision)
