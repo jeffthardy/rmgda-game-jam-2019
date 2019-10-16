@@ -36,9 +36,9 @@ namespace TopZombies
 
         // These could be modified to have different range of turning, but these settings feel typical
         private float minimumX = -360;
-        private float minimumY = -90;
+        private float minimumY = -89.9f;
         private float maximumX = 360;
-        private float maximumY = 90;
+        private float maximumY = 89.9f;
 
 
         // Internal variables
@@ -128,6 +128,7 @@ namespace TopZombies
 
             if (cameraUnderControl)
             {
+                transform.LookAt(new Vector3(cameraControlTarget.transform.position.x, transform.position.y, cameraControlTarget.transform.position.z));
                 myCamera.transform.LookAt(cameraControlTarget.transform.position);
             }
 
@@ -191,7 +192,7 @@ namespace TopZombies
 
                 var rotationY = myCamera.transform.localEulerAngles;
                 rotationY.x -= Input.GetAxis("Mouse Y") * mouseSensitivityY;
-                rotationY.y = ClampAngle(rotationY.y, minimumY, maximumY);
+                rotationY.x = ClampAngle(rotationY.x, minimumY, maximumY);
                 myCamera.transform.localEulerAngles = rotationY;
             }
         }
@@ -199,7 +200,7 @@ namespace TopZombies
         public void ResetMouseView()
         {
             cameraUnderControl = false;
-            myCamera.transform.localRotation = originalCameraRotation;
+            // myCamera.transform.localRotation = originalCameraRotation;
         }
 
         public void CameraTarget(GameObject gameObject)
@@ -211,9 +212,9 @@ namespace TopZombies
 
         public static float ClampAngle(float angle, float min, float max)
         {
-            if (angle < -360F)
+            while (angle < -180F)
                 angle += 360F;
-            if (angle > 360F)
+            while (angle > 180F)
                 angle -= 360F;
             return Mathf.Clamp(angle, min, max);
         }
