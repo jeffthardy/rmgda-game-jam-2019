@@ -2780,7 +2780,7 @@ MonoBehaviour:
   viewAnimator: {fileID: 146058045}
   animatedTarget: {fileID: 1406158530}
   firstClue: {fileID: 1716960304}
-  skipIntro: 0
+  skipIntro: 1
 --- !u!114 &341797048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2808,7 +2808,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cf705a1d05c57444d887617ad2d430e7, type: 3}
   - {fileID: 8300000, guid: 6527dc73ba5db894b907549854657644, type: 3}
   innerAudioGap: 0.5
-  talkTimeBeforeSceenClear: 0.5
+  timeBeforeSceenBlack: 0.5
+  timeBeforeSceenClear: 0.5
 --- !u!114 &341797049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6947,7 +6948,7 @@ RectTransform:
   - {fileID: 411867685}
   - {fileID: 1087184244}
   m_Father: {fileID: 2011940083}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -8622,10 +8623,10 @@ BoxCollider:
   m_GameObject: {fileID: 976278326}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 4.2, y: 4, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.41}
 --- !u!114 &976278330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10267,7 +10268,7 @@ PrefabInstance:
     - target: {fileID: 6577483059326901637, guid: b858a87580e364144b666d6704cb88ec,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 6577483059326901637, guid: b858a87580e364144b666d6704cb88ec,
         type: 3}
@@ -11471,7 +11472,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298410799}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -12286,7 +12287,7 @@ RectTransform:
   - {fileID: 482875882}
   - {fileID: 502504590}
   m_Father: {fileID: 2011940083}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -16707,8 +16708,8 @@ RectTransform:
   m_Children:
   - {fileID: 1868746486}
   - {fileID: 1358751386}
-  - {fileID: 1403225929}
   - {fileID: 808551000}
+  - {fileID: 1403225929}
   m_Father: {fileID: 2027187651}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

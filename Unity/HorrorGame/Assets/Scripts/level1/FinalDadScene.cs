@@ -17,6 +17,7 @@ namespace TopZombies
         private AudioSource dadGoodbyeAudioSource;
         public bool triggersNewSpawnPoint = true;
         private FPSController fPSController;
+        private Level1ExitWinScreen level1ExitWinScreen;
 
 
         // Start is called before the first frame update
@@ -24,6 +25,7 @@ namespace TopZombies
         {
             dadGoodbyeAudioSource = GetComponent<AudioSource>();
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
+            level1ExitWinScreen = GameObject.Find("Level1Controllers/ExitWinScreen").GetComponent<Level1ExitWinScreen>();
 
             exitDoor1.GetComponent<DoorController>().DisableDoor();
             exitDoor2.GetComponent<DoorController>().DisableDoor();
@@ -66,6 +68,7 @@ namespace TopZombies
             exitDoor2.GetComponent<DoorController>().EnableDoor();
             exitDoor1.GetComponent<DoorController>().Use();
             exitDoor2.GetComponent<DoorController>().Use();
+            level1ExitWinScreen.EnableExit();
         }
     }
 }
