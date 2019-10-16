@@ -57,7 +57,7 @@ namespace TopZombies
 
             // Line 7-19
             playSeriesOfAudioClips.PlaySeries();
-            
+
             float clipLength = playSeriesOfAudioClips.GetClipLength(0);
 
             Debug.Log(Time.time + " waiting for " + clipLength * percentAudioBeforemovement);
@@ -76,77 +76,38 @@ namespace TopZombies
             clipLength = playSeriesOfAudioClips.GetClipLength(1);
             yield return new WaitForSeconds(clipLength);
 
-            // Re-enable display and control    
+            // Re-enable display and control
             fPSController.ResetMouseView();
             fPSController.InputControl(true);
 
             // Line 9
             clipLength = playSeriesOfAudioClips.GetClipLength(2);
             yield return new WaitForSeconds(clipLength);
-            
+
+            var flickerNightmareTimeOffset = 0.5f;
+
             // Line 10
-            clipLength = playSeriesOfAudioClips.GetClipLength(3);
+            clipLength = playSeriesOfAudioClips.GetClipLength(3) - flickerNightmareTimeOffset;
             yield return new WaitForSeconds(clipLength);
 
-
-
-            // Line 11-13
+            // Line 11-13 (time to flicker lights)
             clipLength = playSeriesOfAudioClips.GetClipLength(4) + playSeriesOfAudioClips.GetClipLength(5) + playSeriesOfAudioClips.GetClipLength(6);
 
-            //Flicker Lights and shake camera here
-            StartCoroutine(FlickerLightsForTime(clipLength));
-
-            yield return new WaitForSeconds(clipLength);
-
-
             //Full Nightmare here
-            nightmareController.SwitchToNightmare();
+            nightmareController.SwitchToNightmare(clipLength);
 
             // Line 14-16
-            clipLength = playSeriesOfAudioClips.GetClipLength(7) + playSeriesOfAudioClips.GetClipLength(8) + playSeriesOfAudioClips.GetClipLength(9);
+            clipLength += playSeriesOfAudioClips.GetClipLength(7) + playSeriesOfAudioClips.GetClipLength(8) + playSeriesOfAudioClips.GetClipLength(9);
             yield return new WaitForSeconds(clipLength);
-
 
             //Normal again here
             nightmareController.SwitchToDream();
 
             // Line 17-20
-            clipLength = playSeriesOfAudioClips.GetClipLength(10) + playSeriesOfAudioClips.GetClipLength(11) + playSeriesOfAudioClips.GetClipLength(12) + +playSeriesOfAudioClips.GetClipLength(13);
+            clipLength = playSeriesOfAudioClips.GetClipLength(10) + playSeriesOfAudioClips.GetClipLength(11) + playSeriesOfAudioClips.GetClipLength(12) + +playSeriesOfAudioClips.GetClipLength(13) + flickerNightmareTimeOffset;
             yield return new WaitForSeconds(clipLength);
 
             firstClue.GetComponent<ClueController>().enableClue();
-
-
-        }
-
-        
-        IEnumerator FlickerLightsForTime(float timeRequested)
-        {
-            float totaTimeSpent = 0;
-            bool lightsOn = true;
-
-            yield return new WaitForSeconds(0.1f);
-            Debug.Log(Time.time + " : Need to wait for " + timeRequested);
-
-            while (totaTimeSpent < timeRequested)
-            {
-                float randTime = Random.Range(0.0f, 1.0f);
-
-                if (!lightsOn)
-                {
-                    lightsOn = true;
-                    nightmareController.SetGlobalLightActive(true);
-                    Debug.Log(Time.time + " : Turning lights on");
-                }
-                else
-                {
-                    lightsOn = false;
-                    nightmareController.SetGlobalLightActive(false);
-                    Debug.Log(Time.time + " : Turning lights off");
-                }
-                yield return new WaitForSeconds(randTime);
-                totaTimeSpent += randTime;
-            }
         }
 
         IEnumerator SlowClearBlackout(float time)
