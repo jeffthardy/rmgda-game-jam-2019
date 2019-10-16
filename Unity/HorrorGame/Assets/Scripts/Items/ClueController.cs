@@ -21,6 +21,8 @@ namespace TopZombies {
         public bool triggersNewSpawnPoint = true;
         public bool spawnsEnemy=false;
         public GameObject enemy;
+        public bool allowRotation = true;
+        public bool allowScale = true;
 
         private FlashlightController flashlight;
 
@@ -107,30 +109,35 @@ namespace TopZombies {
                     }
                 }
 
-
-                var posScale = Input.GetKey(KeyCode.W) ? 1 : 0;
-                var negScale = Input.GetKey(KeyCode.S) ? 1 : 0;
-                var scaleChange = posScale - negScale;
-                if (scaleChange != 0)
+                if (allowScale)
                 {
-                    //Debug.Log("Scaling due to input " + scaleChange);
-                    targetSize = targetSize + scaleChange * Time.deltaTime;
-                    // Dont allow zoom to get too out of hand and go negative or massive
-                    if (targetSize < minTargetSize)
-                        targetSize = minTargetSize;
-                    if (targetSize > maxTargetSize)
-                        targetSize = maxTargetSize;
-                    //Debug.Log("New Size " + targetSize);
-                    RescaleClue();
+                    var posScale = Input.GetKey(KeyCode.W) ? 1 : 0;
+                    var negScale = Input.GetKey(KeyCode.S) ? 1 : 0;
+                    var scaleChange = posScale - negScale;
+                    if (scaleChange != 0)
+                    {
+                        //Debug.Log("Scaling due to input " + scaleChange);
+                        targetSize = targetSize + scaleChange * Time.deltaTime;
+                        // Dont allow zoom to get too out of hand and go negative or massive
+                        if (targetSize < minTargetSize)
+                            targetSize = minTargetSize;
+                        if (targetSize > maxTargetSize)
+                            targetSize = maxTargetSize;
+                        //Debug.Log("New Size " + targetSize);
+                        RescaleClue();
+                    }
                 }
 
-                // Read the mouse input axis
-                rotationX += Input.GetAxis("Mouse X") * fPSController.mouseSensitivityX;
-                rotationY += Input.GetAxis("Mouse Y") * fPSController.mouseSensitivityY;
-                Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
-                Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, -Vector3.right);
+                if (allowRotation)
+                {
+                    // Read the mouse input axis
+                    rotationX += Input.GetAxis("Mouse X") * fPSController.mouseSensitivityX;
+                    rotationY += Input.GetAxis("Mouse Y") * fPSController.mouseSensitivityY;
+                    Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
+                    Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, -Vector3.right);
 
-                transform.localRotation = originalRotation * xQuaternion * yQuaternion;
+                    transform.localRotation = originalRotation * xQuaternion * yQuaternion;
+                }
 
                 // This will reset position of clue to original orientation
                 if ((Input.GetButton("Use") && (Time.realtimeSinceStartup > releaseTime)))
@@ -243,13 +250,16 @@ namespace TopZombies {
             isViewingClue = true;
             originalBounds = transform.GetComponentInChildren<Renderer>().bounds.size;
             originalSize = Mathf.Max(originalBounds.x, originalBounds.y, originalBounds.z);
-            Debug.Log("Object size is " + originalSize);
-            transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1;
-            float scaleFactor = targetSize / originalSize;
-            Debug.Log("scaleFactor is " + scaleFactor);
-            Vector3 newScale = new Vector3(originalScale.x * scaleFactor, originalScale.y * scaleFactor, originalScale.z * scaleFactor);
-            transform.localScale = newScale;
-            Debug.Log("newScale is " + newScale);
+            if (allowRotation || allowScale)
+            {
+                Debug.Log("Object size is " + originalSize);
+                transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1;
+                float scaleFactor = targetSize / originalSize;
+                Debug.Log("scaleFactor is " + scaleFactor);
+                Vector3 newScale = new Vector3(originalScale.x * scaleFactor, originalScale.y * scaleFactor, originalScale.z * scaleFactor);
+                transform.localScale = newScale;
+                Debug.Log("newScale is " + newScale);
+            }
             releaseTime = Time.realtimeSinceStartup + minTimeToHoldItem;
             clueCameraTracker.EnableCamera(true);
         }
