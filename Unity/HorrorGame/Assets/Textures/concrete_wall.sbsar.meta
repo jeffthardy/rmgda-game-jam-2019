@@ -80,7 +80,7 @@ ScriptedImporter:
       - name: _GlossMapScale
         float: 1
       - name: _Glossiness
-        float: 0.473
+        float: 0.75
       - name: _GlossyReflections
         float: 1
       - name: _Metallic

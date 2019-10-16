@@ -3,7 +3,27 @@ guid: 7aace0b5cc626ef42beb0e9f4acb24e2
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_KnifeBlade
+    second: {fileID: 2100000, guid: d166df245ace518429706477634d1893, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_KnifeHandle
+    second: {fileID: 2100000, guid: 90ee32a12929bd54293b7bbe8c09ffc7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_KnifePins
+    second: {fileID: 2100000, guid: 792428e639d85b64aac067d607bfc357, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: ffe164d0f770a9d45978fb1957b78a5b, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

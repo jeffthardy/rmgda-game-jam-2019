@@ -3,7 +3,22 @@ guid: 1c216227e43503b4e91acbe02748c1f0
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Birthdaycake
+    second: {fileID: 2100000, guid: 56b0be79d70a64543a5021982a6ea582, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Candle
+    second: {fileID: 2100000, guid: e32c825793d7a3f4092092c7ec75990f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_CandleWick
+    second: {fileID: 2100000, guid: caf4774ed30e50d41a4a650606747318, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
