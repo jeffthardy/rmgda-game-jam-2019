@@ -1423,9 +1423,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalMusic: {fileID: 8300000, guid: 2d621268efcfc6f4db7fee1da4267fb4, type: 3}
-  nightmareMusic: {fileID: 8300000, guid: 2d621268efcfc6f4db7fee1da4267fb4, type: 3}
+  nightmareMusic: {fileID: 8300000, guid: 86d88bf2835b8db4587c788f251f883d, type: 3}
   winMusic: {fileID: 8300000, guid: 2d621268efcfc6f4db7fee1da4267fb4, type: 3}
-  menuMusic: {fileID: 0}
+  menuMusic: {fileID: 8300000, guid: 2d621268efcfc6f4db7fee1da4267fb4, type: 3}
   maxVolume: 0.15
   PlayOnStart: 0
   startType: 0
@@ -4870,9 +4870,9 @@ MonoBehaviour:
   GlobalLightParent: {fileID: 150068672}
   GlobalWorldParent: {fileID: 1021749233}
   GlobalAudioSourceGameObject: {fileID: 1247442822}
-  nightmareAudio: {fileID: 8300000, guid: e69a27bb78b543d498639754046a8c00, type: 3}
-  dreamAudio: {fileID: 8300000, guid: b027816361e5fe74fa8cedf6a5bba195, type: 3}
-  audioLevel: 0.3
+  nightmareAudio: {fileID: 8300000, guid: 6a55a2a1233fdf041883b98c663a9dd1, type: 3}
+  dreamAudio: {fileID: 8300000, guid: 0c071e17d72b66241b7fc35f22a4b389, type: 3}
+  audioLevel: 0.15
   nightmareBumpLevel: 5
   nightmareMode: 0
   switchAction:

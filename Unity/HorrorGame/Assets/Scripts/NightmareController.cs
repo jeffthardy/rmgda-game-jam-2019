@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 
 namespace TopZombies
@@ -21,7 +20,6 @@ namespace TopZombies
         public bool nightmareMode = false;
 
         private Color initialAmbientLight;
-        public UnityEvent[] switchAction;
 
 
 
@@ -54,22 +52,16 @@ namespace TopZombies
 
         }
 
-        public void SwitchToNightmare()
+        public void SwitchToNightmare(float flickerTime = 1.0f)
         {
-            audioSource.PlayOneShot(nightmareAudio, audioLevel);
+            // audioSource.PlayOneShot(nightmareAudio, audioLevel);
             nightmareMode = true;
             RenderSettings.ambientLight = new Color(0, 0, 0, 0);
 
             // Disable all the lights
-            StartCoroutine(ToggleLightsTo(false));
+            StartCoroutine(ToggleLightsTo(false, flickerTime, nightmareAudio));
             //SetGlobalLightActive(false);
             setGlobalWorldTextureActive(false);
-
-            for(int i=0;i< switchAction.Length;i++)
-                if (switchAction.Length > i && switchAction[i] != null)
-                {
-                    switchAction[i].Invoke();
-                }
         }
 
             public void SwitchToDream()
@@ -80,21 +72,16 @@ namespace TopZombies
             nightmareLight.enabled = false;
 
             // Enable all the lights
-            StartCoroutine(ToggleLightsTo(true));
+            StartCoroutine(ToggleLightsTo(true, 0.5f, null));
             //SetGlobalLightActive(true);
             setGlobalWorldTextureActive(true);
-
-            for (int i = 0; i < switchAction.Length; i++)
-                if (switchAction.Length > i && switchAction[i] != null)
-                {
-                    switchAction[i].Invoke();
-                }
         }
 
 
         // Assumes all lights are under an empty parent GlobalLightParent.
         public void SetGlobalLightActive(bool enabled)
         {
+            Debug.Log("SetGlobalLightActive " + enabled);
             for (int i = 0; i < GlobalLightParent.transform.childCount; i++)
             {
                 var child = GlobalLightParent.transform.GetChild(i).gameObject;
@@ -107,18 +94,11 @@ namespace TopZombies
 
         public float toggleRate = 0.3f;
         public float toggleVariance = 0.2f;
-        float toggleTime = 2.0f;
-        IEnumerator ToggleLightsTo(bool finalSetting)
+        IEnumerator ToggleLightsTo(bool finalSetting, float toggleTime, AudioClip audioClip)
         {
             var startTime = Time.time;
             var delay = 0.0f;
             bool lightSetting = finalSetting;
-
-            // Toggle lights while transitition audio is playing
-            if (finalSetting)
-                toggleTime = dreamAudio.length;
-            else
-                toggleTime = nightmareAudio.length;
 
             while (Time.time < startTime + toggleTime)
             {
@@ -135,6 +115,10 @@ namespace TopZombies
             if(finalSetting == false)
                 nightmareLight.enabled = true;
 
+            if (audioClip != null)
+            {
+                audioSource.PlayOneShot(audioClip, audioLevel);
+            }
         }
 
         private void setGlobalWorldTextureActive(bool enabled)
