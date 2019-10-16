@@ -85,9 +85,9 @@ namespace TopZombies
 
 
             // Go through all levels of alpha over set time
-            for (int i = 0; i < 256; i++)
+            for (int i = 0; i < 256; i+=4)
             {
-                yield return new WaitForSeconds(time / 256);
+                yield return new WaitForSeconds(time / 64);
 
                 Debug.Log(Time.time + " set alpha " + (i));
                 float alpha = (i) / 255.0f;
