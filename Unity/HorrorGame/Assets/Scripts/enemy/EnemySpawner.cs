@@ -35,9 +35,11 @@ namespace TopZombies
             if (lookAtEnemy)
             {
                 var fPSController = GameObject.Find("Player").GetComponent<FPSController>();
+                fPSController.InputControl(false);
                 fPSController.CameraTarget(enemy);
                 yield return new WaitForSeconds(lookTime);
                 fPSController.ResetMouseView();
+                fPSController.InputControl(true);
             }
 
             if (triggersNightmareMode)
