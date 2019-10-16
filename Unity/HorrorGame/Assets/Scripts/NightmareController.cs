@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 namespace TopZombies
@@ -20,6 +21,7 @@ namespace TopZombies
         public bool nightmareMode = false;
 
         private Color initialAmbientLight;
+        public UnityEvent[] switchAction;
 
 
 
@@ -62,6 +64,12 @@ namespace TopZombies
             StartCoroutine(ToggleLightsTo(false, flickerTime, nightmareAudio));
             //SetGlobalLightActive(false);
             setGlobalWorldTextureActive(false);
+
+            for(int i=0;i< switchAction.Length;i++)
+                if (switchAction.Length > i && switchAction[i] != null)
+                {
+                    switchAction[i].Invoke();
+                }
         }
 
             public void SwitchToDream()
@@ -75,6 +83,12 @@ namespace TopZombies
             StartCoroutine(ToggleLightsTo(true, 0.5f, null));
             //SetGlobalLightActive(true);
             setGlobalWorldTextureActive(true);
+
+            for (int i = 0; i < switchAction.Length; i++)
+                if (switchAction.Length > i && switchAction[i] != null)
+                {
+                    switchAction[i].Invoke();
+                }
         }
 
 
