@@ -9,7 +9,8 @@ namespace TopZombies
 
         public GameObject entranceDoor1;
 
-        public AudioClip finalFightSounds;
+        public AudioClip finalFightStruggle;
+        public AudioClip finalFightGasp;
         public AudioClip gottaFindDadClip;
         public GameObject finalFightAudio;
         public float postAudioDoorDelay = 1.0f;
@@ -22,6 +23,7 @@ namespace TopZombies
 
         private AudioSource finalFightAudioSource;
         private bool fightHasHappened = false;
+        private Light fightLight;
 
         public bool triggersNewSpawnPoint = true;
         private FPSController fPSController;
@@ -32,6 +34,7 @@ namespace TopZombies
         {
             finalFightAudioSource = finalFightAudio.GetComponent<AudioSource>();
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
+            fightLight = GetComponentInChildren<Light>();
 
             entranceDoor1.GetComponent<DoorController>().EnableDoor();
             if (!entranceDoor1.GetComponent<DoorController>().isOpen)
@@ -39,6 +42,7 @@ namespace TopZombies
 
             nextScene.SetActive(false);
             enemy.SetActive(false);
+            fightLight.enabled = false;
         }
 
         // Update is called once per frame
@@ -72,8 +76,11 @@ namespace TopZombies
         IEnumerator PlayFinalFight()
         {
             fightHasHappened = true;
-            finalFightAudioSource.PlayOneShot(finalFightSounds);
-            yield return new WaitForSeconds(finalFightSounds.length + postAudioDoorDelay);
+            StartCoroutine(FlashLights());
+            finalFightAudioSource.PlayOneShot(finalFightStruggle);
+            yield return new WaitForSeconds(finalFightStruggle.length);
+            finalFightAudioSource.PlayOneShot(finalFightGasp);
+            yield return new WaitForSeconds(finalFightGasp.length + postAudioDoorDelay);
 
             entranceDoor1.GetComponent<DoorController>().EnableDoor();
             entranceDoor1.GetComponent<DoorController>().Use();
@@ -82,7 +89,19 @@ namespace TopZombies
             previousScene.SetActive(false);
         }
 
-        
 
+        IEnumerator FlashLights()
+        {
+            var startTime = Time.time;
+            while(Time.time < startTime + finalFightStruggle.length)
+            {
+                var lightTime = Random.Range(0.1f, 0.2f);
+                fightLight.enabled = !fightLight.enabled;
+                yield return new WaitForSeconds(lightTime);
+            }
+
+            yield return new WaitForSeconds(finalFightGasp.length);
+            fightLight.enabled = false;
+        }
     }
 }
