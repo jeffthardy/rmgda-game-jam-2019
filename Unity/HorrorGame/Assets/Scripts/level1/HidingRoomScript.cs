@@ -99,6 +99,7 @@ namespace TopZombies
                 fightLight.enabled = !fightLight.enabled;
                 yield return new WaitForSeconds(lightTime);
             }
+            fightLight.enabled = true;
 
             yield return new WaitForSeconds(finalFightGasp.length);
             fightLight.enabled = false;
