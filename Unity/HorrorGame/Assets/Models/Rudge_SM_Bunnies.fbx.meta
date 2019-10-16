@@ -3,7 +3,32 @@ guid: 7263d5388e5e63d4aa360379f9eca321
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BunnyCloth
+    second: {fileID: 2100000, guid: 6effc198f0722254d92710a2eae36b08, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BunnyEyes
+    second: {fileID: 2100000, guid: 5c2e0f0b9366da745abd4c34faeed05c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BunnyHead
+    second: {fileID: 2100000, guid: 9718ee37909334e4792622013be276ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BunnyMouth
+    second: {fileID: 2100000, guid: c0beabbaa7ed93b4baf8fffd393a4511, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 0b92f5d3abf06104d9c7f76b72564e8c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -34,7 +59,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 4
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -81,7 +106,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.04
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
