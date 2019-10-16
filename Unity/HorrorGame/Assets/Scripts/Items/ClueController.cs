@@ -53,7 +53,7 @@ namespace TopZombies {
             nightmareController = GameObject.Find("NightmareController").GetComponent<NightmareController>();
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
             flashlight = GameObject.Find("Player/MainCamera/Flashlight").GetComponent<FlashlightController>();
-            spectreVisionController = GameObject.Find("Player/SpectrePopup").GetComponent<SpectreVisionController>();
+            spectreVisionController = GameObject.Find("Player/ClueCamera/SpectrePopup").GetComponent<SpectreVisionController>();
             backgroundMusicController = GameObject.Find("Player/BGMusic").GetComponent<BackgroundMusicController>();
             clueCameraTracker = GameObject.Find("Player/ClueCamera").GetComponent<CameraTracker>();
             audioSource = GetComponent<AudioSource>();
@@ -274,11 +274,11 @@ namespace TopZombies {
             //enable scene time
             Time.timeScale = 1;
             isViewingClue = false;
+            
+            clueCameraTracker.EnableCamera(false);
 
             if (causesSpectreVision)
-                spectreVisionController.DisplaySpectreForTime(0.5f);
-
-            clueCameraTracker.EnableCamera(false);
+                spectreVisionController.DisplaySpectreForTime(1.0f);
         }
 
         public void enableClue()
