@@ -42,8 +42,6 @@ namespace TopZombies
 
         public void Death()
         {
-            PlaySeriesOfAudioClips.StopAll();
-
             //Black screen
 
 
@@ -61,6 +59,19 @@ namespace TopZombies
             {
                 deathIndex = 0;
             }
+
+            // Play new spawn audio
+            if (spawnTalks.Length > 1)
+            {
+                int previousIndex = talkIndex;
+                while (talkIndex == previousIndex)
+                    talkIndex = Random.Range(0, spawnTalks.Length - 1);
+            } else
+            {
+                talkIndex = 0;
+            }
+
+            PlaySeriesOfAudioClips.RestartAll(deathScreams[deathIndex].length + timeBeforeSceenBlack * 2 + spawnTalks[talkIndex].length + 1.0f);
 
             StartCoroutine(DeathCleanup());
 
@@ -91,15 +102,6 @@ namespace TopZombies
             }
 
             // Play new spawn audio
-            if (spawnTalks.Length > 1)
-            {
-                int previousIndex = talkIndex;
-                while (talkIndex == previousIndex)
-                    talkIndex = Random.Range(0, spawnTalks.Length - 1);
-            } else
-            {
-                talkIndex = 0;
-            }
             audioSource.PlayOneShot(spawnTalks[talkIndex]);
             //Debug.Log(Time.time + "spawnaudio");
 
