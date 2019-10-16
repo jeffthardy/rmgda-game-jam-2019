@@ -11,7 +11,8 @@ namespace TopZombies
         public AudioClip[] deathScreams;
         public AudioClip[] spawnTalks;
         public float innerAudioGap = 0.5f;
-        public float talkTimeBeforeSceenClear = 0.5f;
+        public float timeBeforeSceenBlack = 1.0f;
+        public float timeBeforeSceenClear = 0.5f;
 
         private AudioSource audioSource;
         private FPSController fPSController;
@@ -44,7 +45,9 @@ namespace TopZombies
             PlaySeriesOfAudioClips.StopAll();
 
             //Black screen
-            GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
+
+
+            //GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
             GetComponent<FPSController>().InputControl(false);
 
             //Play new scream
@@ -58,22 +61,34 @@ namespace TopZombies
             {
                 deathIndex = 0;
             }
-            audioSource.PlayOneShot(deathScreams[deathIndex]);
-            startTime = Time.time;
 
             StartCoroutine(DeathCleanup());
 
-            //Clear screen and respawn
-            fPSController.Respawn();
-            //Debug.Log(Time.time + "Respawned");
 
         }
 
         IEnumerator DeathCleanup()
         {
+
+            audioSource.PlayOneShot(deathScreams[deathIndex]);
+            startTime = Time.time;
+
+            // Go through all levels of alpha over set time
+            for (int i = 0; i < 256; i+=4)
+            {
+                yield return new WaitForSeconds(timeBeforeSceenBlack / 64);
+
+                //Debug.Log(Time.time + " set alpha " + (i));
+                float alpha = i/255.0f ;
+                GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, alpha);
+            }
+
             //Debug.Log(Time.time + "yielding");
             //wait for audio
-            yield return new WaitForSeconds(deathScreams[deathIndex].length + innerAudioGap);
+            if (Time.time < startTime + deathScreams[deathIndex].length) {
+                var waitTime = deathScreams[deathIndex].length + startTime - Time.time;
+                yield return new WaitForSeconds(waitTime);
+            }
 
             // Play new spawn audio
             if (spawnTalks.Length > 1)
@@ -88,11 +103,25 @@ namespace TopZombies
             audioSource.PlayOneShot(spawnTalks[talkIndex]);
             //Debug.Log(Time.time + "spawnaudio");
 
-            yield return new WaitForSeconds(talkTimeBeforeSceenClear);
+            fPSController.Respawn();
+
+            yield return new WaitForSeconds(spawnTalks[talkIndex].length);
+
+
+            // Go through all levels of alpha over set time
+            for (int i = 255; i >0; i-=4)
+            {
+                yield return new WaitForSeconds(timeBeforeSceenClear / 64);
+
+                //Debug.Log(Time.time + " set alpha " + (i));
+                float alpha = (i) / 255.0f;
+                GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, alpha);
+            }
+
 
             //Clear screen
             GetComponent<FPSController>().InputControl(true);
-            GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 0); ;
+            //GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 0); ;
             //Debug.Log(Time.time + "screen cleared");
 
         }

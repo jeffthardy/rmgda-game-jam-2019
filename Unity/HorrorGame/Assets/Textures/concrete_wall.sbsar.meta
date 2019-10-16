@@ -17,11 +17,11 @@ ScriptedImporter:
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://concrete_wall\" label=\"\" >\n  <presetinput
       identifier=\"$randomseed\" uid=\"2602670426\" type=\"4\" value=\"1479\" />\n
-      \ <presetinput identifier=\"intensity_blur\" uid=\"2813869176\" type=\"0\" value=\"0.123\"
+      \ <presetinput identifier=\"intensity_blur\" uid=\"2813869176\" type=\"0\" value=\"1\"
       />\n  <presetinput identifier=\"balance_grunge\" uid=\"2813857289\" type=\"0\"
-      value=\"0.347\" />\n  <presetinput identifier=\"intensity_nomral\" uid=\"2813883054\"
-      type=\"0\" value=\"0.26\" />\n  <presetinput identifier=\"global_heightopacity\"
-      uid=\"2813885987\" type=\"0\" value=\"0.779\" />\n </sbspreset>\n"
+      value=\"0.029\" />\n  <presetinput identifier=\"intensity_nomral\" uid=\"2813883054\"
+      type=\"0\" value=\"1\" />\n  <presetinput identifier=\"global_heightopacity\"
+      uid=\"2813885987\" type=\"0\" value=\"0.743\" />\n </sbspreset>\n"
     shaderName: Standard
     outputNames: diffuse,normal,height
     materialProperties:
@@ -80,7 +80,7 @@ ScriptedImporter:
       - name: _GlossMapScale
         float: 1
       - name: _Glossiness
-        float: 0.75
+        float: 0.473
       - name: _GlossyReflections
         float: 1
       - name: _Metallic

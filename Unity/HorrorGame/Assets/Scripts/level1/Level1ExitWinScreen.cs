@@ -18,6 +18,8 @@ namespace TopZombies
 
         private FPSController fPSController;
         private BackgroundMusicController backgroundMusicController;
+        private BoxCollider exitCollider;
+        private Renderer childRender;
 
         private AudioSource audioSource;
         // Start is called before the first frame update
@@ -25,8 +27,13 @@ namespace TopZombies
         {
             audioSource = GetComponent<AudioSource>();
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
+            exitCollider = GetComponent<BoxCollider>();
+            childRender = GetComponentInChildren<Renderer>();
             GameObject.Find("[UI]/Canvas/GameCredits").SetActive(false);
             backgroundMusicController = GameObject.Find("Player/BGMusic").GetComponent<BackgroundMusicController>();
+
+            childRender.enabled = false;
+            exitCollider.enabled = false;
         }
 
         // Update is called once per frame
@@ -35,6 +42,13 @@ namespace TopZombies
 
         }
 
+        public void EnableExit()
+        {
+            childRender.enabled = true;
+            exitCollider.enabled = true;
+        }
+
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.GetComponent<FPSController>() != null)
