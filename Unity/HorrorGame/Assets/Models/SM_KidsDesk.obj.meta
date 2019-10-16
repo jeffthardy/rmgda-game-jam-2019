@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 40b513b6bd8b227488791e4c70fd08cc
+guid: a633f59c989aff344bdb14ce44bf6a20
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SM_KidsDesk4Mat
+    second: {fileID: 2100000, guid: 1a9b52b6caa1bdf47acd2b85e5d7f1d6, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -34,7 +39,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 2
+    globalScale: 1.5
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -81,7 +86,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.002
+    globalScale: 1.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
