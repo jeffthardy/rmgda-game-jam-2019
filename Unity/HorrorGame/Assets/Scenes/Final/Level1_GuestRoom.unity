@@ -120,75 +120,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &1881047267
+--- !u!1001 &1640883049
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 1bde7527bd404c94bbcffa4e8cbd5c3d,
+    - target: {fileID: -927199367670048503, guid: 92d9dfcbbc83d3d4489010aff1920cf0,
         type: 3}
       propertyPath: m_Name
-      value: SM_bedunmade
+      value: Rudge_SM_Bed
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 1bde7527bd404c94bbcffa4e8cbd5c3d,
+    - target: {fileID: -4216859302048453862, guid: 92d9dfcbbc83d3d4489010aff1920cf0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.484546
+      value: 6.9
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 1bde7527bd404c94bbcffa4e8cbd5c3d,
+    - target: {fileID: -4216859302048453862, guid: 92d9dfcbbc83d3d4489010aff1920cf0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.1989045
+      value: -4.2
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 1bde7527bd404c94bbcffa4e8cbd5c3d,
+    - target: {fileID: -4216859302048453862, guid: 92d9dfcbbc83d3d4489010aff1920cf0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.1706543
+      value: -2.3
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 1bde7527bd404c94bbcffa4e8cbd5c3d,
+    - target: {fileID: -4216859302048453862, guid: 92d9dfcbbc83d3d4489010aff1920cf0,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.006678967
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 1bde7527bd404c94bbcffa4e8cbd5c3d,
+    - target: {fileID: -4216859302048453862, guid: 92d9dfcbbc83d3d4489010aff1920cf0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.70707524
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 1bde7527bd404c94bbcffa4e8cbd5c3d,
+    - target: {fileID: -4216859302048453862, guid: 92d9dfcbbc83d3d4489010aff1920cf0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.7070752
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 1bde7527bd404c94bbcffa4e8cbd5c3d,
+    - target: {fileID: -4216859302048453862, guid: 92d9dfcbbc83d3d4489010aff1920cf0,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.0066788294
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 1bde7527bd404c94bbcffa4e8cbd5c3d,
+    - target: {fileID: -4216859302048453862, guid: 92d9dfcbbc83d3d4489010aff1920cf0,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 1bde7527bd404c94bbcffa4e8cbd5c3d,
+    - target: {fileID: -4216859302048453862, guid: 92d9dfcbbc83d3d4489010aff1920cf0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -89.98
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 1bde7527bd404c94bbcffa4e8cbd5c3d,
+    - target: {fileID: -4216859302048453862, guid: 92d9dfcbbc83d3d4489010aff1920cf0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 1bde7527bd404c94bbcffa4e8cbd5c3d,
+    - target: {fileID: -4216859302048453862, guid: 92d9dfcbbc83d3d4489010aff1920cf0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 181.08199
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1bde7527bd404c94bbcffa4e8cbd5c3d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 92d9dfcbbc83d3d4489010aff1920cf0, type: 3}
 --- !u!4 &7710872715992545770
 Transform:
   m_ObjectHideFlags: 0
