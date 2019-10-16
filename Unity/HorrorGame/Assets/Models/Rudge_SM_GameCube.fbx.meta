@@ -3,7 +3,12 @@ guid: 8aeaedc99ff10b3479ae6396caf9837f
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GameCubeModel_lambert3
+    second: {fileID: 2100000, guid: 48d5b1a72d6138c40897bf893b64c41d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
