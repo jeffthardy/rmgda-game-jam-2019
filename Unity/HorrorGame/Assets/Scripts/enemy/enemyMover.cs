@@ -11,6 +11,8 @@ namespace TopZombies
         public float playerLostWait = 3.0f;
         public bool isStatic = false;
         private NavMeshAgent agent;
+        private Vector3 originalPosition;
+        private Quaternion originalRotation;
         private Vector3 currentTarget;
         private Vector3 playerLocation;
 
@@ -40,6 +42,9 @@ namespace TopZombies
             myLastPosition = transform.position;
             if(viewAnimator != null)
                 viewAnimator.SetTrigger("Walk");
+
+            originalPosition = transform.parent.transform.position;
+            originalRotation = transform.parent.transform.rotation;
         }
 
 
@@ -129,6 +134,26 @@ namespace TopZombies
                     }
                 }
             }
+        }
+
+
+        public void RespawnAtStart()
+        {            
+            transform.parent.transform.position = originalPosition;
+            transform.parent.transform.rotation = originalRotation;
+            StartCoroutine(DelayMovementStart());
+        }
+        IEnumerator DelayMovementStart()
+        {
+            transform.parent.GetComponentInChildren<NavMeshAgent>().enabled = false;
+            yield return new WaitForSeconds(3.0f);
+            // Reset to initial pattern
+            if (goals[0] != null)
+            {
+                currentTarget = goals[0].transform.position;
+            }
+            transform.parent.GetComponentInChildren<NavMeshAgent>().enabled = true;
+
         }
 
         public int GetNextGoal()
