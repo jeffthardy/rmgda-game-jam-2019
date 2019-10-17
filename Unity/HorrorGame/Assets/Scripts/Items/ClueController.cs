@@ -249,7 +249,7 @@ namespace TopZombies {
             //disable scene time
             //Time.timeScale = 0;
             isViewingClue = true;
-            originalBounds = transform.GetComponentInChildren<Renderer>().bounds.size;
+            originalBounds = transform.Find("CenterPoint").GetComponentInChildren<Renderer>().bounds.size;
             originalSize = Mathf.Max(originalBounds.x, originalBounds.y, originalBounds.z);
             if (allowRotation || allowScale)
             {
@@ -260,6 +260,9 @@ namespace TopZombies {
                 Vector3 newScale = new Vector3(originalScale.x * scaleFactor, originalScale.y * scaleFactor, originalScale.z * scaleFactor);
                 transform.localScale = newScale;
                 Debug.Log("newScale is " + newScale);
+            } else
+            {
+                fPSController.CameraTarget(transform.Find("CenterPoint").gameObject);
             }
             releaseTime = Time.realtimeSinceStartup + minTimeToHoldItem;
             clueCameraTracker.EnableCamera(true);
@@ -281,6 +284,7 @@ namespace TopZombies {
             transform.localScale = originalScale;
 
             // Enable player
+            fPSController.ResetMouseView();
             fPSController.InputControl(true);
             //enable scene time
             Time.timeScale = 1;
