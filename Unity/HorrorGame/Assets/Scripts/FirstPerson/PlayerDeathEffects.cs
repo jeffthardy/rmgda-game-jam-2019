@@ -37,7 +37,7 @@ namespace TopZombies
             audioSource = GetComponent<AudioSource>();
 
             fPSController = GetComponent<FPSController>();
-            //GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            //GameObject.Find("[UI]/Canvas2/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 0);
         }
 
         public void Death()
@@ -45,7 +45,7 @@ namespace TopZombies
             //Black screen
 
 
-            //GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
+            //GameObject.Find("[UI]/Canvas2/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
             GetComponent<FPSController>().InputControl(false);
 
             //Play new scream
@@ -91,7 +91,7 @@ namespace TopZombies
 
                 //Debug.Log(Time.time + " set alpha " + (i));
                 float alpha = i/255.0f ;
-                GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, alpha);
+                GameObject.Find("[UI]/Canvas2/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, alpha);
             }
 
             //Debug.Log(Time.time + "yielding");
@@ -117,13 +117,13 @@ namespace TopZombies
 
                 //Debug.Log(Time.time + " set alpha " + (i));
                 float alpha = (i) / 255.0f;
-                GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, alpha);
+                GameObject.Find("[UI]/Canvas2/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, alpha);
             }
 
 
             //Clear screen
             GetComponent<FPSController>().InputControl(true);
-            //GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 0); ;
+            //GameObject.Find("[UI]/Canvas2/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 0); ;
             //Debug.Log(Time.time + "screen cleared");
 
         }
