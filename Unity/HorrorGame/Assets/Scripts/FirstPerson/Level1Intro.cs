@@ -48,7 +48,7 @@ namespace TopZombies
             // Disable display and control and start intro audio
             fPSController.InputControl(false);
             fPSController.CameraTarget(animatedTarget);
-            GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
+            GameObject.Find("[UI]/Canvas2/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
             //Wait a tiny bit to let things get out of start
             yield return new WaitForSeconds(0.1f);
 
@@ -120,7 +120,7 @@ namespace TopZombies
 
                 //Debug.Log(Time.time + " set alpha " + (255-i));
                 float alpha = (255.0f - i)/ 255.0f;
-                GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, alpha);
+                GameObject.Find("[UI]/Canvas2/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, alpha);
             }
 
         }
