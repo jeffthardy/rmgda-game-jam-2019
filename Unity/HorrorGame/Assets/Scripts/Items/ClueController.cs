@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace TopZombies {
     public class ClueController : MonoBehaviour
@@ -182,7 +183,6 @@ namespace TopZombies {
 
                 if (triggersNightmareMode)
                 {
-                    backgroundMusicController.PlayMusic(BackgroundMusicController.MusicTypes.nightmare);
                     StartCoroutine(TriggerNightmareWithDelay(nightmareTriggerDelay));
                 }
 
@@ -213,6 +213,7 @@ namespace TopZombies {
         IEnumerator TriggerNightmareWithDelay(float triggerDelay)
         {
             yield return new WaitForSeconds(triggerDelay);
+            backgroundMusicController.PlayMusic(BackgroundMusicController.MusicTypes.nightmare);
             nightmareController.SwitchToNightmare();
             if (spawnsEnemy)
                 enemy.SetActive(true);
@@ -284,11 +285,21 @@ namespace TopZombies {
             //enable scene time
             Time.timeScale = 1;
             isViewingClue = false;
-            
+
             clueCameraTracker.EnableCamera(false);
 
             if (causesSpectreVision)
                 spectreVisionController.DisplaySpectreForTime(1.0f);
+
+            playSeriesOfAudioClips.Unpause();
+        }
+
+        public void PauseAudioSeriesIfViewing()
+        {
+            if (isViewingClue)
+            {
+                playSeriesOfAudioClips.Pause();
+            }
         }
 
         public void enableClue()

@@ -9,7 +9,7 @@ namespace TopZombies {
         public GameObject onScreenInstructions;
 
         // Start is called before the first frame update
-        void Start()
+        public void ShowInstructions()
         {
             onScreenInstructions.SetActive(true);
         }
