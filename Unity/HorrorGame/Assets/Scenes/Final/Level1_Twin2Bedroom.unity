@@ -488,6 +488,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rudge_SM_GameCube
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8aeaedc99ff10b3479ae6396caf9837f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8aeaedc99ff10b3479ae6396caf9837f,
         type: 3}
       propertyPath: m_LocalPosition.x

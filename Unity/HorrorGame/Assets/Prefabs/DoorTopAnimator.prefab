@@ -50,8 +50,8 @@ MonoBehaviour:
   isOpen: 0
   rotateClockwise: 1
   useRate: 0.5
-  doorOpen: {fileID: 8300000, guid: 4f8ed171732a6554aa0e6cff4f5c96f8, type: 3}
-  doorClose: {fileID: 8300000, guid: 4f8ed171732a6554aa0e6cff4f5c96f8, type: 3}
+  doorOpen: {fileID: 8300000, guid: edd57e36fb7e5bd4e951f2392178edb4, type: 3}
+  doorClose: {fileID: 8300000, guid: ed77a0e9d30d8624bafc51205d13def0, type: 3}
 --- !u!95 &7505694066796156291
 Animator:
   serializedVersion: 3

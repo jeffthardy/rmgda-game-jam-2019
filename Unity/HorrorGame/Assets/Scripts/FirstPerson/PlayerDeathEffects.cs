@@ -21,6 +21,7 @@ namespace TopZombies
         private float startTime;
         private int deathIndex;
         private int talkIndex;
+        private GameObject enemiesHolder;
 
 
         // Start is called before the first frame update
@@ -38,6 +39,7 @@ namespace TopZombies
 
             fPSController = GetComponent<FPSController>();
             //GameObject.Find("[UI]/Canvas2/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            enemiesHolder = GameObject.Find("[Enemies]");
         }
 
         public void Death()
@@ -105,6 +107,33 @@ namespace TopZombies
             audioSource.PlayOneShot(spawnTalks[talkIndex]);
             //Debug.Log(Time.time + "spawnaudio");
 
+            //Respawn all enemies if alive
+            for (int i = 0; i < enemiesHolder.transform.childCount; i++)
+            {
+                var child = enemiesHolder.transform.GetChild(i).gameObject;
+                if ((child != null) && child.activeSelf)
+                    if (child.GetComponentInChildren<enemyMover>() != null)
+                    {
+                        child.GetComponentInChildren<enemyMover>().RespawnAtStart();
+                    } else
+                    {
+                        // Case where enemies are one layer deep under another group
+                        for (int j = 0; j < child.transform.childCount; j++)
+                        {
+                            var childsChild = child.transform.GetChild(j).gameObject;
+                            if ((childsChild != null) && childsChild.activeSelf)
+                            {
+                                if (childsChild.GetComponentInChildren<enemyMover>() != null)
+                                {
+                                    childsChild.GetComponentInChildren<enemyMover>().RespawnAtStart();
+                                }
+                            }
+                        }
+
+                    }
+            }            
+
+            //Respawn Character
             fPSController.Respawn();
 
             yield return new WaitForSeconds(spawnTalks[talkIndex].length);
