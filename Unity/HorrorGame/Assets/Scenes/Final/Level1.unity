@@ -4383,7 +4383,20 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  clipAction: []
+  clipAction:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 479939936}
+        m_MethodName: PauseAudioSeriesIfViewing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &479939938
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5415,7 +5428,20 @@ MonoBehaviour:
   seriesDelay:
   - 0
   - 0
-  clipAction: []
+  clipAction:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 530252885}
+        m_MethodName: PauseAudioSeriesIfViewing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &534369899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10037,7 +10063,20 @@ MonoBehaviour:
   seriesDelay:
   - 0
   - 0
-  clipAction: []
+  clipAction:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1041866687}
+        m_MethodName: PauseAudioSeriesIfViewing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1041877678
 GameObject:
   m_ObjectHideFlags: 0
@@ -15500,7 +15539,20 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  clipAction: []
+  clipAction:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1716960308}
+        m_MethodName: PauseAudioSeriesIfViewing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1722422198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8702582319280289608, guid: b2d7b4e69eebf9f4588bc4edffa6f01f,
@@ -19582,6 +19634,17 @@ MonoBehaviour:
   clipAction:
   - m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2144467461}
+        m_MethodName: PauseAudioSeriesIfViewing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 243228240}
         m_MethodName: SetActive
         m_Mode: 6

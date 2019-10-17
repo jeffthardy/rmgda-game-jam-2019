@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace TopZombies {
     public class ClueController : MonoBehaviour
@@ -289,6 +290,16 @@ namespace TopZombies {
 
             if (causesSpectreVision)
                 spectreVisionController.DisplaySpectreForTime(1.0f);
+
+            playSeriesOfAudioClips.Unpause();
+        }
+
+        public void PauseAudioSeriesIfViewing()
+        {
+            if (isViewingClue)
+            {
+                playSeriesOfAudioClips.Pause();
+            }
         }
 
         public void enableClue()

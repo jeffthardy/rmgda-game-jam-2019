@@ -76,8 +76,13 @@ namespace TopZombies
             {
                 Debug.Log(Time.time + " : playing clip " + i);
 
-                var remainingTime = clipSeries[i].length;
                 audioSource.PlayOneShot(clipSeries[i]);
+                if (state == State.Paused)
+                {
+                    audioSource.Pause();
+                }
+
+                var remainingTime = clipSeries[i].length;
                 while (remainingTime > 0)
                 {
                     if (state == State.Stopped)
@@ -116,7 +121,7 @@ namespace TopZombies
             state = State.Stopped;
         }
 
-        private void Pause()
+        public void Pause()
         {
             if (state == State.Playing)
             {
@@ -125,7 +130,7 @@ namespace TopZombies
             }
         }
 
-        private void Unpause()
+        public void Unpause()
         {
             if (state == State.Paused)
             {
@@ -134,13 +139,13 @@ namespace TopZombies
             }
         }
 
-        private void Stop()
+        public void Stop()
         {
             audioSource.Stop();
             state = State.Stopped;
         }
 
-        private void Restart(float delay)
+        public void Restart(float delay)
         {
             if (state == State.Playing)
             {
