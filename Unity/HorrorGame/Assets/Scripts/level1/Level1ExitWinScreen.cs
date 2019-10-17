@@ -29,7 +29,7 @@ namespace TopZombies
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
             exitCollider = GetComponent<BoxCollider>();
             childRender = GetComponentInChildren<Renderer>();
-            GameObject.Find("[UI]/Canvas/GameCredits").SetActive(false);
+            GameObject.Find("[UI]/Canvas4/GameCredits").SetActive(false);
             backgroundMusicController = GameObject.Find("Player/BGMusic").GetComponent<BackgroundMusicController>();
 
             childRender.enabled = false;
@@ -91,9 +91,9 @@ namespace TopZombies
 
                 Debug.Log(Time.time + " set alpha " + (i));
                 float alpha = (i) / 255.0f;
-                GameObject.Find("[UI]/Canvas/BlackoutPanel").GetComponent<Image>().color = new Color(1, 1, 1, alpha);
+                GameObject.Find("[UI]/Canvas2/BlackoutPanel").GetComponent<Image>().color = new Color(1, 1, 1, alpha);
             }
-            GameObject.Find("[UI]/Canvas/GameCredits").SetActive(true);
+            GameObject.Find("[UI]/Canvas4/GameCredits").SetActive(true);
 
 
         }
