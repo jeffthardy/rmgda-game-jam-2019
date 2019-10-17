@@ -480,6 +480,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rudge_SM_PaperClues
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: db8112546151fa249819c88c2593b25d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
       propertyPath: m_LocalPosition.x
