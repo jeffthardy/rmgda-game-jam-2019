@@ -281,11 +281,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Khalen McDonnell
+  m_Text: 'Abhinav Maroju
 
-    Thomas Cutter Rudge
+    Khalen McDonnell
 
-    Abhinav Maroju'
+    Thomas Cutter Rudge'
 --- !u!222 &92361308
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -780,9 +780,9 @@ MonoBehaviour:
 
     Dan Wcislo
 
-    Jeff Hardy
-
     Brandon Fredricks
+
+    Jeff Hardy
 
 '
 --- !u!222 &233395467
@@ -1242,9 +1242,9 @@ MonoBehaviour:
 
     Doctor
 
-    Jared Davis
-
     Newscaster
+
+    Jared Davis
 
 '
 --- !u!222 &1077583796
