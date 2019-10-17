@@ -3,7 +3,27 @@ guid: 92d9dfcbbc83d3d4489010aff1920cf0
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BedWood
+    second: {fileID: 2100000, guid: cf424cc4f280bdb4c88f573fca03954d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Mattress
+    second: {fileID: 2100000, guid: 25da4b313d0ba5c41ad12559238bcfcc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Pillow
+    second: {fileID: 2100000, guid: 4e6fedb9ddd77214f8eca74f1cc61a56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Sheet
+    second: {fileID: 2100000, guid: 392a2ae38d9f0a7428e32f4ef32d7a54, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -81,7 +101,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.015
+    globalScale: 1.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
