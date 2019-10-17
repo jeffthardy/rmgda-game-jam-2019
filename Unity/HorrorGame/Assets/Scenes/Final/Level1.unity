@@ -568,22 +568,22 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.42484277
+      value: 0.038649417
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.565251
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.42484277
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.565251
+      value: 0.9992529
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
@@ -593,12 +593,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 73.857
+      value: 4.43
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90.00001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db8112546151fa249819c88c2593b25d,
         type: 3}
@@ -2496,7 +2496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 261251726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.244, y: 1.113, z: 52.495}
+  m_LocalPosition: {x: 24.8, y: 2.036, z: 50.412}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1265777108}
@@ -13580,7 +13580,7 @@ MonoBehaviour:
   resumeButton: {fileID: 482875883}
   quitButton: {fileID: 502504591}
   menuSceneName: Menu
-  initialColor: {r: 0, g: 0, b: 0, a: 0.67058825}
+  initialColor: {r: 0, g: 0, b: 0, a: 0.89411765}
   mouseSlider: {fileID: 647982249}
 --- !u!1 &1406158530
 GameObject:
@@ -15620,7 +15620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716960304}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.908, y: 5.201, z: -35.605}
+  m_LocalPosition: {x: 22.768, y: 6.707, z: -37.977}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 43290451}
@@ -16552,7 +16552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1844468119
 Transform:
   m_ObjectHideFlags: 0
@@ -16561,7 +16561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1844468118}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.86, y: 6.087, z: -6.493}
+  m_LocalPosition: {x: 11.177, y: 6.867, z: -5.855}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 573537920}
@@ -18360,7 +18360,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027187650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -47.859394, y: 0.6248881, z: 73}
+  m_LocalPosition: {x: -47.859394, y: 0.6248881, z: 230}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2011940083}
