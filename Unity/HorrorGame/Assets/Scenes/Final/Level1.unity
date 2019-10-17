@@ -2282,9 +2282,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clipSeries:
+  - {fileID: 8300000, guid: 7e7fc9f3dc9cfd748ad0c66fad30a2b4, type: 3}
   - {fileID: 8300000, guid: bb801a936fcd70f41a154d7784bb85d2, type: 3}
   - {fileID: 8300000, guid: af633ce4785c5dc429cbc0c2b579e405, type: 3}
   seriesDelay:
+  - 0
   - 0
   - 0
   clipAction:
@@ -2301,6 +2303,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls: []
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1174824563}
@@ -2340,7 +2344,7 @@ MonoBehaviour:
   enemy: {fileID: 488833913}
   triggersNightmareMode: 1
   lookAtEnemy: 1
-  lookTime: 1
+  lookTime: 2
 --- !u!65 &195775544
 BoxCollider:
   m_ObjectHideFlags: 0
