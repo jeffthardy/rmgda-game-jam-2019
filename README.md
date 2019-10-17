@@ -13,3 +13,12 @@ Asset Store:
 
 External Assets Used
 - https://freesound.org/people/GowlerMusic/sounds/262257/
+
+
+Assets Cutter used
+Cabinets, cupboards from Maya Morgue, school bought commercial use assets
+Bed and lamp taken from Maya Morgue
+Bunny models from https://www.turbosquid.com/FullPreview/Index.cfm/ID/1028231
+Knife model from https://www.turbosquid.com/FullPreview/Index.cfm/ID/1387505
+Gamecube from https://www.turbosquid.com/FullPreview/Index.cfm/ID/266052
+Ceiling fan from Maya Morgue
