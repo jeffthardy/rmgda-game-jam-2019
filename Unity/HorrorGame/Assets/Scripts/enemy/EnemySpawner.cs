@@ -32,6 +32,14 @@ namespace TopZombies
 
             enemy.SetActive(true);
 
+            if (triggersNightmareMode)
+            {
+                var backgroundMusicController = GameObject.Find("Player/BGMusic").GetComponent<BackgroundMusicController>();
+                backgroundMusicController.PlayMusic(BackgroundMusicController.MusicTypes.nightmare);
+                var nightmareController = GameObject.Find("NightmareController").GetComponent<NightmareController>();
+                nightmareController.SwitchToNightmare();
+            }
+
             if (lookAtEnemy)
             {
                 var fPSController = GameObject.Find("Player").GetComponent<FPSController>();
@@ -40,12 +48,6 @@ namespace TopZombies
                 yield return new WaitForSeconds(lookTime);
                 fPSController.ResetMouseView();
                 fPSController.InputControl(true);
-            }
-
-            if (triggersNightmareMode)
-            {
-                var nightmareController = GameObject.Find("NightmareController").GetComponent<NightmareController>();
-                nightmareController.SwitchToNightmare();
             }
 
             var playSeriesOfAudioClips = GetComponent<PlaySeriesOfAudioClips>();

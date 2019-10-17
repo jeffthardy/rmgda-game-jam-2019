@@ -2125,7 +2125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &195775540
 Transform:
   m_ObjectHideFlags: 0
@@ -2256,7 +2256,18 @@ MonoBehaviour:
   - 0
   clipAction:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 21145348}
+        m_MethodName: CloseDoors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1174824563}
@@ -3222,7 +3233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341797041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.175, y: 7.16, z: -35.497}
+  m_LocalPosition: {x: 23.175, y: 1.415, z: -23.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963194228}
@@ -3349,7 +3360,7 @@ MonoBehaviour:
   viewAnimator: {fileID: 146058045}
   animatedTarget: {fileID: 1406158530}
   firstClue: {fileID: 1716960304}
-  skipIntro: 0
+  skipIntro: 1
 --- !u!114 &341797048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7756,7 +7767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 488833913}
   triggersNightmareMode: 1
-  lookAtEnemy: 0
+  lookAtEnemy: 1
   lookTime: 1
 --- !u!65 &719775993
 BoxCollider:
@@ -12156,9 +12167,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipSeries:
   - {fileID: 8300000, guid: 10370621bf5d1cc4e911ed7617855968, type: 3}
+  - {fileID: 8300000, guid: 7e7fc9f3dc9cfd748ad0c66fad30a2b4, type: 3}
   seriesDelay:
   - 0
+  - 0
   clipAction:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1174824568}
+        m_MethodName: PauseAudioSeriesIfViewing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 21145348}

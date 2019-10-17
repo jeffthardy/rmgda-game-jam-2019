@@ -31,6 +31,11 @@ namespace TopZombies
 
         public void TriggerEndSequence()
         {
+            StartCoroutine(FlashingLightsAndDoor());
+        }
+
+        public void CloseDoors()
+        {
             if (kitchenDoor.GetComponent<DoorController>().isOpen)
                 kitchenDoor.GetComponent<DoorController>().Use();
             kitchenDoor.GetComponent<DoorController>().DisableDoor();
@@ -38,8 +43,6 @@ namespace TopZombies
             if (livingRoomDoor.GetComponent<DoorController>().isOpen)
                 livingRoomDoor.GetComponent<DoorController>().Use();
             livingRoomDoor.GetComponent<DoorController>().DisableDoor();
-
-            StartCoroutine(FlashingLightsAndDoor());
         }
 
         IEnumerator FlashingLightsAndDoor()
