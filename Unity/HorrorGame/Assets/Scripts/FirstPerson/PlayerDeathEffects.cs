@@ -23,6 +23,9 @@ namespace TopZombies
         private int talkIndex;
         private GameObject enemiesHolder;
 
+        private float canDieTime;
+        private float minTimeToDie = 2.0f;
+
 
         // Start is called before the first frame update
         void Start()
@@ -40,44 +43,49 @@ namespace TopZombies
             fPSController = GetComponent<FPSController>();
             //GameObject.Find("[UI]/Canvas2/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 0);
             enemiesHolder = GameObject.Find("[Enemies]");
+
+            canDieTime = Time.time + minTimeToDie;
         }
 
         public void Death()
         {
             //Black screen
 
-
-            //GameObject.Find("[UI]/Canvas2/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
-            GetComponent<FPSController>().InputControl(false);
-
-            //Play new scream
-            if (deathScreams.Length > 1)
+            if (Time.time > canDieTime)
             {
-                int previousIndex = deathIndex;
-                while (deathIndex == previousIndex)
-                    deathIndex = Random.Range(0, deathScreams.Length - 1);
+                canDieTime = Time.time + minTimeToDie;
+                //GameObject.Find("[UI]/Canvas2/BlackoutPanel").GetComponent<Image>().color = new Color(0, 0, 0, 255);
+                GetComponent<FPSController>().InputControl(false);
+
+                //Play new scream
+                if (deathScreams.Length > 1)
+                {
+                    int previousIndex = deathIndex;
+                    while (deathIndex == previousIndex)
+                        deathIndex = Random.Range(0, deathScreams.Length - 1);
+                }
+                else
+                {
+                    deathIndex = 0;
+                }
+
+                // Play new spawn audio
+                if (spawnTalks.Length > 1)
+                {
+                    int previousIndex = talkIndex;
+                    while (talkIndex == previousIndex)
+                        talkIndex = Random.Range(0, spawnTalks.Length - 1);
+                }
+                else
+                {
+                    talkIndex = 0;
+                }
+
+                PlaySeriesOfAudioClips.RestartAll(deathScreams[deathIndex].length + timeBeforeSceenBlack * 2 + spawnTalks[talkIndex].length + 1.0f);
+
+                StartCoroutine(DeathCleanup());
+
             }
-            else
-            {
-                deathIndex = 0;
-            }
-
-            // Play new spawn audio
-            if (spawnTalks.Length > 1)
-            {
-                int previousIndex = talkIndex;
-                while (talkIndex == previousIndex)
-                    talkIndex = Random.Range(0, spawnTalks.Length - 1);
-            } else
-            {
-                talkIndex = 0;
-            }
-
-            PlaySeriesOfAudioClips.RestartAll(deathScreams[deathIndex].length + timeBeforeSceenBlack * 2 + spawnTalks[talkIndex].length + 1.0f);
-
-            StartCoroutine(DeathCleanup());
-
-
         }
 
         IEnumerator DeathCleanup()
