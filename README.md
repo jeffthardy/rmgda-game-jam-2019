@@ -2,7 +2,7 @@
 ## Rocky Mountain Game Developers - Game Jam 2019
 
 ## Description
-Dive deep into the mind of Katheryn Davis to discover the truth behind her past. Explore the repressed memories of her family’s brutal murder so she may find the hope she needs to move forwards with her life.
+Dive deep into the mind of Katheryn Davis to discover the truth behind her past. Explore the repressed memories of her family’s brutal murder so she may find the hope she needs to move forward with her life.
 
 ## Details
 As a child, Katheryn Davis was the sole survivor of a brutal serial killer attack. Years later she yearns to learn the truth behind what happened, which she has repressed, so that she may find the courage and hope she needs to move on with her life.
@@ -38,5 +38,7 @@ Fractured Mind is a first-person adventure horror game developed by Top Zombies 
 - Nightmare SFX from https://freesound.org/people/SirBedlam/sounds/195938/
 - Door sounds from https://freesound.org/people/rivernile7/sounds/234244/
 - Music: https://filmmusic.io, "Ghost Story" by Kevin MacLeod (https://incompetech.com), License: CC BY (http://creativecommons.org/licenses/by/4.0/)
-- Belligerent Font: https://www.fontsquirrel.com/fonts/belligerent-madness
-- Footstep sounds: https://freesound.org/people/nuFF3/packs/27008/
+- Alarm, Bathtub, Bathtub attachments, CD, Darkplastic, Darkwood, Envelope, Fabric, Family Stock Photo, Guestbed Frame, Guestbed Matress, Jewelery, Jewelery as blockage, Newspaper, Roughmetal, Steel textures from:
+http://2.bp.blogspot.com/-oIcJCDSd4Pk/UFwYUIaEj7I/AAAAAAAACOE/jQEoayseiv4/s1600/Tileable+eroded+scratch+metal+texture+background+00.jpg
+https://www.textures.com/download/fiberglass0017/9707
+http://spiralgraphics.biz/packs/crystal_rough/index.htm?31
