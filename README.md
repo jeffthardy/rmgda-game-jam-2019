@@ -33,12 +33,14 @@ Fractured Mind is a first-person adventure horror game developed by Top Zombies 
 - Wall Lamp	From https://www.turbosquid.com/FullPreview/Index.cfm/ID/1187496
 - Doll House + Textures	From https://www.turbosquid.com/FullPreview/Index.cfm/ID/891246
 - Puzzle Mat + Textures	From https://www.turbosquid.com/FullPreview/Index.cfm/ID/1195442
-- Horror BGM from https://freesound.org/people/GowlerMusic/sounds/262257/
-- Dream SFX from https://freesound.org/people/MrCisum/sounds/467140/
-- Nightmare SFX from https://freesound.org/people/SirBedlam/sounds/195938/
-- Door sounds from https://freesound.org/people/rivernile7/sounds/234244/
-- Music: https://filmmusic.io, "Ghost Story" by Kevin MacLeod (https://incompetech.com), License: CC BY (http://creativecommons.org/licenses/by/4.0/)
 - Alarm, Bathtub, Bathtub attachments, CD, Darkplastic, Darkwood, Envelope, Fabric, Family Stock Photo, Guestbed Frame, Guestbed Matress, Jewelery, Jewelery as blockage, Newspaper, Roughmetal, and Steel textures from:
 http://2.bp.blogspot.com/-oIcJCDSd4Pk/UFwYUIaEj7I/AAAAAAAACOE/jQEoayseiv4/s1600/Tileable+eroded+scratch+metal+texture+background+00.jpg
 https://www.textures.com/download/fiberglass0017/9707
 http://spiralgraphics.biz/packs/crystal_rough/index.htm?31
+- Dream SFX from https://freesound.org/people/MrCisum/sounds/467140/
+- Nightmare SFX from https://freesound.org/people/SirBedlam/sounds/195938/
+- Door sounds from https://freesound.org/people/rivernile7/sounds/234244/
+- Footsteps Audio from https://freesound.org/people/nuFF3/packs/27008/
+- Horror BGM from https://freesound.org/people/GowlerMusic/sounds/262257/
+- Music: https://filmmusic.io, "Ghost Story" by Kevin MacLeod (https://incompetech.com), License: CC BY (http://creativecommons.org/licenses/by/4.0/)
+- Belligerent Font from https://www.fontsquirrel.com/fonts/belligerent-madness
