@@ -1,17 +1,26 @@
-# rmgda-game-jam-2019
-Rocky Mountain Game Developers - Game Jam 2019
+# Fractured Mind by Top Zombies
+## Rocky Mountain Game Developers - Game Jam 2019
 
+## Description
+Dive deep into the mind of Katheryn Davis to discover the truth behind her past. Explore the repressed memories of her family’s brutal murder so she may find the hope she needs to move forwards with her life.
 
-Tools: 
-  Unity 2019.2.6f1
+## Details
+As a child, Katheryn Davis was the sole survivor of a brutal serial killer attack. Years later she yearns to learn the truth behind what happened, which she has repressed, so that she may find the courage and hope she needs to move on with her life.
 
-Added Packages: 
-  Post Processing Stack 2.0
+With the help of new technology, developed by the Doctor, she is about to dive into her memories in a dream-like state. There she must face her inner demons and explore the dark corners of her mind to reveal what she already knows, but is too afraid to recognize. But the truth may be far more than anyone realizes…
 
-Asset Store: 
-  Allegorithmic Substance Support
+Fractured Mind is a first-person adventure horror game developed by Top Zombies for the 1st Rocky Mountain Game Developer’s Gam Jam.
 
-External Assets Used
+## Tools
+- Unity 2019.2.6f1
+
+## Added Packages
+- Post Processing Stack 2.0
+
+## Asset Store: 
+- Allegorithmic Substance Support
+
+## External Assets Used
 - Cabinets, cupboards from Maya Morgue, school bought commercial use assets
 - Bed and lamp taken from Maya Morgue
 - Bunny models from https://www.turbosquid.com/FullPreview/Index.cfm/ID/1028231
