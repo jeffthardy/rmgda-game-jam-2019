@@ -38,3 +38,5 @@ Fractured Mind is a first-person adventure horror game developed by Top Zombies 
 - Nightmare SFX from https://freesound.org/people/SirBedlam/sounds/195938/
 - Door sounds from https://freesound.org/people/rivernile7/sounds/234244/
 - Music: https://filmmusic.io, "Ghost Story" by Kevin MacLeod (https://incompetech.com), License: CC BY (http://creativecommons.org/licenses/by/4.0/)
+- Belligerent Font: https://www.fontsquirrel.com/fonts/belligerent-madness
+- Footstep sounds: https://freesound.org/people/nuFF3/packs/27008/
