@@ -38,7 +38,7 @@ Fractured Mind is a first-person adventure horror game developed by Top Zombies 
 - Nightmare SFX from https://freesound.org/people/SirBedlam/sounds/195938/
 - Door sounds from https://freesound.org/people/rivernile7/sounds/234244/
 - Music: https://filmmusic.io, "Ghost Story" by Kevin MacLeod (https://incompetech.com), License: CC BY (http://creativecommons.org/licenses/by/4.0/)
-- Alarm, Bathtub, Bathtub attachments, CD, Darkplastic, Darkwood, Envelope, Fabric, Family Stock Photo, Guestbed Frame, Guestbed Matress, Jewelery, Jewelery as blockage, Newspaper, Roughmetal, Steel textures from:
+- Alarm, Bathtub, Bathtub attachments, CD, Darkplastic, Darkwood, Envelope, Fabric, Family Stock Photo, Guestbed Frame, Guestbed Matress, Jewelery, Jewelery as blockage, Newspaper, Roughmetal, and Steel textures from:
 http://2.bp.blogspot.com/-oIcJCDSd4Pk/UFwYUIaEj7I/AAAAAAAACOE/jQEoayseiv4/s1600/Tileable+eroded+scratch+metal+texture+background+00.jpg
 https://www.textures.com/download/fiberglass0017/9707
 http://spiralgraphics.biz/packs/crystal_rough/index.htm?31
