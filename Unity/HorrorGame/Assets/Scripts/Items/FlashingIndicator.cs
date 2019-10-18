@@ -132,6 +132,19 @@ namespace TopZombies
             }
         }
 
+
+        private void OnTriggerStay(Collider other)
+        {
+            // Player is in range
+            if ((other.gameObject.GetComponent<FPSController>() != null) && flasherEnabled)
+            {
+                if(isFlashing==false)
+                    TurnOnFlasher();
+                
+            }
+        }
+
+
         private void OnTriggerExit(Collider other)
         {
             // Player is in range
