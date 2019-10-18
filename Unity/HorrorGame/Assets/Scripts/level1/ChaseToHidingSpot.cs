@@ -12,6 +12,7 @@ namespace TopZombies
         public GameObject dad;
         public GameObject ghost;
         public GameObject cameraLocation;
+        public GameObject guestBedroomInfoUI;
 
 
         private bool chaseHasHappened = false;
@@ -33,6 +34,7 @@ namespace TopZombies
             dad.SetActive(false);
             ghost.SetActive(false);
             fPSController = GameObject.Find("Player").GetComponent<FPSController>();
+            guestBedroomInfoUI.SetActive(false);
         }
         
 
@@ -80,6 +82,7 @@ namespace TopZombies
 
             // Add enemy with chase and direction
             ghost.SetActive(true);
+            guestBedroomInfoUI.SetActive(true);
 
             nextScene.SetActive(true);
         }

@@ -19,6 +19,7 @@ namespace TopZombies
         public GameObject previousScene;
         public GameObject enemy;
         public GameObject dad;
+        public GameObject guestBedroomInfoUI;
 
 
         private AudioSource finalFightAudioSource;
@@ -61,6 +62,8 @@ namespace TopZombies
                         entranceDoor1.GetComponent<DoorController>().Use();
                     entranceDoor1.GetComponent<DoorController>().DisableDoor();
 
+
+                    guestBedroomInfoUI.SetActive(false);
                     enemy.SetActive(true);
                     dad.SetActive(false);
                     StartCoroutine(PlayFinalFight());
