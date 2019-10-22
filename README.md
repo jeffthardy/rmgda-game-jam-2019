@@ -27,7 +27,7 @@ Fractured Mind is a first-person adventure horror game developed by Top Zombies 
 - Knife model from https://www.turbosquid.com/FullPreview/Index.cfm/ID/1387505
 - Gamecube from https://www.turbosquid.com/FullPreview/Index.cfm/ID/266052
 - Ceiling fan from Maya Morgue
-- Drawer adn round table From	https://free3d.com/3d-model/drawer-bed-side-547686.html
+- Drawer and round table From	https://free3d.com/3d-model/drawer-bed-side-547686.html
 - Girl Bed + Textures	From https://free3d.com/3d-model/kitty-bed-573440.html
 - Rugs + Textures	From https://www.turbosquid.com/FullPreview/Index.cfm/ID/1366028
 - Wall Lamp	From https://www.turbosquid.com/FullPreview/Index.cfm/ID/1187496
